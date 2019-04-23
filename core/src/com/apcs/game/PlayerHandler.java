@@ -8,10 +8,12 @@ import com.badlogic.gdx.math.Rectangle;
 public class PlayerHandler {
     private Texture myTexture;
     private Rectangle collider;
+    private PlayerInventory inventory;
 
     public PlayerHandler() {
-        myTexture = new Texture("core/assets/badlogic.jpg");
-        collider = new Rectangle(0, 0, myTexture.getWidth(), myTexture.getHeight());
+        myTexture = new Texture("core/assets/badlogic.jpg"); // loading in the player texture
+        collider = new Rectangle(0, 0, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
+        inventory = new PlayerInventory(); // creating the inventory for the player
     }
 
     /*
