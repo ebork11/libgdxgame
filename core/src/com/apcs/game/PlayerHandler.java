@@ -12,23 +12,23 @@ public class PlayerHandler {
 
     public PlayerHandler() {
         myTexture = new Texture("core/assets/badlogic.jpg"); // loading in the player texture
-        collider = new Rectangle(0, 0, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
+        collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
         inventory = new PlayerInventory(); // creating the inventory for the player
     }
 
     /*
-        Checks for input on WASD keys and moves the player according to what they press.
+        Checks for input on WASD keys and moves the player according to what they press and makes sure they are within the room boundaries
      */
     public void movementHandler() {
         float speed = 5f; // speed to move the player
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) { // if the w key is pressed
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 650) { // if the w key is pressed
             collider.y += speed; // move the collider up
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) { // if the s key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S) && collider.y > 50) { // if the s key is pressed
             collider.y -= speed; // move the collider down
-        } else if (Gdx.input.isKeyPressed(Input.Keys.A)) { // if the a key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 35) { // if the a key is pressed
             collider.x -= speed; // move the collider left
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) { // if the d key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D) && (collider.x + myTexture.getWidth()) < 1235) { // if the d key is pressed
             collider.x += speed; // move the collider right
         }
     }
