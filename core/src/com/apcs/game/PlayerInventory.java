@@ -9,7 +9,7 @@ public class PlayerInventory {
 
 
     public PlayerInventory() {
-        inventorySlots = 3;
+        inventorySlots = 4;
         inventory = new Item[inventorySlots];
     }
 
