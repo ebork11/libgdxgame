@@ -10,6 +10,7 @@ public class PlayerInventory {
 
     public PlayerInventory() {
         inventorySlots = 4;
+        System.out.print("yaga");
         inventory = new Item[inventorySlots];
     }
 
