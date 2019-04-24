@@ -54,6 +54,9 @@ public class PlayerHandler {
         return collider;
     }
 
+    /*
+        Disposing the player textures
+     */
     public void disposer() {
         myTexture.dispose();
     }
