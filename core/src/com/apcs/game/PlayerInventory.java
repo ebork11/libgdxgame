@@ -14,7 +14,7 @@ public class PlayerInventory {
         inventorySlots = 4;
         inventory = new Item[inventorySlots];
 
-        invTexture = new Texture("core/assets/badlogic.jpg");
+        invTexture = new Texture("core/assets/inventory.png");
     }
 
     /*

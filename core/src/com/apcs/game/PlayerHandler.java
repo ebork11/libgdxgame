@@ -11,7 +11,7 @@ public class PlayerHandler {
     private PlayerInventory inventory;
 
     public PlayerHandler() {
-        myTexture = new Texture("core/assets/badlogic.jpg"); // loading in the player texture
+        myTexture = new Texture("core/assets/player.png"); // loading in the player texture
         collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
         inventory = new PlayerInventory(); // creating the inventory for the player
     }

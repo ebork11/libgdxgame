@@ -14,7 +14,7 @@ public class DefaultRoom {
 
     // width is 1200, height is 600
     public DefaultRoom(DefaultRoom previous) {
-        myFloor = new Texture("core/assets/Drawing.jpeg");
+        myFloor = new Texture("core/assets/background1.png");
 
         nextRoom = null;
         previousRoom = previous;

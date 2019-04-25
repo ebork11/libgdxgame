@@ -52,7 +52,7 @@ public class GameMain extends ApplicationAdapter {
 		Where the players inventory in the bottom right is drawn with the items in it
 	 */
 	public void drawInventory() {
-		batch.draw(player.getInventory().getInvTexture(), 1000, 300);
+		batch.draw(player.getInventory().getInvTexture(), 1080, 0);
 	}
 
 	
