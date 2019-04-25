@@ -81,6 +81,18 @@ public class PlayerHandler {
         }
     }
 
+    public void checkForPickup() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            for (int cnt = 0; cnt < GameMain.groundItems.size(); cnt++) {
+                if (collider.overlaps(GameMain.groundItems.get(cnt).getCollider())) {
+                    inventory.addItem(GameMain.groundItems.get(cnt));
+                    GameMain.groundItems.remove(cnt);
+                    break;
+                }
+            }
+        }
+    }
+
     /*
         Returns the players texture
      */

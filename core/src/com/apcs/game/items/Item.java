@@ -18,21 +18,24 @@ public class Item {
         myY = 0;
     }
 
-    public void drop()
-    {
+    /*
+        When an item is to be dropped this method is called
+     */
+    public void drop() {
         GameMain.groundItems.add(this);
         myX = PlayerHandler.getCollider().x;
         myY = PlayerHandler.getCollider().y;
+
+        collider.x = myX; // moves collider to location of dropped item
+        collider.y = myY; // ^^
     }
 
 
-    public float getX()
-    {
+    public float getX() { // returns colliders x
         return myX;
     }
 
-    public float getY()
-    {
+    public float getY() { // returns colliders y
         return myY;
     }
 

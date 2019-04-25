@@ -45,6 +45,7 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the player accordingly
+		player.checkForPickup();
 	}
 
 	/*
