@@ -22,6 +22,7 @@ public class PlayerHandler {
      */
     public void movementHandler() {
         float speed = 5f; // speed to move the player
+        float diagSpeed = (float)Math.sqrt(Math.pow(speed, 2) / 2);
 
         /*
             Test to add items to inventory
@@ -44,9 +45,33 @@ public class PlayerHandler {
         }
 
 
+
+        /*
+            Movement
+         */
         if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 650) { // if the w key is pressed
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                collider.x += diagSpeed;
+                collider.y += diagSpeed;
+                return;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                collider.x -= diagSpeed;
+                collider.y += diagSpeed;
+                return;
+            }
+
             collider.y += speed; // move the collider up
         } else if (Gdx.input.isKeyPressed(Input.Keys.S) && collider.y > 50) { // if the s key is pressed
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                collider.x += diagSpeed;
+                collider.y -= diagSpeed;
+                return;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                collider.x -= diagSpeed;
+                collider.y -= diagSpeed;
+                return;
+            }
+
             collider.y -= speed; // move the collider down
         } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 35) { // if the a key is pressed
             collider.x -= speed; // move the collider left
