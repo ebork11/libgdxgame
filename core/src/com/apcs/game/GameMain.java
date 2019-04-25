@@ -29,6 +29,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.begin(); // beginning of where everything is drawn
 		batch.draw(rm.getCurrentRoom().getFloor(), 35, 50); // draw the room floor
 		batch.draw(player.getTexture(), player.getCollider().x, player.getCollider().y); // draws the player at the colliders location
+		drawInventory();
 		batch.end(); // ending of where everything is drawn
 	}
 
@@ -45,6 +46,13 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	public void roomManage() {
 
+	}
+
+	/*
+		Where the players inventory in the bottom right is drawn with the items in it
+	 */
+	public void drawInventory() {
+		batch.draw(player.getInventory().getInvTexture(), 1000, 300);
 	}
 
 	

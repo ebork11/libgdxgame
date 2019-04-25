@@ -54,6 +54,10 @@ public class PlayerHandler {
         return collider;
     }
 
+    public PlayerInventory getInventory() {
+        return inventory;
+    }
+
     /*
         Disposing the player textures
      */

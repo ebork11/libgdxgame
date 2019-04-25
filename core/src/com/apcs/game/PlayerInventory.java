@@ -1,8 +1,10 @@
 package com.apcs.game;
 
 import com.apcs.game.items.Item;
+import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerInventory {
+    private Texture invTexture;
 
     private int inventorySlots;
     private Item[] inventory;
@@ -11,6 +13,8 @@ public class PlayerInventory {
     public PlayerInventory() {
         inventorySlots = 4;
         inventory = new Item[inventorySlots];
+
+        invTexture = new Texture("core/assets/badlogic.jpg");
     }
 
     /*
@@ -43,6 +47,10 @@ public class PlayerInventory {
         inventory[slot] = null; // sets the slot to null aka empty
 
         return removedItem; // returns the item we removed
+    }
+
+    public Texture getInvTexture() {
+        return invTexture;
     }
 
 
