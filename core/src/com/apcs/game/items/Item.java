@@ -8,7 +8,7 @@ public class Item {
     private Rectangle collider;
 
     public Item() {
-        myTexture = new Texture("core/assets/badlogic.jpg"); // default image for items
+        myTexture = new Texture("core/assets/items/item.png"); // default image for items
         collider = new Rectangle(0, 0, myTexture.getWidth(), myTexture.getHeight()); // sets collider to the size of the image
     }
 

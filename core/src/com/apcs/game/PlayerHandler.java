@@ -1,5 +1,6 @@
 package com.apcs.game;
 
+import com.apcs.game.items.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,6 +22,27 @@ public class PlayerHandler {
      */
     public void movementHandler() {
         float speed = 5f; // speed to move the player
+
+        /*
+            Test to add items to inventory
+         */
+        if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
+            inventory.addItem(new Item());
+        }
+
+        /*
+            Test to remove items from inventory. not to be kept in final game
+         */
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+            inventory.removeItem(0);
+        } if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
+            inventory.removeItem(1);
+        } if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
+            inventory.removeItem(2);
+        } if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
+            inventory.removeItem(3);
+        }
+
 
         if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 650) { // if the w key is pressed
             collider.y += speed; // move the collider up

@@ -53,6 +53,12 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	public void drawInventory() {
 		batch.draw(player.getInventory().getInvTexture(), 1080, 0);
+
+		for (int cnt = 0; cnt < player.getInventory().getInventory().length; cnt++) {
+			if (player.getInventory().getInventory()[cnt] != null) {
+				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1090 + (cnt * (17 + player.getInventory().getInventory()[cnt].getTexture().getWidth())) , 9);
+			}
+		}
 	}
 
 	
