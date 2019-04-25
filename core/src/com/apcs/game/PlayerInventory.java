@@ -43,6 +43,10 @@ public class PlayerInventory {
         returns the removed item
      */
     public Item removeItem(int slot) {
+        if (inventory[slot] != null) {
+            inventory[slot].drop();
+        }
+
         Item removedItem = inventory[slot]; // saving the object so we can return it later
         inventory[slot] = null; // sets the slot to null aka empty
 
