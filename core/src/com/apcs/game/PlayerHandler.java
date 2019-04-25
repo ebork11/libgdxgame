@@ -1,6 +1,7 @@
 package com.apcs.game;
 
 import com.apcs.game.items.Item;
+import com.apcs.game.items.Sword;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class PlayerHandler {
     private Texture myTexture;
-    private Rectangle collider;
+    private static Rectangle collider;
     private PlayerInventory inventory;
 
     public PlayerHandler() {
@@ -28,7 +29,7 @@ public class PlayerHandler {
             Test to add items to inventory
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
-            inventory.addItem(new Item());
+            inventory.addItem(new Sword());
         }
 
         /*
@@ -97,7 +98,7 @@ public class PlayerHandler {
     /*
         Returns the players collider object(aka the Rectangle)
      */
-    public Rectangle getCollider() {
+    public static Rectangle getCollider() {
         return collider;
     }
 

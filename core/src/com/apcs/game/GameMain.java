@@ -1,14 +1,18 @@
 package com.apcs.game;
 
+import com.apcs.game.items.Item;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
+
 public class GameMain extends ApplicationAdapter {
 
 	private PlayerHandler player;
 	private RoomManager rm;
+	public static ArrayList<Item> groundItems;
 
 	private SpriteBatch batch;
 	
@@ -17,6 +21,7 @@ public class GameMain extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		player = new PlayerHandler();
 		rm = new RoomManager();
+		groundItems = new ArrayList<Item>();
 	}
 
 	@Override
@@ -28,6 +33,7 @@ public class GameMain extends ApplicationAdapter {
 
 		batch.begin(); // beginning of where everything is drawn
 		batch.draw(rm.getCurrentRoom().getFloor(), 35, 50); // draw the room floor
+		drawItems();
 		batch.draw(player.getTexture(), player.getCollider().x, player.getCollider().y); // draws the player at the colliders location
 		drawInventory();
 		batch.end(); // ending of where everything is drawn
@@ -61,6 +67,13 @@ public class GameMain extends ApplicationAdapter {
 		}
 	}
 
+	public void drawItems()
+	{
+		for(int loop = 0; loop < groundItems.size(); loop++)
+		{
+			batch.draw(groundItems.get(loop).getTexture(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
+		}
+	}
 	
 	@Override
 	public void dispose () {
