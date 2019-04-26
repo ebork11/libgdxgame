@@ -36,7 +36,7 @@ public class GameMain extends ApplicationAdapter {
 		playerManage(); // handles everything regarding the player
 
 		batch.begin(); // beginning of where everything is drawn
-		batch.draw(rm.getCurrentRoom().getFloor(), 35, 50); // draw the room floor
+		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
 		drawItems();
 		batch.draw(player.getTexture(), player.getCollider().x, player.getCollider().y); // draws the player at the colliders location
 		drawInventory();
@@ -64,13 +64,14 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	public void drawInventory() {
 		batch.draw(player.getInventory().getInvTexture(), 1080, 0);
+		batch.draw(player.getInventory().getEquipTex(), 1000,0);
 
 		for (int cnt = 0; cnt < player.getInventory().getInventory().length; cnt++) {
 			if (player.getInventory().getInventory()[cnt] != null) {
-				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1090 + (cnt * (17 + player.getInventory().getInventory()[cnt].getTexture().getWidth())) , 9);
+				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1096 + (cnt * (17 + 46)) , 29);
 			}
 			if (cnt == player.getCurrentSlot()) { // draws current player inventory slot selection
-				batch.draw(invSelectTex, 1088 + (cnt * (17 + 32)), 9);
+				batch.draw(invSelectTex, 1094 + (cnt * (14 + 46)), 27);
 			}
 		}
 
