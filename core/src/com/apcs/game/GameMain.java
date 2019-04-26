@@ -4,11 +4,14 @@ import com.apcs.game.items.Item;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
 public class GameMain extends ApplicationAdapter {
+
+	private Texture invSelectTex;
 
 	private PlayerHandler player;
 	private RoomManager rm;
@@ -22,6 +25,7 @@ public class GameMain extends ApplicationAdapter {
 		player = new PlayerHandler();
 		rm = new RoomManager();
 		groundItems = new ArrayList<Item>();
+		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 	}
 
 	@Override
@@ -65,7 +69,12 @@ public class GameMain extends ApplicationAdapter {
 			if (player.getInventory().getInventory()[cnt] != null) {
 				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1090 + (cnt * (17 + player.getInventory().getInventory()[cnt].getTexture().getWidth())) , 9);
 			}
+			if (cnt == player.getCurrentSlot()) { // draws current player inventory slot selection
+				batch.draw(invSelectTex, 1088 + (cnt * (17 + 32)), 9);
+			}
 		}
+
+
 	}
 
 	public void drawItems()

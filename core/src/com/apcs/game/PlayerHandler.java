@@ -35,16 +35,23 @@ public class PlayerHandler {
         }
 
         /*
-            Test to remove items from inventory. not to be kept in final game
+            Removes current selected slot
+         */
+        if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+            inventory.removeItem(currentSlot);
+        }
+
+        /*
+            Changes selected item
          */
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            inventory.removeItem(0);
+            currentSlot = 0;
         } if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-            inventory.removeItem(1);
+            currentSlot = 1;
         } if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
-            inventory.removeItem(2);
+            currentSlot = 2;
         } if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
-            inventory.removeItem(3);
+            currentSlot = 3;
         }
 
 
@@ -96,23 +103,14 @@ public class PlayerHandler {
         }
     }
 
-    /*
-        Returns the players texture
-     */
     public Texture getTexture() {
         return myTexture;
     }
 
-    /*
-        Sets the players texture to whatever is given
-     */
     public void setTexture(Texture newTex) {
         myTexture = newTex;
     }
 
-    /*
-        Returns the players collider object(aka the Rectangle)
-     */
     public static Rectangle getCollider() {
         return collider;
     }
@@ -121,9 +119,10 @@ public class PlayerHandler {
         return inventory;
     }
 
-    /*
-        Disposing the player textures
-     */
+    public int getCurrentSlot() {
+        return currentSlot;
+    }
+
     public void disposer() {
         myTexture.dispose();
     }
