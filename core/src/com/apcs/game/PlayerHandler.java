@@ -8,16 +8,26 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 public class PlayerHandler {
-    private Texture myTexture;
+    // main player stuff
+    private static Texture myTexture;
     private static Rectangle collider;
-    private PlayerInventory inventory;
+
+    // inventory stuff
+    private static PlayerInventory inventory;
     private int currentSlot; // current selected slot
+
+    // combat stuff
+    private PlayerCombat combat;
+
 
     public PlayerHandler() {
         myTexture = new Texture("core/assets/player3.png"); // loading in the player texture
         collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
+
         inventory = new PlayerInventory(); // creating the inventory for the player
         currentSlot = 0; // the starting slot selected will be the first one at index 0
+
+        combat = new PlayerCombat(); // class handles all player combat
     }
 
     /*
@@ -37,7 +47,9 @@ public class PlayerHandler {
         /*
             Removes current selected slot
          */
-        if (Gdx.input.isKeyPressed(Input.Keys.T)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+            inventory.equip(currentSlot);
+        } if (Gdx.input.isKeyPressed(Input.Keys.T)) {
             inventory.removeItem(currentSlot);
         }
 
@@ -101,8 +113,12 @@ public class PlayerHandler {
         }
     }
 
-    public Texture getTexture() {
+    public static Texture getTexture() {
         return myTexture;
+    }
+
+    public PlayerCombat getCombat() {
+        return combat;
     }
 
     public void setTexture(Texture newTex) {
@@ -113,7 +129,7 @@ public class PlayerHandler {
         return collider;
     }
 
-    public PlayerInventory getInventory() {
+    public static PlayerInventory getInventory() {
         return inventory;
     }
 

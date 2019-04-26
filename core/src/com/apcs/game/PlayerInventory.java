@@ -10,6 +10,8 @@ public class PlayerInventory {
     private int inventorySlots;
     private Item[] inventory;
 
+    private static Item weapon, armor;
+
 
     public PlayerInventory() {
         inventorySlots = 3;
@@ -17,6 +19,9 @@ public class PlayerInventory {
 
         invTexture = new Texture("core/assets/inventory.png");
         equipTex = new Texture("core/assets/armorweaponslot.png");
+
+        weapon = null;
+        armor = null;
     }
 
     /*
@@ -53,6 +58,41 @@ public class PlayerInventory {
         inventory[slot] = null; // sets the slot to null aka empty
 
         return removedItem; // returns the item we removed
+    }
+
+    public void equip(int slot) {
+        if (inventory[slot] != null) {
+            if (inventory[slot].getItemClass().equalsIgnoreCase("weapon")) {
+                if (weapon == null) {
+                    weapon = inventory[slot];
+                    inventory[slot] = null;
+                } else {
+                    Item temp = weapon;
+                    weapon = inventory[slot];
+                    inventory[slot] = temp;
+                }
+            } else if (inventory[slot].getItemClass().equalsIgnoreCase("armor")) {
+                if (armor == null) {
+                    armor = inventory[slot];
+                    inventory[slot] = null;
+                } else {
+                    Item temp = armor;
+                    armor = inventory[slot];
+                    inventory[slot] = temp;
+                }
+            }
+        } else {
+            inventory[slot] = weapon;
+            weapon = null;
+        }
+    }
+
+    public static Item getWeapon() {
+        return weapon;
+    }
+
+    public static Item getArmor() {
+        return armor;
     }
 
     public Texture getInvTexture() {
