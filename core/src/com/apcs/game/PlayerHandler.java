@@ -1,5 +1,7 @@
 package com.apcs.game;
 
+import com.apcs.game.items.Item;
+import com.apcs.game.items.Sword;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,13 +9,15 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class PlayerHandler {
     private Texture myTexture;
-    private Rectangle collider;
+    private static Rectangle collider;
     private PlayerInventory inventory;
+    private int currentSlot; // current selected slot
 
     public PlayerHandler() {
-        myTexture = new Texture("core/assets/player.png"); // loading in the player texture
+        myTexture = new Texture("core/assets/player3.png"); // loading in the player texture
         collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
         inventory = new PlayerInventory(); // creating the inventory for the player
+        currentSlot = 0; // the starting slot selected will be the first one at index 0
     }
 
     /*
@@ -21,36 +25,91 @@ public class PlayerHandler {
      */
     public void movementHandler() {
         float speed = 5f; // speed to move the player
+        float diagSpeed = (float)Math.sqrt(Math.pow(speed, 2) / 2);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 650) { // if the w key is pressed
+        /*
+            Test to add items to inventory
+         */
+        if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
+            inventory.addItem(new Sword());
+        }
+
+        /*
+            Removes current selected slot
+         */
+        if (Gdx.input.isKeyPressed(Input.Keys.T)) {
+            inventory.removeItem(currentSlot);
+        }
+
+        /*
+            Changes selected item
+         */
+        if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)) {
+            currentSlot = 0;
+        } if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)) {
+            currentSlot = 1;
+        } if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)) {
+            currentSlot = 2;
+        }
+
+
+
+        /*
+            Movement
+         */
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 720) { // if the w key is pressed
+            if (Gdx.input.isKeyPressed(Input.Keys.D) && (collider.x + myTexture.getWidth()) < 960) {
+                collider.x += diagSpeed;
+                collider.y += diagSpeed;
+                return;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 40) {
+                collider.x -= diagSpeed;
+                collider.y += diagSpeed;
+                return;
+            }
+
             collider.y += speed; // move the collider up
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S) && collider.y > 50) { // if the s key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S) && collider.y > 40) { // if the s key is pressed
+            if (Gdx.input.isKeyPressed(Input.Keys.D) && (collider.x + myTexture.getWidth()) < 960) {
+                collider.x += diagSpeed;
+                collider.y -= diagSpeed;
+                return;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 40) {
+                collider.x -= diagSpeed;
+                collider.y -= diagSpeed;
+                return;
+            }
+
             collider.y -= speed; // move the collider down
-        } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 35) { // if the a key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 40) { // if the a key is pressed
             collider.x -= speed; // move the collider left
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D) && (collider.x + myTexture.getWidth()) < 1235) { // if the d key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.D) && (collider.x + myTexture.getWidth()) < 960) { // if the d key is pressed
             collider.x += speed; // move the collider right
         }
     }
 
-    /*
-        Returns the players texture
-     */
+    public void checkForPickup() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
+            for (int cnt = 0; cnt < GameMain.groundItems.size(); cnt++) {
+                if (collider.overlaps(GameMain.groundItems.get(cnt).getCollider())) {
+                    if (inventory.addItem(GameMain.groundItems.get(cnt))) {
+                        GameMain.groundItems.remove(cnt);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
     public Texture getTexture() {
         return myTexture;
     }
 
-    /*
-        Sets the players texture to whatever is given
-     */
     public void setTexture(Texture newTex) {
         myTexture = newTex;
     }
 
-    /*
-        Returns the players collider object(aka the Rectangle)
-     */
-    public Rectangle getCollider() {
+    public static Rectangle getCollider() {
         return collider;
     }
 
@@ -58,9 +117,10 @@ public class PlayerHandler {
         return inventory;
     }
 
-    /*
-        Disposing the player textures
-     */
+    public int getCurrentSlot() {
+        return currentSlot;
+    }
+
     public void disposer() {
         myTexture.dispose();
     }

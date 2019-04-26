@@ -1,14 +1,21 @@
 package com.apcs.game;
 
+import com.apcs.game.items.Item;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.util.ArrayList;
 
 public class GameMain extends ApplicationAdapter {
 
+	private Texture invSelectTex;
+
 	private PlayerHandler player;
 	private RoomManager rm;
+	public static ArrayList<Item> groundItems;
 
 	private SpriteBatch batch;
 	
@@ -17,6 +24,8 @@ public class GameMain extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		player = new PlayerHandler();
 		rm = new RoomManager();
+		groundItems = new ArrayList<Item>();
+		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 	}
 
 	@Override
@@ -27,7 +36,8 @@ public class GameMain extends ApplicationAdapter {
 		playerManage(); // handles everything regarding the player
 
 		batch.begin(); // beginning of where everything is drawn
-		batch.draw(rm.getCurrentRoom().getFloor(), 35, 50); // draw the room floor
+		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
+		drawItems();
 		batch.draw(player.getTexture(), player.getCollider().x, player.getCollider().y); // draws the player at the colliders location
 		drawInventory();
 		batch.end(); // ending of where everything is drawn
@@ -39,6 +49,7 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the player accordingly
+		player.checkForPickup();
 	}
 
 	/*
@@ -53,8 +64,27 @@ public class GameMain extends ApplicationAdapter {
 	 */
 	public void drawInventory() {
 		batch.draw(player.getInventory().getInvTexture(), 1080, 0);
+		batch.draw(player.getInventory().getEquipTex(), 1000,0);
+
+		for (int cnt = 0; cnt < player.getInventory().getInventory().length; cnt++) {
+			if (player.getInventory().getInventory()[cnt] != null) {
+				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1096 + (cnt * (17 + 46)) , 29);
+			}
+			if (cnt == player.getCurrentSlot()) { // draws current player inventory slot selection
+				batch.draw(invSelectTex, 1094 + (cnt * (14 + 46)), 27);
+			}
+		}
+
+
 	}
 
+	public void drawItems()
+	{
+		for(int loop = 0; loop < groundItems.size(); loop++)
+		{
+			batch.draw(groundItems.get(loop).getTexture(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
+		}
+	}
 	
 	@Override
 	public void dispose () {
