@@ -11,11 +11,13 @@ public class PlayerHandler {
     private Texture myTexture;
     private static Rectangle collider;
     private PlayerInventory inventory;
+    private int currentSlot; // current selected slot
 
     public PlayerHandler() {
         myTexture = new Texture("core/assets/player.png"); // loading in the player texture
         collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
         inventory = new PlayerInventory(); // creating the inventory for the player
+        currentSlot = 0; // the starting slot selected will be the first one at index 0
     }
 
     /*
