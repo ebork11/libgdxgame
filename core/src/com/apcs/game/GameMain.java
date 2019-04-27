@@ -1,11 +1,14 @@
 package com.apcs.game;
 
 import com.apcs.game.items.Item;
+import com.apcs.game.items.Sword;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,7 @@ public class GameMain extends ApplicationAdapter {
 		drawItems();
 		batch.draw(player.getTexture(), player.getCollider().x, player.getCollider().y); // draws the player at the colliders location
 		drawInventory();
+		checkAttack();
 		batch.end(); // ending of where everything is drawn
 	}
 
@@ -68,7 +72,7 @@ public class GameMain extends ApplicationAdapter {
 
 		for (int cnt = 0; cnt < player.getInventory().getInventory().length; cnt++) {
 			if (player.getInventory().getInventory()[cnt] != null) {
-				batch.draw(player.getInventory().getInventory()[cnt].getTextureU(), 1096 + (cnt * (17 + 46)) , 29);
+				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1096 + (cnt * (17 + 46)) , 29);
 			}
 			if (cnt == player.getCurrentSlot()) { // draws current player inventory slot selection
 				batch.draw(invSelectTex, 1094 + (cnt * (14 + 46)), 27);
@@ -76,9 +80,9 @@ public class GameMain extends ApplicationAdapter {
 		}
 
 		if (player.getInventory().getWeapon() != null) {
-			batch.draw(player.getInventory().getWeapon().getTextureU(), 1019, 81);
+			batch.draw(player.getInventory().getWeapon().getTexture(), 1019, 81);
 		} if (player.getInventory().getArmor() != null) {
-			batch.draw(player.getInventory().getArmor().getTextureU(), 1019, 16);
+			batch.draw(player.getInventory().getArmor().getTexture(), 1019, 16);
 		}
 
 	}
@@ -87,13 +91,32 @@ public class GameMain extends ApplicationAdapter {
 	{
 		for(int loop = 0; loop < groundItems.size(); loop++)
 		{
-			batch.draw(groundItems.get(loop).getTextureU(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
+			batch.draw(groundItems.get(loop).getTexture(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
 		}
 	}
 
-	public void drawAttack() {
-		Item wep = player.getInventory().getWeapon();
+	public void checkAttack() {
+		Texture test = new Texture("core/assets/items/scimr.png");
+		Rectangle coll = new Rectangle();
+		int atSize = 46;
 
+		coll.width = atSize;
+		coll.width = atSize;
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+			coll.x = player.getCollider().x + player.getTexture().getWidth();
+			coll.y = player.getCollider().y;
+			batch.draw(test, coll.x, coll.y);
+		} else if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+			coll.x = player.getCollider().x - atSize;
+			coll.y = player.getCollider().y;
+		} else if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+			coll.x = player.getCollider().x;
+			coll.y = player.getCollider().y + player.getTexture().getHeight();
+		} else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+			coll.x = player.getCollider().x;
+			coll.y = player.getCollider().y - atSize;
+		}
 	}
 	
 	@Override

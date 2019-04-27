@@ -8,7 +8,9 @@ public class Sword extends Item {
     public Sword() {
         super();
         myTexture = new Texture("core/assets/items/Dagger.png");
-        setTextureU(myTexture);
+        setTexture(myTexture);
         setClass("weapon");
     }
+
+
 }

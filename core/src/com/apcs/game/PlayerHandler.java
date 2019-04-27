@@ -16,18 +16,12 @@ public class PlayerHandler {
     private static PlayerInventory inventory;
     private int currentSlot; // current selected slot
 
-    // combat stuff
-    private PlayerCombat combat;
-
-
     public PlayerHandler() {
         myTexture = new Texture("core/assets/player3.png"); // loading in the player texture
         collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
 
         inventory = new PlayerInventory(); // creating the inventory for the player
         currentSlot = 0; // the starting slot selected will be the first one at index 0
-
-        combat = new PlayerCombat(); // class handles all player combat
     }
 
     /*
@@ -100,6 +94,8 @@ public class PlayerHandler {
         }
     }
 
+
+
     public void checkForPickup() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
             for (int cnt = 0; cnt < GameMain.groundItems.size(); cnt++) {
@@ -115,10 +111,6 @@ public class PlayerHandler {
 
     public static Texture getTexture() {
         return myTexture;
-    }
-
-    public PlayerCombat getCombat() {
-        return combat;
     }
 
     public void setTexture(Texture newTex) {

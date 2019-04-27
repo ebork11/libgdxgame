@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Item {
-    private Texture myTextureU, myTextureD, myTextureL, myTextureR;
+    private Texture myTexture;
     private Rectangle collider;
     private float myX;
     private float myY;
@@ -14,8 +14,8 @@ public class Item {
     private String myClass;
 
     public Item() {
-        myTextureU = new Texture("core/assets/items/item.png"); // default image for items
-        collider = new Rectangle(0, 0, myTextureU.getWidth(), myTextureU.getHeight()); // sets collider to the size of the image
+        myTexture = new Texture("core/assets/items/item.png"); // default image for items
+        collider = new Rectangle(0, 0, myTexture.getWidth(), myTexture.getHeight()); // sets collider to the size of the image
         myX = 0;
         myY = 0;
         myClass = "";
@@ -52,15 +52,15 @@ public class Item {
     /*
         Method to access the texture of the item, all items will inherit this
      */
-    public Texture getTextureU() {
-        return myTextureU;
+    public Texture getTexture() {
+        return myTexture;
     }
 
     /*
         Method to set the texture of the item, this will be used for new items
      */
-    public void setTextureU(Texture newTex) {
-        myTextureU = newTex;
+    public void setTexture(Texture newTex) {
+        myTexture = newTex;
     }
 
     /*
@@ -74,7 +74,7 @@ public class Item {
         Dispose method for item textures
      */
     public void disposer() {
-        myTextureU.dispose();
+        myTexture.dispose();
     }
 
 
