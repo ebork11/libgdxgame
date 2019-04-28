@@ -1,7 +1,7 @@
 package com.apcs.game;
 
+import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
-import com.apcs.game.items.Sword;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -19,6 +19,7 @@ public class GameMain extends ApplicationAdapter {
 	private PlayerHandler player;
 	private RoomManager rm;
 	public static ArrayList<Item> groundItems;
+	public static ArrayList<Entity> entities;
 
 	private SpriteBatch batch;
 	
@@ -28,6 +29,7 @@ public class GameMain extends ApplicationAdapter {
 		player = new PlayerHandler();
 		rm = new RoomManager();
 		groundItems = new ArrayList<Item>();
+		entities = new ArrayList<Entity>();
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 	}
 
