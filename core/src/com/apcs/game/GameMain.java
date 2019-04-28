@@ -41,7 +41,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.begin(); // beginning of where everything is drawn
 		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
 		drawItems();
-		batch.draw(player.getTexture(), player.getCollider().x, player.getCollider().y); // draws the player at the colliders location
+		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the player at the colliders location
 		drawInventory();
 		checkAttack();
 		batch.end(); // ending of where everything is drawn
@@ -101,19 +101,21 @@ public class GameMain extends ApplicationAdapter {
 		int atSize = 46;
 
 		coll.width = atSize;
-		coll.width = atSize;
+		coll.height = atSize;
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-			coll.x = player.getCollider().x + player.getTexture().getWidth();
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			coll.x = player.getCollider().x + player.getCollider().getWidth() + test.getWidth();
 			coll.y = player.getCollider().y;
 			batch.draw(test, coll.x, coll.y);
-		} else if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-			coll.x = player.getCollider().x - atSize;
+		} else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			coll.x = player.getCollider().x - test.getWidth();
 			coll.y = player.getCollider().y;
-		} else if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+			batch.draw(test, coll.x, coll.y);
+		} else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			coll.x = player.getCollider().x;
-			coll.y = player.getCollider().y + player.getTexture().getHeight();
-		} else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+			coll.y = player.getCollider().y + player.getCollider().getHeight();
+			batch.draw(test, coll.x, coll.y);
+		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			coll.x = player.getCollider().x;
 			coll.y = player.getCollider().y - atSize;
 		}

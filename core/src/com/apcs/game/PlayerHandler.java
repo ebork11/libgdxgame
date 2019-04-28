@@ -18,7 +18,7 @@ public class PlayerHandler {
 
     public PlayerHandler() {
         myTexture = new Texture("core/assets/player3.png"); // loading in the player texture
-        collider = new Rectangle(100, 100, myTexture.getWidth(), myTexture.getHeight()); // creating the collider for the player
+        collider = new Rectangle(100, 100, myTexture.getWidth() / 2, myTexture.getHeight() / 2); // creating the collider for the player
 
         inventory = new PlayerInventory(); // creating the inventory for the player
         currentSlot = 0; // the starting slot selected will be the first one at index 0
@@ -87,7 +87,7 @@ public class PlayerHandler {
             }
 
             collider.y -= speed; // move the collider down
-        } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x > 40) { // if the a key is pressed
+        } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x> 40) { // if the a key is pressed
             collider.x -= speed; // move the collider left
         } else if (Gdx.input.isKeyPressed(Input.Keys.D) && (collider.x + myTexture.getWidth()) < 960) { // if the d key is pressed
             collider.x += speed; // move the collider right
