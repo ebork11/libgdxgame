@@ -72,7 +72,7 @@ public class GameMain extends ApplicationAdapter {
 
 		for (int cnt = 0; cnt < player.getInventory().getInventory().length; cnt++) {
 			if (player.getInventory().getInventory()[cnt] != null) {
-				batch.draw(player.getInventory().getInventory()[cnt].getTexture(), 1096 + (cnt * (17 + 46)) , 29);
+				batch.draw(player.getInventory().getInventory()[cnt].getIcon(), 1096 + (cnt * (17 + 46)) , 29);
 			}
 			if (cnt == player.getCurrentSlot()) { // draws current player inventory slot selection
 				batch.draw(invSelectTex, 1094 + (cnt * (14 + 46)), 27);
@@ -80,9 +80,9 @@ public class GameMain extends ApplicationAdapter {
 		}
 
 		if (player.getInventory().getWeapon() != null) {
-			batch.draw(player.getInventory().getWeapon().getTexture(), 1019, 81);
+			batch.draw(player.getInventory().getWeapon().getIcon(), 1019, 81);
 		} if (player.getInventory().getArmor() != null) {
-			batch.draw(player.getInventory().getArmor().getTexture(), 1019, 16);
+			batch.draw(player.getInventory().getArmor().getIcon(), 1019, 16);
 		}
 
 	}
@@ -91,33 +91,40 @@ public class GameMain extends ApplicationAdapter {
 	{
 		for(int loop = 0; loop < groundItems.size(); loop++)
 		{
-			batch.draw(groundItems.get(loop).getTexture(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
+			batch.draw(groundItems.get(loop).getIcon(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
 		}
 	}
 
 	public void checkAttack() {
-		Texture test = new Texture("core/assets/items/scimr.png");
 		Rectangle coll = new Rectangle();
 		int atSize = 46;
 
 		coll.width = atSize;
 		coll.height = atSize;
 
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			coll.x = player.getCollider().x + player.getCollider().getWidth() + test.getWidth();
-			coll.y = player.getCollider().y;
-			batch.draw(test, coll.x, coll.y);
-		} else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			coll.x = player.getCollider().x - test.getWidth();
-			coll.y = player.getCollider().y;
-			batch.draw(test, coll.x, coll.y);
-		} else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			coll.x = player.getCollider().x;
-			coll.y = player.getCollider().y + player.getCollider().getHeight();
-			batch.draw(test, coll.x, coll.y);
-		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			coll.x = player.getCollider().x;
-			coll.y = player.getCollider().y - atSize;
+		if (player.getInventory().getWeapon() != null) {
+			Texture u = player.getInventory().getWeapon().getTextureU();
+			Texture d = player.getInventory().getWeapon().getTextureD();
+			Texture r = player.getInventory().getWeapon().getTextureR();
+			Texture l = player.getInventory().getWeapon().getTextureL();
+
+			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+				coll.x = player.getCollider().x + player.getCollider().getWidth();
+				coll.y = player.getCollider().y;
+				batch.draw(r, coll.x, coll.y);
+			} else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+				coll.x = player.getCollider().x - l.getWidth();
+				coll.y = player.getCollider().y;
+				batch.draw(l, coll.x, coll.y);
+			} else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+				coll.x = player.getCollider().x;
+				coll.y = player.getCollider().y + player.getCollider().getHeight();
+				batch.draw(u, coll.x, coll.y);
+			} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+				coll.x = player.getCollider().x;
+				coll.y = player.getCollider().y - d.getHeight();
+				batch.draw(d, coll.x, coll.y);
+			}
 		}
 	}
 	

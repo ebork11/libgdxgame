@@ -1,5 +1,6 @@
 package com.apcs.game;
 
+import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.Sword;
 import com.badlogic.gdx.Gdx;
@@ -35,7 +36,7 @@ public class PlayerHandler {
             Test to add items to inventory
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
-            inventory.addItem(new Sword());
+            inventory.addItem(new FatSword());
         }
 
         /*
