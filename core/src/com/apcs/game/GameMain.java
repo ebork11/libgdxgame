@@ -9,27 +9,42 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import player.PlayerHandler;
 
 import java.util.ArrayList;
 
 public class GameMain extends ApplicationAdapter {
 
-	private Texture invSelectTex;
+	// libgdx batch
+	private static SpriteBatch batch;
 
+	// class accessors
 	private PlayerHandler player;
 	private RoomManager rm;
+
+	// arraylists to hold present objects
 	public static ArrayList<Item> groundItems;
 	public static ArrayList<Entity> entities;
 
-	private SpriteBatch batch;
-	
+	// inventory outline texture
+	private Texture invSelectTex;
+
+	//drawing weapon during combat
+	public static boolean attacking = false;
+	public static Texture wepTex;
+	public static float wepX;
+	public static float wepY;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
 		player = new PlayerHandler();
 		rm = new RoomManager();
+
 		groundItems = new ArrayList<Item>();
 		entities = new ArrayList<Entity>();
+
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 	}
 
@@ -42,11 +57,17 @@ public class GameMain extends ApplicationAdapter {
 
 		batch.begin(); // beginning of where everything is drawn
 		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
-		drawItems();
-		drawEntities();
+		drawItems(); // drawing items on ground
+		drawEntities(); // drawing enemies
 		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the player at the colliders location
-		drawInventory();
-		checkAttack();
+
+		if (attacking) {
+			drawWeapon();
+		}
+
+		drawInventory(); // drawing right side stuff
+
+
 		batch.end(); // ending of where everything is drawn
 	}
 
@@ -57,6 +78,7 @@ public class GameMain extends ApplicationAdapter {
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the player accordingly
 		player.checkForPickup();
+		player.getCombat().checkAttack();
 	}
 
 	/*
@@ -104,62 +126,29 @@ public class GameMain extends ApplicationAdapter {
         {
             entities.get(loop).move();
             batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+
+            if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
+            	entities.get(loop).attack();
+			}
         }
     }
 
-	public void checkAttack() {
-
-		if (player.getInventory().getWeapon() != null) {
-		    Rectangle coll = player.getInventory().getWeapon().getCollider();
-			Texture u = player.getInventory().getWeapon().getTextureU();
-			Texture d = player.getInventory().getWeapon().getTextureD();
-			Texture r = player.getInventory().getWeapon().getTextureR();
-			Texture l = player.getInventory().getWeapon().getTextureL();
-
-			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-				coll.x = player.getCollider().x + player.getCollider().getWidth();
-				coll.y = player.getCollider().y;
-				batch.draw(r, coll.x, coll.y);
-                if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-                    ifEnemyHit();
-                }
-			} else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-				coll.x = player.getCollider().x - l.getWidth();
-				coll.y = player.getCollider().y;
-				batch.draw(l, coll.x, coll.y);
-                if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                    ifEnemyHit();
-                }
-			} else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-				coll.x = player.getCollider().x;
-				coll.y = player.getCollider().y + player.getCollider().getHeight();
-				batch.draw(u, coll.x, coll.y);
-                if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                    ifEnemyHit();
-                }
-			} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-				coll.x = player.getCollider().x;
-				coll.y = player.getCollider().y - d.getHeight();
-				batch.draw(d, coll.x, coll.y);
-                if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-                    ifEnemyHit();
-                }
-			}
-		}
-	}
-
-	public void ifEnemyHit()
+	public static void ifEnemyHit()
     {
         for(int loop = 0; loop <entities.size(); loop++)
         {
-            if(player.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider()))
+            if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider()))
             {
                 entities.get(loop).hit(1);
             }
         }
 
     }
-	
+
+    public static void drawWeapon() {
+		batch.draw(wepTex, wepX, wepY);
+	}
+
 	@Override
 	public void dispose () {
 		batch.dispose();

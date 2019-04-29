@@ -1,9 +1,8 @@
-package com.apcs.game;
+package player;
 
+import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.FatSword;
-import com.apcs.game.items.Item;
-import com.apcs.game.items.Sword;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,12 +17,17 @@ public class PlayerHandler {
     private static PlayerInventory inventory;
     private int currentSlot; // current selected slot
 
+    // combat stuff
+    private static PlayerCombat combat;
+
     public PlayerHandler() {
         myTexture = new Texture("core/assets/player3.png"); // loading in the player texture
         collider = new Rectangle(100, 100, myTexture.getWidth() / 2, myTexture.getHeight() / 2); // creating the collider for the player
 
         inventory = new PlayerInventory(); // creating the inventory for the player
         currentSlot = 0; // the starting slot selected will be the first one at index 0
+
+        combat = new PlayerCombat();
     }
 
     /*
@@ -128,6 +132,10 @@ public class PlayerHandler {
 
     public static PlayerInventory getInventory() {
         return inventory;
+    }
+
+    public static PlayerCombat getCombat() {
+        return combat;
     }
 
     public int getCurrentSlot() {
