@@ -1,5 +1,6 @@
 package com.apcs.game;
 
+import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.Sword;
@@ -29,7 +30,7 @@ public class PlayerHandler {
         Checks for input on WASD keys and moves the player according to what they press and makes sure they are within the room boundaries
      */
     public void movementHandler() {
-        float speed = 5f; // speed to move the player
+        float speed = 7f; // speed to move the player
         float diagSpeed = (float)Math.sqrt(Math.pow(speed, 2) / 2);
 
         /*
@@ -37,6 +38,9 @@ public class PlayerHandler {
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
             inventory.addItem(new FatSword());
+        }
+        if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
+            GameMain.entities.add(new Entity());
         }
 
         /*

@@ -43,6 +43,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.begin(); // beginning of where everything is drawn
 		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
 		drawItems();
+		drawEntities();
 		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the player at the colliders location
 		drawInventory();
 		checkAttack();
@@ -97,14 +98,18 @@ public class GameMain extends ApplicationAdapter {
 		}
 	}
 
-	public void checkAttack() {
-		Rectangle coll = new Rectangle();
-		int atSize = 46;
+	public void drawEntities()
+    {
+        for(int loop = 0; loop < entities.size(); loop++)
+        {
+            batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+        }
+    }
 
-		coll.width = atSize;
-		coll.height = atSize;
+	public void checkAttack() {
 
 		if (player.getInventory().getWeapon() != null) {
+		    Rectangle coll = player.getInventory().getWeapon().getCollider();
 			Texture u = player.getInventory().getWeapon().getTextureU();
 			Texture d = player.getInventory().getWeapon().getTextureD();
 			Texture r = player.getInventory().getWeapon().getTextureR();
@@ -114,21 +119,45 @@ public class GameMain extends ApplicationAdapter {
 				coll.x = player.getCollider().x + player.getCollider().getWidth();
 				coll.y = player.getCollider().y;
 				batch.draw(r, coll.x, coll.y);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+                    ifEnemyHit();
+                }
 			} else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 				coll.x = player.getCollider().x - l.getWidth();
 				coll.y = player.getCollider().y;
 				batch.draw(l, coll.x, coll.y);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+                    ifEnemyHit();
+                }
 			} else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 				coll.x = player.getCollider().x;
 				coll.y = player.getCollider().y + player.getCollider().getHeight();
 				batch.draw(u, coll.x, coll.y);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                    ifEnemyHit();
+                }
 			} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 				coll.x = player.getCollider().x;
 				coll.y = player.getCollider().y - d.getHeight();
 				batch.draw(d, coll.x, coll.y);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                    ifEnemyHit();
+                }
 			}
 		}
 	}
+
+	public void ifEnemyHit()
+    {
+        for(int loop = 0; loop <entities.size(); loop++)
+        {
+            if(player.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider()))
+            {
+                entities.get(loop).hit(1);
+            }
+        }
+
+    }
 	
 	@Override
 	public void dispose () {
