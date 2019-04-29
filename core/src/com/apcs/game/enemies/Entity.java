@@ -52,6 +52,9 @@ public class Entity {
         double ang2 = Math.atan(x / y);
         float sx = (float)(speed*(Math.sin(ang2)));
         float sy = (float)(speed*(Math.sin(ang1)));
+
+        sx = Math.abs(sx);
+        sy = Math.abs(sy);
         if (x > 0 && y > 0) {
             collider.x += sx;
             collider.y += sy;
