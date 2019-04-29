@@ -102,6 +102,7 @@ public class GameMain extends ApplicationAdapter {
     {
         for(int loop = 0; loop < entities.size(); loop++)
         {
+            entities.get(loop).move();
             batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
         }
     }
