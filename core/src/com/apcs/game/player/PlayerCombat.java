@@ -1,4 +1,4 @@
-package player;
+package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
 import com.badlogic.gdx.Gdx;

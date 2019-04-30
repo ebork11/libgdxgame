@@ -1,4 +1,4 @@
-package com.apcs.game;
+package com.apcs.game.rooms;
 
 import com.apcs.game.rooms.DefaultRoom;
 import com.apcs.game.rooms.Room;
@@ -24,7 +24,7 @@ public class RoomManager {
         roomsExplored++;
     }
 
-    public void setCurrentRoom(DefaultRoom room) {
+    public void setCurrentRoom(Room room) {
         currentRoom = room;
     }
 

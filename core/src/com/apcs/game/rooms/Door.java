@@ -1,6 +1,5 @@
 package com.apcs.game.rooms;
 
-import com.apcs.game.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Door {
@@ -8,19 +7,34 @@ public class Door {
     private Texture openDoor;
     private Room nextRoom;
 
-    public Door() {
-        closedDoor = new Texture("core/assets/rooms/closeddoor.png");
-        openDoor = new Texture("core/assets/rooms/opendoor.png");
-        nextRoom = null;
-    }
+    private int xLoc, yLoc;
 
     public Door(Room definedRoom) {
         closedDoor = new Texture("core/assets/rooms/closeddoor.png");
         openDoor = new Texture("core/assets/rooms/opendoor.png");
         nextRoom = definedRoom;
+
+        xLoc = 460;
+        yLoc = 680;
     }
 
     public Room getNextRoom() {
         return nextRoom;
+    }
+
+    public int getxLoc() {
+        return xLoc;
+    }
+
+    public int getyLoc() {
+        return yLoc;
+    }
+
+    public Texture getClosedTex() {
+        return closedDoor;
+    }
+
+    public Texture getOpenTex() {
+        return openDoor;
     }
 }

@@ -21,4 +21,8 @@ public class DefaultRoom extends Room {
 
         doors.add(new Door(pastRoom));
     }
+
+    public ArrayList<Door> getDoors() {
+        return doors;
+    }
 }

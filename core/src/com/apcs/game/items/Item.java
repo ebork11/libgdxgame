@@ -1,7 +1,7 @@
 package com.apcs.game.items;
 
 import com.apcs.game.GameMain;
-import player.PlayerHandler;
+import com.apcs.game.player.PlayerHandler;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 

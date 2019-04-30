@@ -14,4 +14,8 @@ public class StartingRoom extends Room {
 
         doors.add(new Door(new DefaultRoom(this)));
     }
+
+    public ArrayList<Door> getDoors() {
+        return doors;
+    }
 }
