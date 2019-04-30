@@ -119,7 +119,6 @@ public class GameMain extends ApplicationAdapter {
 			} else {
 				batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
 				if (room.getDoors().get(cnt).getCollider().overlaps(player.getCollider())) {
-					System.out.print("Should be changing room rn");
 					rm.setCurrentRoom(room.getDoors().get(cnt).getNextRoom());
 				}
 			}
