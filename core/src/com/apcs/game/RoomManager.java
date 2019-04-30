@@ -1,16 +1,18 @@
 package com.apcs.game;
 
 import com.apcs.game.rooms.DefaultRoom;
+import com.apcs.game.rooms.Room;
+import com.apcs.game.rooms.StartingRoom;
 
 public class RoomManager {
     private int roomsExplored;
 
-    private static DefaultRoom startingRoom;
-    private static DefaultRoom currentRoom;
+    private static Room startingRoom;
+    private static Room currentRoom;
 
     public RoomManager() {
         roomsExplored = 0;
-        startingRoom = new DefaultRoom();
+        startingRoom = new StartingRoom();
         currentRoom = startingRoom;
     }
 
@@ -26,7 +28,7 @@ public class RoomManager {
         currentRoom = room;
     }
 
-    public static DefaultRoom getCurrentRoom() {
+    public static Room getCurrentRoom() {
         return currentRoom;
     }
 

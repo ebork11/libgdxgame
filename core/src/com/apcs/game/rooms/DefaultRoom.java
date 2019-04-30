@@ -5,36 +5,20 @@ import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 
-public class DefaultRoom {
+public class DefaultRoom extends Room {
     private Texture myFloor;
     private ArrayList<Door> doors;
 
 
-    // width is 1200, height is 600
     public DefaultRoom() {
-        myFloor = new Texture("core/assets/rooms/background1.png");
-
-        doors.add(new Door(new DefaultRoom(this)));
-
+        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
+        doors = new ArrayList<Door>();
     }
 
-    public DefaultRoom(DefaultRoom pastRoom) {
-        myFloor = new Texture("core/assets/rooms/background1.png");
+    public DefaultRoom(Room pastRoom) {
+        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
+        doors = new ArrayList<Door>();
 
         doors.add(new Door(pastRoom));
     }
-
-    public Texture getFloor() {
-        return myFloor;
-    }
-
-    /*
-        Trash dump for the room textures
-     */
-    public void disposer() {
-        myFloor.dispose();
-    }
-
-
-
 }
