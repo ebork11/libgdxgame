@@ -71,6 +71,7 @@ public class Entity {
 
         sx = Math.abs(sx);
         sy = Math.abs(sy);
+
         if (x > 0 && y > 0) {
             collider.x += sx;
             collider.y += sy;

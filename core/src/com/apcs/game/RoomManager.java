@@ -5,12 +5,12 @@ import com.apcs.game.rooms.DefaultRoom;
 public class RoomManager {
     private int roomsExplored;
 
-    DefaultRoom startingRoom;
-    DefaultRoom currentRoom;
+    private static DefaultRoom startingRoom;
+    private static DefaultRoom currentRoom;
 
     public RoomManager() {
         roomsExplored = 0;
-        startingRoom = new DefaultRoom(null);
+        startingRoom = new DefaultRoom();
         currentRoom = startingRoom;
     }
 
@@ -22,14 +22,11 @@ public class RoomManager {
         roomsExplored++;
     }
 
-    /*
-        Logic to choose the next room when the player clears a room
-     */
-    public void nextRoom() {
-        currentRoom = new DefaultRoom(currentRoom);
+    public void setCurrentRoom(DefaultRoom room) {
+        currentRoom = room;
     }
 
-    public DefaultRoom getCurrentRoom() {
+    public static DefaultRoom getCurrentRoom() {
         return currentRoom;
     }
 

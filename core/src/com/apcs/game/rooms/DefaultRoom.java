@@ -7,18 +7,21 @@ import java.util.ArrayList;
 
 public class DefaultRoom {
     private Texture myFloor;
-    private DefaultRoom nextRoom;
-    private DefaultRoom previousRoom;
-
+    private ArrayList<Door> doors;
 
 
     // width is 1200, height is 600
-    public DefaultRoom(DefaultRoom previous) {
+    public DefaultRoom() {
         myFloor = new Texture("core/assets/rooms/background1.png");
 
-        nextRoom = null;
-        previousRoom = previous;
+        doors.add(new Door(new DefaultRoom(this)));
 
+    }
+
+    public DefaultRoom(DefaultRoom pastRoom) {
+        myFloor = new Texture("core/assets/rooms/background1.png");
+
+        doors.add(new Door(pastRoom));
     }
 
     public Texture getFloor() {

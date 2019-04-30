@@ -35,10 +35,6 @@ public class GameMain extends ApplicationAdapter {
 	public static float wepX;
 	public static float wepY;
 
-	// drawing doors
-	private Texture closedDoor;
-	private Texture openDoor;
-
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -50,9 +46,6 @@ public class GameMain extends ApplicationAdapter {
 		entities = new ArrayList<Entity>();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
-
-		closedDoor = new Texture("core/assets/rooms/closeddoor.png");
-		openDoor = new Texture("core/assets/rooms/opendoor.png");
 	}
 
 	@Override
@@ -65,7 +58,6 @@ public class GameMain extends ApplicationAdapter {
 		batch.begin(); // beginning of where everything is drawn
 
 		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
-		drawDoors();
 
 		drawItems(); // drawing items on ground
 
@@ -90,17 +82,6 @@ public class GameMain extends ApplicationAdapter {
 		player.movementHandler(); // checks the keyboard for input and moves the player accordingly
 		player.checkForPickup();
 		player.getCombat().checkAttack();
-	}
-
-	/*
-		Manages the spawning of rooms
-	 */
-	public void drawDoors() {
-		if (entities.size() > 0) {
-			batch.draw(closedDoor, 500 - closedDoor.getWidth() / 2, 680);
-		} else {
-			batch.draw(openDoor, 500 - closedDoor.getWidth() / 2, 680);
-		}
 	}
 
 	/*
