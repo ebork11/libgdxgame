@@ -11,15 +11,19 @@ public class DefaultRoom extends Room {
 
 
     public DefaultRoom() {
-        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
+        myFloor = new Texture("core/assets/rooms/background2.png"); // sets texture
         doors = new ArrayList<Door>();
     }
 
     public DefaultRoom(Room pastRoom) {
-        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
+        myFloor = new Texture("core/assets/rooms/background2.png"); // sets texture
         doors = new ArrayList<Door>();
 
         doors.add(new Door(pastRoom));
+    }
+
+    public Texture getFloor() {
+        return myFloor;
     }
 
     public ArrayList<Door> getDoors() {

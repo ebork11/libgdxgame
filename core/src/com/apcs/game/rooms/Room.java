@@ -14,9 +14,7 @@ public abstract class Room {
         doors = new ArrayList<Door>();
     }
 
-    public Texture getFloor() {
-        return myFloor;
-    }
+    public abstract Texture getFloor();
 
     public abstract ArrayList<Door> getDoors();
 

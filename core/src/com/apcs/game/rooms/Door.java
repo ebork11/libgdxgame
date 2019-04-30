@@ -1,11 +1,13 @@
 package com.apcs.game.rooms;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Door {
     private Texture closedDoor;
     private Texture openDoor;
     private Room nextRoom;
+    Rectangle collider;
 
     private int xLoc, yLoc;
 
@@ -15,7 +17,9 @@ public class Door {
         nextRoom = definedRoom;
 
         xLoc = 460;
-        yLoc = 680;
+        yLoc = 650;
+
+        collider = new Rectangle(xLoc, yLoc, openDoor.getWidth(), openDoor.getHeight());
     }
 
     public Room getNextRoom() {
@@ -36,5 +40,9 @@ public class Door {
 
     public Texture getOpenTex() {
         return openDoor;
+    }
+
+    public Rectangle getCollider() {
+        return collider;
     }
 }
