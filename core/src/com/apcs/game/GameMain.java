@@ -20,11 +20,10 @@ public class GameMain extends ApplicationAdapter {
 
 	// class accessors
 	private PlayerHandler player;
-	private RoomManager rm;
+	private static RoomManager rm;
 
 	// arraylists to hold present objects
 	public static ArrayList<Item> groundItems;
-	public static ArrayList<Entity> entities;
 
 	// inventory outline texture
 	private Texture invSelectTex;
@@ -43,7 +42,6 @@ public class GameMain extends ApplicationAdapter {
 		rm = new RoomManager();
 
 		groundItems = new ArrayList<Item>();
-		entities = new ArrayList<Entity>();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 	}
@@ -117,7 +115,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.draw(room.getFloor(), 0, 0); // draw the room floor
 
 		for (int cnt = 0; cnt < room.getDoors().size(); cnt++) {
-			if (entities.size() > 0) {
+			if (room.getEntities().size() > 0) {
 				switch (room.getDoors().get(cnt).getLocation()) {
 					case "top":
 						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
@@ -183,17 +181,22 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	public void drawEntities() {
+		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
+
         for(int loop = 0; loop < entities.size(); loop++) {
             entities.get(loop).move();
             batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
 
             if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
             	entities.get(loop).attack();
+            	System.out.println("Attacking player");
 			}
         }
     }
 
 	public static void ifEnemyHit() {
+		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
+
         for(int loop = 0; loop <entities.size(); loop++) {
             if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
                 entities.get(loop).hit(1);

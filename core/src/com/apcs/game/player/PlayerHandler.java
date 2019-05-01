@@ -43,9 +43,6 @@ public class PlayerHandler {
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
             inventory.addItem(new FatSword());
         }
-        if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
-            GameMain.entities.add(new Entity());
-        }
 
         /*
             Removes current selected slot
@@ -66,8 +63,6 @@ public class PlayerHandler {
         } if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)) {
             currentSlot = 2;
         }
-
-
 
         /*
             Movement
