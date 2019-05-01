@@ -78,7 +78,6 @@ public class GameMain extends ApplicationAdapter {
 		batch.end(); // ending of where everything is drawn
 	}
 
-
 	/*
 		Handles all com.apcs.game.player things i.e. movement
 	 */
@@ -119,20 +118,59 @@ public class GameMain extends ApplicationAdapter {
 
 		for (int cnt = 0; cnt < room.getDoors().size(); cnt++) {
 			if (entities.size() > 0) {
-				if (room.getDoors().get(cnt).getyLoc() > 500) {
-					batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
-				} else {
-					batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
-
+				switch (room.getDoors().get(cnt).getLocation()) {
+					case "top":
+						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+						break;
+					case "bottom":
+						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+						break;
+					case "left":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					case "right":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					default:
+						break;
 				}
 			} else {
-				if (room.getDoors().get(cnt).getyLoc() > 500) {
-					batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
-				} else {
-					batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+				switch (room.getDoors().get(cnt).getLocation()) {
+					case "top":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+						break;
+					case "bottom":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+						break;
+					case "left":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					case "right":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					default:
+						break;
 				}
 				if (room.getDoors().get(cnt).getCollider().overlaps(player.getCollider())) {
 					rm.setCurrentRoom(room.getDoors().get(cnt).getNextRoom());
+
+					switch (rm.getCurrentRoom().getDoors().get(0).getLocation()) {
+						case "top":
+							player.getCollider().y = rm.getCurrentRoom().getDoors().get(0).getyLoc() - 60;
+							break;
+						case "bottom":
+							player.getCollider().y = rm.getCurrentRoom().getDoors().get(0).getyLoc() + 40;
+							break;
+						case "left":
+							player.getCollider().x = rm.getCurrentRoom().getDoors().get(0).getxLoc() + 40;
+							break;
+						case "right":
+							player.getCollider().x = rm.getCurrentRoom().getDoors().get(0).getxLoc() - 40;
+							break;
+						default:
+							break;
+					}
+
 				}
 			}
 		}

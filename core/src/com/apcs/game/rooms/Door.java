@@ -8,16 +8,38 @@ public class Door {
     private Texture openDoor;
     private Room nextRoom;
     Rectangle collider;
+    private String loca;
 
     private int xLoc, yLoc;
 
-    public Door(Room definedRoom, int x, int y) {
-        closedDoor = new Texture("core/assets/rooms/closeddoor.png");
-        openDoor = new Texture("core/assets/rooms/opendoor.png");
+    public Door(Room definedRoom, String loc) {
         nextRoom = definedRoom;
+        loca = loc;
 
-        xLoc = x;
-        yLoc = y;
+        switch (loc) {
+            case "top":
+                xLoc = 460;
+                yLoc = 650;
+                closedDoor = new Texture("core/assets/rooms/doors/closeddoorT.png");
+                openDoor = new Texture("core/assets/rooms/doors/opendoorT.png");
+                break;
+            case "bottom":
+                xLoc = 460;
+                yLoc = 30;
+                closedDoor = new Texture("core/assets/rooms/doors/closeddoorB.png");
+                openDoor = new Texture("core/assets/rooms/doors/opendoorB.png");
+                break;
+            case "left":
+                closedDoor = new Texture("core/assets/rooms/doors/closeddoorL.png");
+                openDoor = new Texture("core/assets/rooms/doors/opendoorL.png");
+                break;
+            case "right":
+                closedDoor = new Texture("core/assets/rooms/doors/closeddoorR.png");
+                openDoor = new Texture("core/assets/rooms/doors/opendoorR.png");
+                break;
+            default:
+                break;
+        }
 
         collider = new Rectangle(xLoc, yLoc, openDoor.getWidth(), openDoor.getHeight());
     }
@@ -32,6 +54,10 @@ public class Door {
 
     public int getyLoc() {
         return yLoc;
+    }
+
+    public String getLocation() {
+        return loca;
     }
 
     public Texture getClosedTex() {
