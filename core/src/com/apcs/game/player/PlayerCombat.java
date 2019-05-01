@@ -33,6 +33,8 @@ public class PlayerCombat {
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 coll.x = PlayerHandler.getCollider().x + PlayerHandler.getCollider().getWidth();
                 coll.y = PlayerHandler.getCollider().y;
+                coll.width = r.getWidth();
+                coll.height = r.getHeight();
 
                 GameMain.attacking = true;
                 GameMain.wepTex = r;
@@ -45,6 +47,8 @@ public class PlayerCombat {
             } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 coll.x = PlayerHandler.getCollider().x - l.getWidth();
                 coll.y = PlayerHandler.getCollider().y;
+                coll.width = l.getWidth();
+                coll.height = l.getHeight();
 
                 GameMain.attacking = true;
                 GameMain.wepTex = l;
@@ -57,6 +61,8 @@ public class PlayerCombat {
             } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 coll.x = PlayerHandler.getCollider().x;
                 coll.y = PlayerHandler.getCollider().y + PlayerHandler.getCollider().getHeight();
+                coll.width = u.getWidth();
+                coll.height = u.getHeight();
 
                 GameMain.attacking = true;
                 GameMain.wepTex = u;
@@ -69,6 +75,8 @@ public class PlayerCombat {
             } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 coll.x = PlayerHandler.getCollider().x;
                 coll.y = PlayerHandler.getCollider().y - d.getHeight();
+                coll.width = d.getWidth();
+                coll.height = d.getHeight();
 
                 GameMain.attacking = true;
                 GameMain.wepTex = d;
