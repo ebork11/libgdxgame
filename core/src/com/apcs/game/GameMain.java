@@ -189,7 +189,6 @@ public class GameMain extends ApplicationAdapter {
 
             if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
             	entities.get(loop).attack();
-            	System.out.println("Attacking player");
 			}
         }
     }
