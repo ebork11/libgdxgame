@@ -11,13 +11,13 @@ public class Door {
 
     private int xLoc, yLoc;
 
-    public Door(Room definedRoom) {
+    public Door(Room definedRoom, int x, int y) {
         closedDoor = new Texture("core/assets/rooms/closeddoor.png");
         openDoor = new Texture("core/assets/rooms/opendoor.png");
         nextRoom = definedRoom;
 
-        xLoc = 460;
-        yLoc = 650;
+        xLoc = x;
+        yLoc = y;
 
         collider = new Rectangle(xLoc, yLoc, openDoor.getWidth(), openDoor.getHeight());
     }

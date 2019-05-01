@@ -19,7 +19,7 @@ public class DefaultRoom extends Room {
         myFloor = new Texture("core/assets/rooms/background2.png"); // sets texture
         doors = new ArrayList<Door>();
 
-        doors.add(new Door(pastRoom));
+        doors.add(new Door(pastRoom, 460, 30));
     }
 
     public Texture getFloor() {

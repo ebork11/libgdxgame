@@ -49,6 +49,10 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	@Override
+	/*
+		Method that is called every single frame in the game. This is where we draw textures to the screen, calculate and
+		formulas, and handle any other changes such as movement and/or combat
+	 */
 	public void render () {
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1); // sets the basic background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -115,9 +119,18 @@ public class GameMain extends ApplicationAdapter {
 
 		for (int cnt = 0; cnt < room.getDoors().size(); cnt++) {
 			if (entities.size() > 0) {
-				batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc());
+				if (room.getDoors().get(cnt).getyLoc() > 500) {
+					batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+				} else {
+					batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+
+				}
 			} else {
-				batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+				if (room.getDoors().get(cnt).getyLoc() > 500) {
+					batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+				} else {
+					batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+				}
 				if (room.getDoors().get(cnt).getCollider().overlaps(player.getCollider())) {
 					rm.setCurrentRoom(room.getDoors().get(cnt).getNextRoom());
 				}
