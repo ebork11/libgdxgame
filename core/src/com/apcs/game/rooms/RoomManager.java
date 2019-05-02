@@ -5,26 +5,16 @@ import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.StartingRoom;
 
 public class RoomManager {
-    private int roomsExplored;
-
-    private static Room startingRoom;
+    private LevelGeneration lg;
     private static Room currentRoom;
 
     public RoomManager() {
-        roomsExplored = 0;
-        startingRoom = new StartingRoom();
-        currentRoom = startingRoom;
+        lg = new LevelGeneration();
+
+
     }
 
-    public int getRoomsExplored() {
-        return roomsExplored;
-    }
-
-    public void increaseRoomsExplored() {
-        roomsExplored++;
-    }
-
-    public void setCurrentRoom(Room room) {
+    public static void setCurrentRoom(Room room) {
         currentRoom = room;
     }
 

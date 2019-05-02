@@ -15,7 +15,7 @@ public class StartingRoom extends Room {
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
 
-        doors.add(new Door(new DefaultRoom(this, "bottom"), "top"));
+        //doors.add(new Door(new DefaultRoom(this, "bottom"), "top"));
     }
 
     public Texture getFloor() {

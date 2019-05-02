@@ -30,10 +30,14 @@ public class Door {
                 openDoor = new Texture("core/assets/rooms/doors/opendoorB.png");
                 break;
             case "left":
+                xLoc = 30;
+                yLoc = 360;
                 closedDoor = new Texture("core/assets/rooms/doors/closeddoorL.png");
                 openDoor = new Texture("core/assets/rooms/doors/opendoorL.png");
                 break;
             case "right":
+                xLoc = 930;
+                yLoc = 360;
                 closedDoor = new Texture("core/assets/rooms/doors/closeddoorR.png");
                 openDoor = new Texture("core/assets/rooms/doors/opendoorR.png");
                 break;

@@ -152,18 +152,18 @@ public class GameMain extends ApplicationAdapter {
 				if (room.getDoors().get(cnt).getCollider().overlaps(player.getCollider())) {
 					rm.setCurrentRoom(room.getDoors().get(cnt).getNextRoom());
 
-					switch (rm.getCurrentRoom().getDoors().get(0).getLocation()) {
+					switch (room.getDoors().get(cnt).getLocation()) {
 						case "top":
-							player.getCollider().y = rm.getCurrentRoom().getDoors().get(0).getyLoc() - 60;
+							player.getCollider().y = 70;
 							break;
 						case "bottom":
-							player.getCollider().y = rm.getCurrentRoom().getDoors().get(0).getyLoc() + 40;
+							player.getCollider().y = 575;
 							break;
 						case "left":
-							player.getCollider().x = rm.getCurrentRoom().getDoors().get(0).getxLoc() + 40;
+							player.getCollider().x = 875;
 							break;
 						case "right":
-							player.getCollider().x = rm.getCurrentRoom().getDoors().get(0).getxLoc() - 40;
+							player.getCollider().x = 80;
 							break;
 						default:
 							break;

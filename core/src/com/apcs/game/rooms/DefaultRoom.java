@@ -14,6 +14,7 @@ public class DefaultRoom extends Room {
     public DefaultRoom() {
         myFloor = new Texture("core/assets/rooms/background2.png"); // sets texture
         doors = new ArrayList<Door>();
+        entities = new ArrayList<Entity>();
     }
 
     public DefaultRoom(Room pastRoom, String loc) {
