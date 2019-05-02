@@ -1,4 +1,4 @@
-package player;
+package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 public class PlayerHandler {
-    // main player stuff
+    // main com.apcs.game.player stuff
     private static Texture myTexture;
     private static Rectangle collider;
 
@@ -21,20 +21,20 @@ public class PlayerHandler {
     private static PlayerCombat combat;
 
     public PlayerHandler() {
-        myTexture = new Texture("core/assets/player3.png"); // loading in the player texture
-        collider = new Rectangle(100, 100, myTexture.getWidth() / 2, myTexture.getHeight() / 2); // creating the collider for the player
+        myTexture = new Texture("core/assets/player3.png"); // loading in the com.apcs.game.player texture
+        collider = new Rectangle(100, 100, myTexture.getWidth() / 2, myTexture.getHeight() / 2); // creating the collider for the com.apcs.game.player
 
-        inventory = new PlayerInventory(); // creating the inventory for the player
+        inventory = new PlayerInventory(); // creating the inventory for the com.apcs.game.player
         currentSlot = 0; // the starting slot selected will be the first one at index 0
 
         combat = new PlayerCombat();
     }
 
     /*
-        Checks for input on WASD keys and moves the player according to what they press and makes sure they are within the room boundaries
+        Checks for input on WASD keys and moves the com.apcs.game.player according to what they press and makes sure they are within the room boundaries
      */
     public void movementHandler() {
-        float speed = 7f; // speed to move the player
+        float speed = 7f; // speed to move the com.apcs.game.player
         float diagSpeed = (float)Math.sqrt(Math.pow(speed, 2) / 2);
 
         /*
@@ -42,9 +42,6 @@ public class PlayerHandler {
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
             inventory.addItem(new FatSword());
-        }
-        if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
-            GameMain.entities.add(new Entity());
         }
 
         /*
@@ -66,8 +63,6 @@ public class PlayerHandler {
         } if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)) {
             currentSlot = 2;
         }
-
-
 
         /*
             Movement

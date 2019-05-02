@@ -1,7 +1,8 @@
 package com.apcs.game.enemies;
 
 import com.apcs.game.GameMain;
-import player.PlayerHandler;
+import com.apcs.game.player.PlayerHandler;
+import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -43,6 +44,7 @@ public class Entity {
     }
 
     public void hit(int damage)  {
+        System.out.print("Enemy hit ");
         health -= damage;
         if(health <= 0){
             die();
@@ -53,12 +55,13 @@ public class Entity {
         if (System.currentTimeMillis() - lastHit > cooldown) {
             lastHit = System.currentTimeMillis();
             PlayerHandler.getCombat().takeDamage(strength);
+            System.out.println("Attacking player");
         }
 
     }
 
     public void die() {
-        GameMain.entities.remove(this);
+        RoomManager.getCurrentRoom().getEntities().remove(this);
     }
 
     public void move() {

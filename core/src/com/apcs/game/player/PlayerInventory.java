@@ -1,4 +1,4 @@
-package player;
+package com.apcs.game.player;
 
 import com.apcs.game.items.Item;
 import com.badlogic.gdx.graphics.Texture;

@@ -2,14 +2,14 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.rooms.Room;
+import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import player.PlayerHandler;
+import com.apcs.game.player.PlayerHandler;
 
 import java.util.ArrayList;
 
@@ -20,11 +20,10 @@ public class GameMain extends ApplicationAdapter {
 
 	// class accessors
 	private PlayerHandler player;
-	private RoomManager rm;
+	private static RoomManager rm;
 
 	// arraylists to hold present objects
 	public static ArrayList<Item> groundItems;
-	public static ArrayList<Entity> entities;
 
 	// inventory outline texture
 	private Texture invSelectTex;
@@ -43,27 +42,30 @@ public class GameMain extends ApplicationAdapter {
 		rm = new RoomManager();
 
 		groundItems = new ArrayList<Item>();
-		entities = new ArrayList<Entity>();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 	}
 
 	@Override
+	/*
+		Method that is called every single frame in the game. This is where we draw textures to the screen, calculate and
+		formulas, and handle any other changes such as movement and/or combat
+	 */
 	public void render () {
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1); // sets the basic background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		playerManage(); // handles everything regarding the player
+		playerManage(); // handles everything regarding the com.apcs.game.player
 
 		batch.begin(); // beginning of where everything is drawn
 
-		batch.draw(rm.getCurrentRoom().getFloor(), 0, 0); // draw the room floor
+		drawRoom();
 
 		drawItems(); // drawing items on ground
 
 		drawEntities(); // drawing enemies
 
-		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the player at the colliders location
+		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
 
 		if (attacking) {
 			drawWeapon();
@@ -74,12 +76,11 @@ public class GameMain extends ApplicationAdapter {
 		batch.end(); // ending of where everything is drawn
 	}
 
-
 	/*
-		Handles all player things i.e. movement
+		Handles all com.apcs.game.player things i.e. movement
 	 */
 	public void playerManage() {
-		player.movementHandler(); // checks the keyboard for input and moves the player accordingly
+		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
 		player.checkForPickup();
 		player.getCombat().checkAttack();
 	}
@@ -95,7 +96,7 @@ public class GameMain extends ApplicationAdapter {
 			if (player.getInventory().getInventory()[cnt] != null) {
 				batch.draw(player.getInventory().getInventory()[cnt].getIcon(), 1096 + (cnt * (17 + 46)) , 29);
 			}
-			if (cnt == player.getCurrentSlot()) { // draws current player inventory slot selection
+			if (cnt == player.getCurrentSlot()) { // draws current com.apcs.game.player inventory slot selection
 				batch.draw(invSelectTex, 1094 + (cnt * (14 + 46)), 27);
 			}
 		}
@@ -108,18 +109,81 @@ public class GameMain extends ApplicationAdapter {
 
 	}
 
-	public void drawItems()
-	{
-		for(int loop = 0; loop < groundItems.size(); loop++)
-		{
+	public void drawRoom() {
+		Room room = rm.getCurrentRoom();
+
+		batch.draw(room.getFloor(), 0, 0); // draw the room floor
+
+		for (int cnt = 0; cnt < room.getDoors().size(); cnt++) {
+			if (room.getEntities().size() > 0) {
+				switch (room.getDoors().get(cnt).getLocation()) {
+					case "top":
+						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+						break;
+					case "bottom":
+						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+						break;
+					case "left":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					case "right":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					default:
+						break;
+				}
+			} else {
+				switch (room.getDoors().get(cnt).getLocation()) {
+					case "top":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 30);
+						break;
+					case "bottom":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 30);
+						break;
+					case "left":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					case "right":
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 30, room.getDoors().get(cnt).getyLoc());
+						break;
+					default:
+						break;
+				}
+				if (room.getDoors().get(cnt).getCollider().overlaps(player.getCollider())) {
+					rm.setCurrentRoom(room.getDoors().get(cnt).getNextRoom());
+
+					switch (room.getDoors().get(cnt).getLocation()) {
+						case "top":
+							player.getCollider().y = 70;
+							break;
+						case "bottom":
+							player.getCollider().y = 575;
+							break;
+						case "left":
+							player.getCollider().x = 875;
+							break;
+						case "right":
+							player.getCollider().x = 80;
+							break;
+						default:
+							break;
+					}
+
+				}
+			}
+		}
+	}
+
+	public void drawItems() {
+		for(int loop = 0; loop < groundItems.size(); loop++) {
 			batch.draw(groundItems.get(loop).getIcon(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
 		}
 	}
 
-	public void drawEntities()
-    {
-        for(int loop = 0; loop < entities.size(); loop++)
-        {
+	public void drawEntities() {
+		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
+
+        for(int loop = 0; loop < entities.size(); loop++) {
             entities.get(loop).move();
             batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
 
@@ -129,12 +193,11 @@ public class GameMain extends ApplicationAdapter {
         }
     }
 
-	public static void ifEnemyHit()
-    {
-        for(int loop = 0; loop <entities.size(); loop++)
-        {
-            if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider()))
-            {
+	public static void ifEnemyHit() {
+		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
+
+        for(int loop = 0; loop <entities.size(); loop++) {
+            if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
                 entities.get(loop).hit(1);
             }
         }
