@@ -14,15 +14,14 @@ public class PlayerCombat {
     }
 
     public static void takeDamage(int dam) {
-        if (PlayerInventory.getArmor().getStat() > 0) {
+        if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() > 0) {
             PlayerInventory.getArmor().damage(dam);
         } else {
             health -= dam;
         }
 
         if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() <= 0) {
-            PlayerInventory.getArmor().drop();
-            PlayerInventory.setArmor(null); // NEED TO BREAK ARMOR HERE
+            PlayerInventory.getArmor().breakArmor();
         }
 
         if (health <= 0) {

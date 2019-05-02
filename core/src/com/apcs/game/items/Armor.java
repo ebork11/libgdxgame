@@ -1,5 +1,6 @@
 package com.apcs.game.items;
 
+import com.apcs.game.player.PlayerInventory;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Armor extends Item {
@@ -33,5 +34,9 @@ public class Armor extends Item {
 
     public String getItemClass() {
         return myClass;
+    }
+
+    public static void breakArmor() {
+        PlayerInventory.setArmor(null);
     }
 }

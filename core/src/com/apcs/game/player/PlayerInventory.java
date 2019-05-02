@@ -20,8 +20,8 @@ public class PlayerInventory {
         inventorySlots = 3;
         inventory = new Item[inventorySlots];
 
-        invTexture = new Texture("core/assets/inventory.png");
-        equipTex = new Texture("core/assets/armorweaponslot.png");
+        invTexture = new Texture("core/assets/gui/inventory.png");
+        equipTex = new Texture("core/assets/gui/armorweaponslot.png");
 
         weapon = null;
         armor = null;
