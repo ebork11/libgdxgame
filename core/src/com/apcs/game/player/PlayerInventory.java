@@ -98,8 +98,12 @@ public class PlayerInventory {
         return weapon;
     }
 
-    public static Item getArmor() {
+    public static Armor getArmor() {
         return armor;
+    }
+
+    public static void setArmor(Armor m) {
+        armor = m;
     }
 
     public Texture getInvTexture() {

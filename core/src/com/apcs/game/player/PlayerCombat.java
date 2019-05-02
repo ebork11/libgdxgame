@@ -13,8 +13,17 @@ public class PlayerCombat {
         health = 5;
     }
 
-    public void takeDamage(int dam) {
-        health -= dam;
+    public static void takeDamage(int dam) {
+        if (PlayerInventory.getArmor().getStat() > 0) {
+            PlayerInventory.getArmor().damage(dam);
+        } else {
+            health -= dam;
+        }
+
+        if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() <= 0) {
+            PlayerInventory.getArmor().drop();
+            PlayerInventory.setArmor(null); // NEED TO BREAK ARMOR HERE
+        }
 
         if (health <= 0) {
             System.out.println("You lose");
@@ -90,5 +99,14 @@ public class PlayerCombat {
                 GameMain.attacking = false;
             }
         }
+    }
+
+    public static void printStats() {
+        if (PlayerInventory.getArmor() != null) {
+            System.out.println("Health: " + health + " Armor: " + PlayerInventory.getArmor().getStat());
+        } else {
+            System.out.println("Health: " + health + " Armor: " + 0);
+        }
+
     }
 }

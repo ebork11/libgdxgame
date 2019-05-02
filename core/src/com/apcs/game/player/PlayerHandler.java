@@ -2,6 +2,7 @@ package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -42,6 +43,12 @@ public class PlayerHandler {
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
             GameMain.groundItems.add(new FatSword());
+        } if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
+            GameMain.groundItems.add(new Armor());
+        } if (Gdx.input.isKeyJustPressed((Input.Keys.L))) {
+            PlayerCombat.printStats();
+        } if (Gdx.input.isKeyJustPressed((Input.Keys.P))) {
+            PlayerCombat.takeDamage(1);
         }
 
         /*
