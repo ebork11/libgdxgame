@@ -13,7 +13,7 @@ public class PlayerCombat {
         health = 5;
     }
 
-    public void takeDamage(int dam) {
+    public static void takeDamage(int dam) {
         health -= dam;
 
         if (health <= 0) {

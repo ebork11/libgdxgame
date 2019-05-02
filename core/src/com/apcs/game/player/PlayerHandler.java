@@ -3,6 +3,8 @@ package com.apcs.game.player;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.FatSword;
+import com.apcs.game.object.Spike;
+import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,6 +44,9 @@ public class PlayerHandler {
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
             inventory.addItem(new FatSword());
+        }
+        if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
+            RoomManager.getCurrentRoom().getHazards().add(new Spike());
         }
 
         /*

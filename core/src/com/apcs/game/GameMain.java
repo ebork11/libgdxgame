@@ -2,6 +2,8 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.object.Spike;
+import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -64,6 +66,8 @@ public class GameMain extends ApplicationAdapter {
 		drawItems(); // drawing items on ground
 
 		drawEntities(); // drawing enemies
+
+		drawSpikes(); // draws spikes
 
 		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
 
@@ -170,6 +174,16 @@ public class GameMain extends ApplicationAdapter {
 					}
 
 				}
+			}
+		}
+	}
+
+	public void drawSpikes(){
+		ArrayList<Spike> hazard = RoomManager.getCurrentRoom().getHazards();
+		for(int loop = 0; loop < hazard.size(); loop++) {
+			batch.draw(hazard.get(loop).getIcon(), hazard.get(loop).getCollider().x,hazard.get(loop).getCollider().y);
+			if(hazard.get(loop).getCollider().overlaps(player.getCollider())){
+				PlayerCombat.takeDamage(hazard.get(loop).getDamage());
 			}
 		}
 	}
