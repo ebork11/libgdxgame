@@ -41,15 +41,13 @@ public class PlayerHandler {
             Test to add items to inventory
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
-            inventory.addItem(new FatSword());
+            GameMain.groundItems.add(new FatSword());
         }
 
         /*
             Removes current selected slot
          */
-        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            inventory.equip(currentSlot);
-        } if (Gdx.input.isKeyPressed(Input.Keys.T)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
             inventory.removeItem(currentSlot);
         }
 
@@ -104,7 +102,10 @@ public class PlayerHandler {
         if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
             for (int cnt = 0; cnt < GameMain.groundItems.size(); cnt++) {
                 if (collider.overlaps(GameMain.groundItems.get(cnt).getCollider())) {
-                    if (inventory.addItem(GameMain.groundItems.get(cnt))) {
+
+                    if (inventory.equip(GameMain.groundItems.get(cnt))) {
+                        System.out.println("t");
+                    } else if (inventory.addItem(GameMain.groundItems.get(cnt))) {
                         GameMain.groundItems.remove(cnt);
                     }
                     break;

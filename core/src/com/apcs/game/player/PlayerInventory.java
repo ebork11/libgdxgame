@@ -1,5 +1,7 @@
 package com.apcs.game.player;
 
+import com.apcs.game.GameMain;
+import com.apcs.game.items.Armor;
 import com.apcs.game.items.Item;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -10,7 +12,8 @@ public class PlayerInventory {
     private int inventorySlots;
     private Item[] inventory;
 
-    private static Item weapon, armor;
+    private static Item weapon;
+    private static Armor armor;
 
 
     public PlayerInventory() {
@@ -36,6 +39,7 @@ public class PlayerInventory {
         returns true if the item was added successfully, returns false if the item was unable to be added due to a full inventory
      */
     public boolean addItem(Item toAdd) {
+
         for (int cnt = 0; cnt < inventorySlots; cnt++) { // checks all inventory slots
             if (inventory[cnt] == null) { // if the inventory slot is empty
                 inventory[cnt] = toAdd; // sets the inventory slot to the item
@@ -60,31 +64,34 @@ public class PlayerInventory {
         return removedItem; // returns the item we removed
     }
 
-    public void equip(int slot) {
-        if (inventory[slot] != null) {
-            if (inventory[slot].getItemClass().equalsIgnoreCase("weapon")) {
+    public boolean equip(Item it) {
+        if (it != null) {
+            if (it.getItemClass().equalsIgnoreCase("weapon")) {
                 if (weapon == null) {
-                    weapon = inventory[slot];
-                    inventory[slot] = null;
+                    weapon = it;
+                    GameMain.groundItems.remove(it);
+                    return true;
                 } else {
-                    Item temp = weapon;
-                    weapon = inventory[slot];
-                    inventory[slot] = temp;
+                    weapon.drop();
+                    weapon = it;
+                    GameMain.groundItems.remove(it);
+                    return true;
                 }
-            } else if (inventory[slot].getItemClass().equalsIgnoreCase("armor")) {
+            } else if (it.getItemClass().equalsIgnoreCase("armor")) {
                 if (armor == null) {
-                    armor = inventory[slot];
-                    inventory[slot] = null;
+                    armor = (Armor)it;
+                    GameMain.groundItems.remove(it);
+                    return true;
                 } else {
-                    Item temp = armor;
-                    armor = inventory[slot];
-                    inventory[slot] = temp;
+                    armor.drop();
+                    armor = (Armor)it;
+                    GameMain.groundItems.remove(it);
+                    return true;
                 }
             }
-        } else {
-            inventory[slot] = weapon;
-            weapon = null;
+            return false;
         }
+        return false;
     }
 
     public static Item getWeapon() {
