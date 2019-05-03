@@ -194,7 +194,6 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(hazard.get(loop).getIcon(), hazard.get(loop).getCollider().x,hazard.get(loop).getCollider().y);
 			if(hazard.get(loop).getCollider().overlaps(player.getCollider())){
 				if (System.currentTimeMillis() - lastHit > cooldown) {
-					PlayerHandler.damageTaken(true);
 					lastHit = System.currentTimeMillis();
 					PlayerCombat.takeDamage(hazard.get(loop).getDamage());
 				}

@@ -122,24 +122,6 @@ public class PlayerHandler {
         }
     }
 
-    public static void damageTaken(boolean value){
-        if (value == true) {
-            myTexture = new Texture("core/assets/player3hurt.png");
-           // damageTakenHelper(false);
-        }
-
-    }
-
-    public static void damageTakenHelper(boolean value){
-        while(!value) {
-            if (System.currentTimeMillis() - lastHit > cooldown) {
-                lastHit = System.currentTimeMillis();
-                myTexture = new Texture("core/assets/player3.png");
-                value = true;
-            }
-        }
-    }
-
     public static Texture getTexture() {
         return myTexture;
     }

@@ -55,7 +55,6 @@ public class Entity {
         if (System.currentTimeMillis() - lastHit > cooldown) {
             lastHit = System.currentTimeMillis();
             PlayerHandler.getCombat().takeDamage(strength);
-            PlayerHandler.damageTaken(true);
             System.out.println("Attacking player");
         }
 
