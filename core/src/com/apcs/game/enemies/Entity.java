@@ -44,7 +44,6 @@ public class Entity {
     }
 
     public void hit(int damage)  {
-        System.out.print("Enemy hit ");
         health -= damage;
         if(health <= 0){
             die();
@@ -55,7 +54,6 @@ public class Entity {
         if (System.currentTimeMillis() - inColl > cooldown) {
             inColl = System.currentTimeMillis();
             PlayerHandler.getCombat().takeDamage(strength);
-            System.out.println("Attacking player");
         }
 
     }

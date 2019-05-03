@@ -56,9 +56,6 @@ public class PlayerHandler {
         } if (Gdx.input.isKeyJustPressed((Input.Keys.P))) {
             PlayerCombat.takeDamage(1);
         }
-        if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
-            RoomManager.getCurrentRoom().getHazards().add(new Spike());
-        }
 
         /*
             Removes current selected slot

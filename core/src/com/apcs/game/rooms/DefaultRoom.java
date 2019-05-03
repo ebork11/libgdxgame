@@ -10,16 +10,17 @@ import java.util.ArrayList;
 public class DefaultRoom extends Room {
     private Texture myFloor;
     private ArrayList<Door> doors;
-    private static ArrayList<Entity> entities;
-    private static ArrayList<Spike> spikes;
+    private ArrayList<Entity> entities;
+    private ArrayList<Spike> spikes;
 
     public DefaultRoom() {
-        myFloor = new Texture("core/assets/rooms/background2.png"); // sets texture
+        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         spikes = new ArrayList<Spike>();
 
         entities.add(new Entity());
+        spikes.add(new Spike());
     }
 
     public Texture getFloor() {

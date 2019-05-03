@@ -10,11 +10,10 @@ public class Spike {
     private Texture text;
     private Rectangle collider;
 
-    public Spike()
-    {
+    public Spike() {
         damage = 1;
         text = new Texture("core/assets/objects/bigspikes.png");
-        collider = new Rectangle(200, 200, text.getWidth(), text.getHeight());
+        collider = new Rectangle(500, 300, text.getWidth(), text.getHeight());
     }
 
     public Texture getIcon(){
