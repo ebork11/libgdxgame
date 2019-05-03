@@ -1,5 +1,6 @@
 package com.apcs.game.rooms;
 
+import com.apcs.game.enemies.Charger;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
 import com.apcs.game.object.Spike;
@@ -22,7 +23,7 @@ public class DefaultRoom extends Room {
         spikes = new ArrayList<Spike>();
         groundItems = new ArrayList<Item>();
 
-        entities.add(new Entity());
+        entities.add(new Charger());
         spikes.add(new Spike());
     }
 
