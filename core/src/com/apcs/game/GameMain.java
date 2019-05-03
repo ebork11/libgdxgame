@@ -2,6 +2,8 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.player.PlayerCombat;
+import com.apcs.game.player.PlayerInventory;
 import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -107,6 +109,32 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(player.getInventory().getArmor().getIcon(), 1019, 16);
 		}
 
+
+		/*
+			Drawing Health
+		 */
+		for (int cnt = 1; cnt <= PlayerCombat.getHealth(); cnt++) {
+			if (cnt + 1 <= PlayerCombat.getHealth()) {
+				batch.draw(PlayerCombat.getHeart(), 975 + (cnt * 35), 160);
+				cnt++;
+			} else {
+				batch.draw(PlayerCombat.getHalfHeart(), 975 + (cnt * 35), 160);
+			}
+		}
+
+		/*
+			Drawing Armor health
+		 */
+		if (PlayerInventory.getArmor() != null) {
+			for (int cnt = 1; cnt <= PlayerInventory.getArmor().getStat(); cnt++) {
+				if (cnt + 1 <= PlayerInventory.getArmor().getStat()) {
+					batch.draw(PlayerCombat.getArmorHeart(), 975 + (cnt * 35), 210);
+					cnt++;
+				} else {
+					batch.draw(PlayerCombat.getArmorHalfHeart(), 975 + (cnt * 35), 210);
+				}
+			}
+		}
 	}
 
 	public void drawRoom() {
