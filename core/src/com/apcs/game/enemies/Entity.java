@@ -21,21 +21,18 @@ public class Entity {
     private long cooldown;
 
     public Entity()  {
-        int x = (int)(Math.random() * 600) + 200;
-        int y = (int)(Math.random() * 400) + 150;
-
         // basics
         text = new Texture("core/assets/clark.png");
-        collider = new Rectangle(x, y, text.getWidth(), text.getHeight());
+        collider = new Rectangle(100, 100, text.getWidth(), text.getHeight());
 
         //movement
-        speed = 4f;
+        speed = 5f;
 
         // combat stuff
         strength = 1;
         health = 5;
         inColl = System.currentTimeMillis();
-        cooldown = 1000;
+        cooldown = 1500;
     }
 
     public Rectangle getCollider()  {
@@ -46,7 +43,41 @@ public class Entity {
         return text;
     }
 
+    public void setStrength(int temp) {
+        strength = temp;
+    }
+
+    public void setHealth(int temp){
+        health = temp;
+    }
+
+    public void setSpeed(float temp){
+        speed = temp;
+    }
+
+    public void setCooldown(long temp){
+        cooldown = temp;
+    }
+
+    public float getSpeed(){
+        return speed;
+    }
+
+    public long getIncoll(){
+        return inColl;
+    }
+
+    public void setInColl(long temp){
+        inColl = temp;
+    }
+
+    public void setCharcater(String temp){
+        text = new Texture(temp);
+        collider = new Rectangle(100, 100, text.getWidth(),text.getHeight());
+    }
+
     public void hit(int damage)  {
+        System.out.print("Enemy hit ");
         health -= damage;
         if(health <= 0){
             die();
@@ -57,6 +88,7 @@ public class Entity {
         if (System.currentTimeMillis() - inColl > cooldown) {
             inColl = System.currentTimeMillis();
             PlayerHandler.getCombat().takeDamage(strength);
+            System.out.println("Attacking player");
         }
 
     }
@@ -92,3 +124,4 @@ public class Entity {
 
     }
 }
+
