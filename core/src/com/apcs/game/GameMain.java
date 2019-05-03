@@ -3,6 +3,7 @@ package com.apcs.game;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
 import com.apcs.game.object.Spike;
+import com.apcs.game.player.PlayerAnimation;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerInventory;
 import com.apcs.game.rooms.Room;
@@ -24,6 +25,7 @@ public class GameMain extends ApplicationAdapter {
 	// class accessors
 	private PlayerHandler player;
 	private static RoomManager rm;
+	private PlayerAnimation pa;
 
 
 	// inventory outline texture
@@ -43,6 +45,7 @@ public class GameMain extends ApplicationAdapter {
 
 		player = new PlayerHandler();
 		rm = new RoomManager();
+		pa = new PlayerAnimation();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 
@@ -71,7 +74,7 @@ public class GameMain extends ApplicationAdapter {
 
 		drawEntities(); // drawing enemies
 
-		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
+		batch.draw(pa.getFrameTex(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
 
 		if (attacking) {
 			drawWeapon();
