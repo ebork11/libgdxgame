@@ -32,6 +32,7 @@ public class GameMain extends ApplicationAdapter {
 
 	//drawing weapon during combat
 	public static boolean attacking = false;
+	public static boolean hit = false;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
@@ -73,6 +74,10 @@ public class GameMain extends ApplicationAdapter {
 		drawEntities(); // drawing enemies
 
 		drawSpikes(); // draws spikes
+
+		/**if (){
+
+		}**/
 
 		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
 
