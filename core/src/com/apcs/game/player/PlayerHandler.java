@@ -14,6 +14,8 @@ public class PlayerHandler {
     // main com.apcs.game.player stuff
     private static Texture myTexture;
     private static Rectangle collider;
+    private static long lastHit;
+    private static long cooldown;
 
     // inventory stuff
     private static PlayerInventory inventory;
@@ -30,6 +32,8 @@ public class PlayerHandler {
         currentSlot = 0; // the starting slot selected will be the first one at index 0
 
         combat = new PlayerCombat();
+        lastHit = System.currentTimeMillis();
+        cooldown = 1500;
     }
 
     /*
@@ -114,6 +118,23 @@ public class PlayerHandler {
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    public static void damageTaken(boolean value){
+        if (value == true) {
+            myTexture = new Texture("core/assets/player3hurt.png");
+            damageTakenHelper(false);
+        }
+
+    }
+
+    public static void damageTakenHelper(boolean value){
+        while(!value) {
+            if (System.currentTimeMillis() - lastHit > cooldown) {
+                myTexture = new Texture("core/assets/player3.png");
+                value = true;
             }
         }
     }
