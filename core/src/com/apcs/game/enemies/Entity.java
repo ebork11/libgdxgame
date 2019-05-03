@@ -21,18 +21,21 @@ public class Entity {
     private long cooldown;
 
     public Entity()  {
+        int x = (int)(Math.random() * 600) + 200;
+        int y = (int)(Math.random() * 400) + 150;
+
         // basics
         text = new Texture("core/assets/clark.png");
-        collider = new Rectangle(100, 100, text.getWidth(), text.getHeight());
+        collider = new Rectangle(x, y, text.getWidth(), text.getHeight());
 
         //movement
-        speed = 5f;
+        speed = 4f;
 
         // combat stuff
         strength = 1;
         health = 5;
         inColl = System.currentTimeMillis();
-        cooldown = 1500;
+        cooldown = 1000;
     }
 
     public Rectangle getCollider()  {

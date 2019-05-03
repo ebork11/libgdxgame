@@ -12,7 +12,7 @@ public class DefaultRoom extends Room {
     private ArrayList<Entity> entities;
 
     public DefaultRoom() {
-        myFloor = new Texture("core/assets/rooms/background2.png"); // sets texture
+        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
 
