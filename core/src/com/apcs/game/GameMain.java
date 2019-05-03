@@ -2,6 +2,7 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerInventory;
 import com.apcs.game.rooms.Room;
@@ -32,9 +33,12 @@ public class GameMain extends ApplicationAdapter {
 
 	//drawing weapon during combat
 	public static boolean attacking = false;
+	public static boolean hit = false;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
+	private long lastHit;
+	private long cooldown;
 
 	@Override
 	public void create () {
@@ -46,6 +50,9 @@ public class GameMain extends ApplicationAdapter {
 		groundItems = new ArrayList<Item>();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
+
+		lastHit = System.currentTimeMillis();
+		cooldown = 1500;
 	}
 
 	@Override
@@ -66,6 +73,12 @@ public class GameMain extends ApplicationAdapter {
 		drawItems(); // drawing items on ground
 
 		drawEntities(); // drawing enemies
+
+		drawSpikes(); // draws spikes
+
+		/**if (){
+
+		}**/
 
 		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
 
@@ -197,6 +210,19 @@ public class GameMain extends ApplicationAdapter {
 							break;
 					}
 
+				}
+			}
+		}
+	}
+
+	public void drawSpikes(){
+		ArrayList<Spike> hazard = RoomManager.getCurrentRoom().getHazards();
+		for(int loop = 0; loop < hazard.size(); loop++) {
+			batch.draw(hazard.get(loop).getIcon(), hazard.get(loop).getCollider().x,hazard.get(loop).getCollider().y);
+			if(hazard.get(loop).getCollider().overlaps(player.getCollider())){
+				if (System.currentTimeMillis() - lastHit > cooldown) {
+					lastHit = System.currentTimeMillis();
+					PlayerCombat.takeDamage(hazard.get(loop).getDamage());
 				}
 			}
 		}

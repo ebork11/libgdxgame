@@ -4,6 +4,8 @@ import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
+import com.apcs.game.object.Spike;
+import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +15,8 @@ public class PlayerHandler {
     // main com.apcs.game.player stuff
     private static Texture myTexture;
     private static Rectangle collider;
+    private static long lastHit;
+    private static long cooldown;
 
     // inventory stuff
     private static PlayerInventory inventory;
@@ -29,6 +33,8 @@ public class PlayerHandler {
         currentSlot = 0; // the starting slot selected will be the first one at index 0
 
         combat = new PlayerCombat();
+        lastHit = System.currentTimeMillis();
+        cooldown = 1500;
     }
 
     /*
@@ -49,6 +55,9 @@ public class PlayerHandler {
             PlayerCombat.printStats();
         } if (Gdx.input.isKeyJustPressed((Input.Keys.P))) {
             PlayerCombat.takeDamage(1);
+        }
+        if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
+            RoomManager.getCurrentRoom().getHazards().add(new Spike());
         }
 
         /*

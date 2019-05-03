@@ -1,6 +1,7 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.ArrayList;
@@ -9,17 +10,23 @@ public class StartingRoom extends Room {
     private Texture myFloor;
     private ArrayList<Door> doors;
     private static ArrayList<Entity> entities;
+    private static ArrayList<Spike> hazards;
 
     public StartingRoom() {
         myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
+        hazards = new ArrayList<Spike>();
 
         //doors.add(new Door(new DefaultRoom(this, "bottom"), "top"));
     }
 
     public Texture getFloor() {
         return myFloor;
+    }
+
+    public ArrayList<Spike> getHazards() {
+        return hazards;
     }
 
     public ArrayList<Entity> getEntities() {

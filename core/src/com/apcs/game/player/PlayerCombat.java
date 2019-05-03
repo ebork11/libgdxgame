@@ -22,6 +22,7 @@ public class PlayerCombat {
     }
 
     public static void takeDamage(int dam) {
+
         if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() > 0) {
             PlayerInventory.getArmor().damage(dam);
         } else {
@@ -31,7 +32,7 @@ public class PlayerCombat {
         if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() <= 0) {
             PlayerInventory.getArmor().breakArmor();
         }
-
+      
         if (health <= 0) {
             System.out.println("You lose");
         }
