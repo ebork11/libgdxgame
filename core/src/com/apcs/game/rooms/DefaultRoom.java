@@ -18,6 +18,8 @@ public class DefaultRoom extends Room {
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         spikes = new ArrayList<Spike>();
+
+        entities.add(new Entity());
     }
 
     public Texture getFloor() {

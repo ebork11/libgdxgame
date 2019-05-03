@@ -5,13 +5,11 @@ import com.apcs.game.player.PlayerHandler;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Item {
+public abstract class Item {
     private Texture icon, myTextureU, myTextureD, myTextureR, myTextureL;
     private Rectangle collider;
     private float myX;
     private float myY;
-
-    private String myClass;
 
     public Item() {
         myTextureU = new Texture("core/assets/items/item.png"); // default image for items
@@ -19,10 +17,9 @@ public class Item {
         myTextureR = new Texture("core/assets/items/item.png"); // default image for items
         myTextureL = new Texture("core/assets/items/item.png"); // default image for items
         icon = new Texture("core/assets/items/item.png"); // default image for items
-        collider = new Rectangle(0, 0, icon.getWidth(), icon.getHeight()); // sets collider to the size of the image
-        myX = 0;
-        myY = 0;
-        myClass = "";
+        collider = new Rectangle(200, 200, icon.getWidth(), icon.getHeight()); // sets collider to the size of the image
+        myX = 200;
+        myY = 200;
     }
 
     /*
@@ -37,13 +34,9 @@ public class Item {
         collider.y = myY; // ^^
     }
 
-    public void setClass(String newClass) {
-        myClass = newClass;
-    }
+    public abstract void setClass(String newClass);
 
-    public String getItemClass() {
-        return myClass;
-    }
+    public abstract String getItemClass();
 
     public float getX() { // returns colliders x
         return myX;

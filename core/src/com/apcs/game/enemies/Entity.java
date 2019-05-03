@@ -17,7 +17,7 @@ public class Entity {
     // combat stuff
     private int health;
     private int strength;
-    private long lastHit;
+    private long inColl;
     private long cooldown;
 
     public Entity()  {
@@ -26,12 +26,12 @@ public class Entity {
         collider = new Rectangle(100, 100, text.getWidth(), text.getHeight());
 
         //movement
-        speed = 3f;
+        speed = 5f;
 
         // combat stuff
         strength = 1;
         health = 5;
-        lastHit = System.currentTimeMillis();
+        inColl = System.currentTimeMillis();
         cooldown = 1500;
     }
 
@@ -52,8 +52,8 @@ public class Entity {
     }
 
     public void attack() {
-        if (System.currentTimeMillis() - lastHit > cooldown) {
-            lastHit = System.currentTimeMillis();
+        if (System.currentTimeMillis() - inColl > cooldown) {
+            inColl = System.currentTimeMillis();
             PlayerHandler.getCombat().takeDamage(strength);
             System.out.println("Attacking player");
         }

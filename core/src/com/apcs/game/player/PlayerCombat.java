@@ -9,13 +9,30 @@ import com.badlogic.gdx.math.Rectangle;
 public class PlayerCombat {
     private static int health;
 
+    private static Texture heart, halfHeart, armorHeart, armorHalfHeart;
+
     public PlayerCombat() {
-        health = 5;
+        health = 8;
+
+        heart = new Texture("core/assets/gui/fullheart.png");
+        halfHeart = new Texture("core/assets/gui/halfheart.png");
+
+        armorHeart = new Texture("core/assets/gui/armorheart.png");
+        armorHalfHeart = new Texture("core/assets/gui/armorhalfheart.png");
     }
 
     public static void takeDamage(int dam) {
-        health -= dam;
 
+        if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() > 0) {
+            PlayerInventory.getArmor().damage(dam);
+        } else {
+            health -= dam;
+        }
+
+        if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() <= 0) {
+            PlayerInventory.getArmor().breakArmor();
+        }
+      
         if (health <= 0) {
             System.out.println("You lose");
         }
@@ -91,4 +108,33 @@ public class PlayerCombat {
             }
         }
     }
+
+    public static void printStats() {
+        if (PlayerInventory.getArmor() != null) {
+            System.out.println("Health: " + health + " Armor: " + PlayerInventory.getArmor().getStat());
+        } else {
+            System.out.println("Health: " + health + " Armor: " + 0);
+        }
+    }
+
+    public static Texture getHalfHeart() {
+        return halfHeart;
+    }
+
+    public static Texture getHeart() {
+        return heart;
+    }
+
+    public static Texture getArmorHalfHeart() {
+        return armorHalfHeart;
+    }
+
+    public static Texture getArmorHeart() {
+        return armorHeart;
+    }
+
+    public static int getHealth() {
+        return health;
+    }
+
 }

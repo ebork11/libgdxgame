@@ -2,6 +2,7 @@ package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.object.Spike;
 import com.apcs.game.rooms.RoomManager;
@@ -47,7 +48,13 @@ public class PlayerHandler {
             Test to add items to inventory
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
-            inventory.addItem(new FatSword());
+            GameMain.groundItems.add(new FatSword());
+        } if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
+            GameMain.groundItems.add(new Armor());
+        } if (Gdx.input.isKeyJustPressed((Input.Keys.L))) {
+            PlayerCombat.printStats();
+        } if (Gdx.input.isKeyJustPressed((Input.Keys.P))) {
+            PlayerCombat.takeDamage(1);
         }
         if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
             RoomManager.getCurrentRoom().getHazards().add(new Spike());
@@ -56,9 +63,7 @@ public class PlayerHandler {
         /*
             Removes current selected slot
          */
-        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            inventory.equip(currentSlot);
-        } if (Gdx.input.isKeyPressed(Input.Keys.T)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
             inventory.removeItem(currentSlot);
         }
 
@@ -113,7 +118,10 @@ public class PlayerHandler {
         if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
             for (int cnt = 0; cnt < GameMain.groundItems.size(); cnt++) {
                 if (collider.overlaps(GameMain.groundItems.get(cnt).getCollider())) {
-                    if (inventory.addItem(GameMain.groundItems.get(cnt))) {
+
+                    if (inventory.equip(GameMain.groundItems.get(cnt))) {
+                        System.out.println("t");
+                    } else if (inventory.addItem(GameMain.groundItems.get(cnt))) {
                         GameMain.groundItems.remove(cnt);
                     }
                     break;
