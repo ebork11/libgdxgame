@@ -48,8 +48,8 @@ public class PlayerCombat {
             Texture l = PlayerHandler.getInventory().getWeapon().getTextureL();
 
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-                coll.x = PlayerHandler.getCollider().x + PlayerHandler.getCollider().getWidth();
-                coll.y = PlayerHandler.getCollider().y;
+                coll.x = PlayerHandler.getCollider().x + (PlayerHandler.getCollider().getWidth() / 1.3f);
+                coll.y = PlayerHandler.getCollider().y + 10;
                 coll.width = r.getWidth();
                 coll.height = r.getHeight();
 
@@ -62,8 +62,8 @@ public class PlayerCombat {
                     GameMain.ifEnemyHit();
                 }
             } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-                coll.x = PlayerHandler.getCollider().x - l.getWidth();
-                coll.y = PlayerHandler.getCollider().y;
+                coll.x = PlayerHandler.getCollider().x - (l.getWidth() / 1.1f);
+                coll.y = PlayerHandler.getCollider().y + 10;
                 coll.width = l.getWidth();
                 coll.height = l.getHeight();
 
@@ -77,7 +77,7 @@ public class PlayerCombat {
                 }
             } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 coll.x = PlayerHandler.getCollider().x;
-                coll.y = PlayerHandler.getCollider().y + PlayerHandler.getCollider().getHeight();
+                coll.y = PlayerHandler.getCollider().y + (PlayerHandler.getCollider().getHeight() / 1.2f);
                 coll.width = u.getWidth();
                 coll.height = u.getHeight();
 
@@ -91,7 +91,7 @@ public class PlayerCombat {
                 }
             } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 coll.x = PlayerHandler.getCollider().x;
-                coll.y = PlayerHandler.getCollider().y - d.getHeight();
+                coll.y = PlayerHandler.getCollider().y - (d.getHeight() / 1.4f);
                 coll.width = d.getWidth();
                 coll.height = d.getHeight();
 

@@ -26,7 +26,7 @@ public class PlayerHandler {
     private static PlayerCombat combat;
 
     public PlayerHandler() {
-        myTexture = new Texture("core/assets/player3.png"); // loading in the com.apcs.game.player texture
+        myTexture = new Texture("core/assets/player/walk1.png"); // loading in the com.apcs.game.player texture
         collider = new Rectangle(100, 100, myTexture.getWidth() / 2, myTexture.getHeight() / 2); // creating the collider for the com.apcs.game.player
 
         inventory = new PlayerInventory(); // creating the inventory for the com.apcs.game.player
