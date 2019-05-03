@@ -35,6 +35,8 @@ public class GameMain extends ApplicationAdapter {
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
+	private long lastHit;
+	private long cooldown;
 
 	@Override
 	public void create () {
@@ -46,6 +48,9 @@ public class GameMain extends ApplicationAdapter {
 		groundItems = new ArrayList<Item>();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
+
+		lastHit = System.currentTimeMillis();
+		cooldown = 1500;
 	}
 
 	@Override
@@ -183,7 +188,10 @@ public class GameMain extends ApplicationAdapter {
 		for(int loop = 0; loop < hazard.size(); loop++) {
 			batch.draw(hazard.get(loop).getIcon(), hazard.get(loop).getCollider().x,hazard.get(loop).getCollider().y);
 			if(hazard.get(loop).getCollider().overlaps(player.getCollider())){
-				PlayerCombat.takeDamage(hazard.get(loop).getDamage());
+				if (System.currentTimeMillis() - lastHit > cooldown) {
+					lastHit = System.currentTimeMillis();
+					PlayerCombat.takeDamage(hazard.get(loop).getDamage());
+				}
 			}
 		}
 	}
