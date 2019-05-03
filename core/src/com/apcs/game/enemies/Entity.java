@@ -22,7 +22,7 @@ public class Entity {
 
     public Entity()  {
         // basics
-        text = new Texture("core/assets/clark.png");
+        text = new Texture("clark.png");
         collider = new Rectangle(100, 100, text.getWidth(), text.getHeight());
 
         //movement

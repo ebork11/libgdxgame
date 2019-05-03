@@ -12,11 +12,11 @@ public abstract class Item {
     private float myY;
 
     public Item() {
-        myTextureU = new Texture("core/assets/items/item.png"); // default image for items
-        myTextureD = new Texture("core/assets/items/item.png"); // default image for items
-        myTextureR = new Texture("core/assets/items/item.png"); // default image for items
-        myTextureL = new Texture("core/assets/items/item.png"); // default image for items
-        icon = new Texture("core/assets/items/item.png"); // default image for items
+        myTextureU = new Texture("items/item.png"); // default image for items
+        myTextureD = new Texture("items/item.png"); // default image for items
+        myTextureR = new Texture("items/item.png"); // default image for items
+        myTextureL = new Texture("items/item.png"); // default image for items
+        icon = new Texture("items/item.png"); // default image for items
         collider = new Rectangle(200, 200, icon.getWidth(), icon.getHeight()); // sets collider to the size of the image
         myX = 200;
         myY = 200;

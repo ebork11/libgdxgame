@@ -12,7 +12,7 @@ public class Spike {
 
     public Spike() {
         damage = 1;
-        text = new Texture("core/assets/objects/bigspikes.png");
+        text = new Texture("objects/bigspikes.png");
         collider = new Rectangle(500, 300, text.getWidth(), text.getHeight());
     }
 

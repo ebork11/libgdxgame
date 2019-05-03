@@ -15,7 +15,7 @@ public class StartingRoom extends Room {
     private ArrayList<Item> groundItems;
 
     public StartingRoom() {
-        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
+        myFloor = new Texture("rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         hazards = new ArrayList<Spike>();

@@ -14,11 +14,11 @@ public class PlayerCombat {
     public PlayerCombat() {
         health = 8;
 
-        heart = new Texture("core/assets/gui/fullheart.png");
-        halfHeart = new Texture("core/assets/gui/halfheart.png");
+        heart = new Texture("gui/fullheart.png");
+        halfHeart = new Texture("gui/halfheart.png");
 
-        armorHeart = new Texture("core/assets/gui/armorheart.png");
-        armorHalfHeart = new Texture("core/assets/gui/armorhalfheart.png");
+        armorHeart = new Texture("gui/armorheart.png");
+        armorHalfHeart = new Texture("gui/armorhalfheart.png");
     }
 
     public static void takeDamage(int dam) {

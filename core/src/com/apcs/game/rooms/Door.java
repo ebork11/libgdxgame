@@ -20,26 +20,26 @@ public class Door {
             case "top":
                 xLoc = 460;
                 yLoc = 650;
-                closedDoor = new Texture("core/assets/rooms/doors/closeddoorT.png");
-                openDoor = new Texture("core/assets/rooms/doors/opendoorT.png");
+                closedDoor = new Texture("rooms/doors/closeddoorT.png");
+                openDoor = new Texture("rooms/doors/opendoorT.png");
                 break;
             case "bottom":
                 xLoc = 460;
                 yLoc = 30;
-                closedDoor = new Texture("core/assets/rooms/doors/closeddoorB.png");
-                openDoor = new Texture("core/assets/rooms/doors/opendoorB.png");
+                closedDoor = new Texture("rooms/doors/closeddoorB.png");
+                openDoor = new Texture("rooms/doors/opendoorB.png");
                 break;
             case "left":
                 xLoc = 30;
                 yLoc = 360;
-                closedDoor = new Texture("core/assets/rooms/doors/closeddoorL.png");
-                openDoor = new Texture("core/assets/rooms/doors/opendoorL.png");
+                closedDoor = new Texture("rooms/doors/closeddoorL.png");
+                openDoor = new Texture("rooms/doors/opendoorL.png");
                 break;
             case "right":
                 xLoc = 930;
                 yLoc = 360;
-                closedDoor = new Texture("core/assets/rooms/doors/closeddoorR.png");
-                openDoor = new Texture("core/assets/rooms/doors/opendoorR.png");
+                closedDoor = new Texture("rooms/doors/closeddoorR.png");
+                openDoor = new Texture("rooms/doors/opendoorR.png");
                 break;
             default:
                 break;

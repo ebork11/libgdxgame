@@ -10,7 +10,7 @@ public class Armor extends Item {
     private int maxHealth, health;
 
     public Armor() {
-        icon = new Texture("core/assets/items/armor.png");
+        icon = new Texture("items/armor.png");
         setIcon(icon);
 
         maxHealth = 2;

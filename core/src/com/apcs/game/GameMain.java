@@ -47,7 +47,7 @@ public class GameMain extends ApplicationAdapter {
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
-		invSelectTex = new Texture("core/assets/items/outlineselection.png");
+		invSelectTex = new Texture("items/outlineselection.png");
 
 		lastHit = System.currentTimeMillis();
 		cooldown = 1500;

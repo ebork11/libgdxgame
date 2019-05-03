@@ -17,7 +17,7 @@ public class DefaultRoom extends Room {
     private ArrayList<Item> groundItems;
 
     public DefaultRoom() {
-        myFloor = new Texture("core/assets/rooms/background1.png"); // sets texture
+        myFloor = new Texture("rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         spikes = new ArrayList<Spike>();

@@ -11,7 +11,7 @@ public class Charger extends Entity {
     public Charger(){
         super();
         setHealth(10);
-        setCharcater("core/assets/clark.png");
+        setCharcater("clark.png");
         setSpeed(15f);
         setStrength(1);
         moveCooldown = 2000;

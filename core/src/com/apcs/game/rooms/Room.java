@@ -12,7 +12,7 @@ public abstract class Room {
 
     // width is 1000, height is 720
     public Room() {
-        myFloor = new Texture("core/assets/rooms/background1.png");
+        myFloor = new Texture("rooms/background1.png");
     }
 
     public abstract Texture getFloor();
