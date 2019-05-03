@@ -25,15 +25,12 @@ public class GameMain extends ApplicationAdapter {
 	private PlayerHandler player;
 	private static RoomManager rm;
 
-	// arraylists to hold present objects
-	public static ArrayList<Item> groundItems;
 
 	// inventory outline texture
 	private Texture invSelectTex;
 
 	//drawing weapon during combat
 	public static boolean attacking = false;
-	public static boolean hit = false;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
@@ -46,8 +43,6 @@ public class GameMain extends ApplicationAdapter {
 
 		player = new PlayerHandler();
 		rm = new RoomManager();
-
-		groundItems = new ArrayList<Item>();
 
 		invSelectTex = new Texture("core/assets/items/outlineselection.png");
 
@@ -72,13 +67,9 @@ public class GameMain extends ApplicationAdapter {
 
 		drawItems(); // drawing items on ground
 
-		drawEntities(); // drawing enemies
-
 		drawSpikes(); // draws spikes
 
-		/**if (){
-
-		}**/
+		drawEntities(); // drawing enemies
 
 		batch.draw(player.getTexture(), player.getCollider().x - (player.getTexture().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
 
@@ -229,8 +220,8 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	public void drawItems() {
-		for(int loop = 0; loop < groundItems.size(); loop++) {
-			batch.draw(groundItems.get(loop).getIcon(), groundItems.get(loop).getX(), groundItems.get(loop).getY());
+		for(int loop = 0; loop < rm.getCurrentRoom().getGroundItems().size(); loop++) {
+			batch.draw(rm.getCurrentRoom().getGroundItems().get(loop).getIcon(), rm.getCurrentRoom().getGroundItems().get(loop).getX(), rm.getCurrentRoom().getGroundItems().get(loop).getY());
 		}
 	}
 
@@ -260,6 +251,10 @@ public class GameMain extends ApplicationAdapter {
 
     public static void drawWeapon() {
 		batch.draw(wepTex, wepX, wepY);
+	}
+
+	public static RoomManager getRm() {
+		return rm;
 	}
 
 	@Override

@@ -48,9 +48,9 @@ public class PlayerHandler {
             Test to add items to inventory
          */
         if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
-            GameMain.groundItems.add(new FatSword());
+            GameMain.getRm().getCurrentRoom().getGroundItems().add(new FatSword());
         } if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
-            GameMain.groundItems.add(new Armor());
+            GameMain.getRm().getCurrentRoom().getGroundItems().add(new Armor());
         } if (Gdx.input.isKeyJustPressed((Input.Keys.L))) {
             PlayerCombat.printStats();
         } if (Gdx.input.isKeyJustPressed((Input.Keys.P))) {
@@ -113,13 +113,12 @@ public class PlayerHandler {
 
     public void checkForPickup() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
-            for (int cnt = 0; cnt < GameMain.groundItems.size(); cnt++) {
-                if (collider.overlaps(GameMain.groundItems.get(cnt).getCollider())) {
+            for (int cnt = 0; cnt < GameMain.getRm().getCurrentRoom().getGroundItems().size(); cnt++) {
+                if (collider.overlaps(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt).getCollider())) {
 
-                    if (inventory.equip(GameMain.groundItems.get(cnt))) {
-                        System.out.println("t");
-                    } else if (inventory.addItem(GameMain.groundItems.get(cnt))) {
-                        GameMain.groundItems.remove(cnt);
+                    if (inventory.equip(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt))) {
+                    } else if (inventory.addItem(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt))) {
+                        GameMain.getRm().getCurrentRoom().getGroundItems().remove(cnt);
                     }
                     break;
                 }

@@ -69,23 +69,23 @@ public class PlayerInventory {
             if (it.getItemClass().equalsIgnoreCase("weapon")) {
                 if (weapon == null) {
                     weapon = it;
-                    GameMain.groundItems.remove(it);
+                    GameMain.getRm().getCurrentRoom().getGroundItems().remove(it);
                     return true;
                 } else {
                     weapon.drop();
                     weapon = it;
-                    GameMain.groundItems.remove(it);
+                    GameMain.getRm().getCurrentRoom().getGroundItems().remove(it);
                     return true;
                 }
             } else if (it.getItemClass().equalsIgnoreCase("armor")) {
                 if (armor == null) {
                     armor = (Armor)it;
-                    GameMain.groundItems.remove(it);
+                    GameMain.getRm().getCurrentRoom().getGroundItems().remove(it);
                     return true;
                 } else {
                     armor.drop();
                     armor = (Armor)it;
-                    GameMain.groundItems.remove(it);
+                    GameMain.getRm().getCurrentRoom().getGroundItems().remove(it);
                     return true;
                 }
             }

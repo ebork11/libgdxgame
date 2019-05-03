@@ -1,6 +1,7 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.items.Item;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -21,6 +22,8 @@ public abstract class Room {
     public abstract ArrayList<Entity> getEntities();
 
     public abstract ArrayList<Spike> getHazards();
+
+    public abstract ArrayList<Item> getGroundItems();
 
     public void disposer() {
         myFloor.dispose();

@@ -26,7 +26,7 @@ public abstract class Item {
         When an item is to be dropped this method is called
      */
     public void drop() {
-        GameMain.groundItems.add(this);
+        GameMain.getRm().getCurrentRoom().getGroundItems().add(this);
         myX = PlayerHandler.getCollider().x;
         myY = PlayerHandler.getCollider().y;
 
