@@ -47,7 +47,7 @@ public class Charger extends Entity {
         sy = Math.abs(sy);
 
         if (x > 0 && y > 0) {
-            if (getCollider().x + getTexture().getWidth() < 920) {
+            if (getCollider().x + getTexture().getWidth() < 960) {
                 getCollider().x += sx;
 
             } if (getCollider().y < 610) {
@@ -66,7 +66,7 @@ public class Charger extends Entity {
                 getCollider().y -= sy;
             }
         }  else if (x > 0 && y < 0) {
-            if (getCollider().x + getTexture().getWidth() < 920) {
+            if (getCollider().x + getTexture().getWidth() < 960) {
                 getCollider().x += sx;
             } if (getCollider().y > 40) {
                 getCollider().y -= sy;
