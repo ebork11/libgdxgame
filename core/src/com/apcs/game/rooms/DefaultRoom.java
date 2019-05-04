@@ -17,7 +17,22 @@ public class DefaultRoom extends Room {
     private ArrayList<Item> groundItems;
 
     public DefaultRoom() {
-        myFloor = new Texture("rooms/background1.png"); // sets texture
+        int choice = (int)(Math.random() * 3) + 1;
+        switch (choice) {
+            case 1:
+                myFloor = new Texture("rooms/background1.png"); // sets texture
+                break;
+            case 2:
+                myFloor = new Texture("rooms/background2.png"); // sets texture
+                break;
+            case 3:
+                myFloor = new Texture("rooms/background3.png"); // sets texture
+                break;
+            default:
+                myFloor = new Texture("rooms/background1.png"); // sets texture
+                break;
+        }
+
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         spikes = new ArrayList<Spike>();
