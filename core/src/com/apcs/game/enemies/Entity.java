@@ -23,7 +23,7 @@ public class Entity {
     public Entity()  {
         // basics
         text = new Texture("clark.png");
-        collider = new Rectangle(100, 100, text.getWidth(), text.getHeight());
+        collider = new Rectangle(100, 100, 100, 100);
 
         //movement
         speed = 5f;
@@ -55,25 +55,18 @@ public class Entity {
         speed = temp;
     }
 
-    public void setCooldown(long temp){
-        cooldown = temp;
-    }
-
     public float getSpeed(){
         return speed;
     }
 
-    public long getIncoll(){
-        return inColl;
-    }
 
-    public void setInColl(long temp){
-        inColl = temp;
-    }
-
-    public void setCharcater(String temp){
+    public void setCharacterFirst(String temp){
         text = new Texture(temp);
         collider = new Rectangle(100, 100, text.getWidth(),text.getHeight());
+    }
+
+    public void setCharacter(String temp){
+        text = new Texture(temp);
     }
 
     public void hit(int damage)  {

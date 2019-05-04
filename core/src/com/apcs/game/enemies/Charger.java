@@ -10,22 +10,23 @@ public class Charger extends Entity {
 
     public Charger(){
         super();
-        setHealth(10);
-        setCharcater("clark.png");
+        setHealth(15);
+        setCharacterFirst("enemies/charger/charger.png");
         setSpeed(15f);
-        setStrength(1);
+        setStrength(2);
         moveCooldown = 2000;
-        chargeTime = 1000;
+        chargeTime = 2000;
         chargeCooldown = System.currentTimeMillis();
     }
 
     public void move() {
-
         if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
+            setCharacter("enemies/charger/charge1.png");
             walk(moveX, moveY);
 
             if (System.currentTimeMillis() - start > chargeTime) {
                 chargeCooldown = System.currentTimeMillis();
+                setCharacter("enemies/charger/charger.png");
             }
         } else {
             moveX = PlayerHandler.getCollider().x - getCollider().x;
@@ -36,6 +37,7 @@ public class Charger extends Entity {
     }
 
     public void walk(float x, float y){
+
         double ang1 = Math.atan(y / x);
         double ang2 = Math.atan(x / y);
         float sx = (float)(getSpeed()*(Math.sin(ang2)));
@@ -47,13 +49,14 @@ public class Charger extends Entity {
         if (x > 0 && y > 0) {
             if (getCollider().x + getTexture().getWidth() < 920) {
                 getCollider().x += sx;
-            } if (getCollider().y < 650) {
+
+            } if (getCollider().y < 610) {
                 getCollider().y += sy;
             }
         } else if (x < 0 && y > 0) {
             if (getCollider().x > 40) {
                 getCollider().x -= sx;
-            } if (getCollider().y < 650) {
+            } if (getCollider().y < 610) {
                 getCollider().y += sy;
             }
         }  else if (x < 0 && y < 0) {
@@ -70,5 +73,7 @@ public class Charger extends Entity {
             }
         }
     }
+
+
 
 }
