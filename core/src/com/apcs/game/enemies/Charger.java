@@ -10,6 +10,7 @@ public class Charger extends Entity {
 
     public Charger(){
         super();
+
         setHealth(15);
         setCharacterFirst("enemies/charger/charger.png");
         setSpeed(15f);
@@ -17,6 +18,12 @@ public class Charger extends Entity {
         moveCooldown = 2000;
         chargeTime = 2000;
         chargeCooldown = System.currentTimeMillis();
+
+        int x = (int)(Math.random() * 650) + 200;
+        int y = (int)(Math.random() * 450) + 150;
+
+        getCollider().x = x;
+        getCollider().y = y;
     }
 
     public void move() {

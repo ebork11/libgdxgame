@@ -16,6 +16,12 @@ public class Spike {
         collider = new Rectangle(500, 300, text.getWidth(), text.getHeight());
     }
 
+    public Spike(int x, int y) {
+        damage = 1;
+        text = new Texture("objects/bigspikes.png");
+        collider = new Rectangle(x, y, text.getWidth(), text.getHeight());
+    }
+
     public Texture getIcon(){
         return text;
     }

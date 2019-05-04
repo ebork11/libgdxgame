@@ -21,6 +21,8 @@ public class Entity {
     private long cooldown;
 
     public Entity()  {
+
+
         // basics
         text = new Texture("clark.png");
         collider = new Rectangle(100, 100, 100, 100);
