@@ -35,13 +35,13 @@ public class DefaultRoom extends Room {
                 spikes.add(new Spike(450, 360));
                 spikes.add(new Spike(500, 320));
                 entities.add(new Charger());
-                entities.add(new Charger());
+                entities.add(new Entity());
                 break;
             case 2:
                 myFloor = new Texture("rooms/background2.png"); // sets texture
                 entities.add(new Charger());
-                entities.add(new Charger());
-                entities.add(new Charger());
+                entities.add(new Entity());
+                entities.add(new Entity());
                 break;
             case 3:
                 myFloor = new Texture("rooms/background3.png"); // sets texture
@@ -50,7 +50,7 @@ public class DefaultRoom extends Room {
                 spikes.add(new Spike(450, 360));
                 spikes.add(new Spike(500, 320));
                 entities.add(new Charger());
-                entities.add(new Charger());
+                entities.add(new Entity());
                 break;
             default:
                 myFloor = new Texture("rooms/background1.png"); // sets texture

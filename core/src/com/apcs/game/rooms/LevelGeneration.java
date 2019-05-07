@@ -20,7 +20,7 @@ public class LevelGeneration {
 
         int row, col;
 
-        while (numRooms < 5) {
+        while (numRooms < 7) {
             row = (int)(Math.random() * level1.length);
             col = (int)(Math.random() * level1.length);
 
