@@ -1,10 +1,15 @@
 package com.apcs.game.enemies;
 
 import com.apcs.game.GameMain;
+import com.apcs.game.items.Armor;
+import com.apcs.game.items.FatSword;
+import com.apcs.game.items.Item;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+
+import java.util.ArrayList;
 
 public class Entity {
     // basics
@@ -72,7 +77,6 @@ public class Entity {
     }
 
     public void hit(int damage)  {
-        System.out.print("Enemy hit ");
         health -= damage;
         if(health <= 0){
             die();
@@ -83,13 +87,23 @@ public class Entity {
         if (System.currentTimeMillis() - inColl > cooldown) {
             inColl = System.currentTimeMillis();
             PlayerHandler.getCombat().takeDamage(strength);
-            System.out.println("Attacking player");
+        }
+    }
+
+    public void dropItems() {
+        ArrayList<Item> droppable = new ArrayList<Item>();
+
+        if (droppable.size() == 0) {
+            droppable.add(new Armor());
+            droppable.add(new FatSword());
         }
 
+        RoomManager.getCurrentRoom().getGroundItems().add(droppable.get((int)(Math.random() * droppable.size())));
     }
 
     public void die() {
         RoomManager.getCurrentRoom().getEntities().remove(this);
+        dropItems();
     }
 
     public void move() {
