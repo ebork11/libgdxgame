@@ -31,7 +31,7 @@ public class GameMain extends ApplicationAdapter {
 	private PlayerAnimation pa;
 
 
-	boolean menu;
+	boolean menu, pause;
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
@@ -52,6 +52,7 @@ public class GameMain extends ApplicationAdapter {
 		pa = new PlayerAnimation();
 
 		menu = true;
+		pause = false;
 		invSelectTex = new Texture("items/outlineselection.png");
 
 		lastHit = System.currentTimeMillis(); // spike stuff needs to be redone eventually and line below
@@ -67,12 +68,19 @@ public class GameMain extends ApplicationAdapter {
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1); // sets the basic background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		playerManage(); // handles everything regarding the com.apcs.game.player
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			pause = !pause;
+		}
+
+		if (!pause) {
+			playerManage(); // handles everything regarding the com.apcs.game.player
+		}
 
 		batch.begin(); // beginning of where everything is drawn
 
 		if (menu) {
 			renderMenu();
+			pause = false;
 		} else {
 			renderGameLevel();
 		}
@@ -253,11 +261,14 @@ public class GameMain extends ApplicationAdapter {
 		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
         for(int loop = 0; loop < entities.size(); loop++) {
-            entities.get(loop).move();
-            batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+			batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
 
-            if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
-            	entities.get(loop).attack();
+			if (!pause) {
+				entities.get(loop).move();
+
+				if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
+					entities.get(loop).attack();
+				}
 			}
         }
     }
