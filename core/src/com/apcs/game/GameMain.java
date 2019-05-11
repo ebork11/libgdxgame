@@ -66,23 +66,21 @@ public class GameMain extends ApplicationAdapter {
 
 		batch.begin(); // beginning of where everything is drawn
 
+		renderGameLevel();
+
+		batch.end(); // ending of where everything is drawn
+	}
+
+	public void renderGameLevel() {
 		drawRoom();
-
-		drawItems(); // drawing items on ground
-
-		drawSpikes(); // draws spikes
-
-		drawEntities(); // drawing enemies
-
+		drawItems();
+		drawSpikes();
+		drawEntities();
 		batch.draw(pa.getFrameTex(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
-
 		if (attacking) {
 			drawWeapon();
 		}
-
 		drawInventory(); // drawing right side stuff
-
-		batch.end(); // ending of where everything is drawn
 	}
 
 	/*
