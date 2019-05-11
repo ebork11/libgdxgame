@@ -59,8 +59,6 @@ public class DefaultRoom extends Room {
                 break;
         }
 
-        entities.add(new Charger());
-
     }
 
     public Texture getFloor() {
