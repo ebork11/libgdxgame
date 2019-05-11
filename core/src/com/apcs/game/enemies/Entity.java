@@ -40,6 +40,12 @@ public class Entity {
         health = 5;
         inColl = System.currentTimeMillis();
         cooldown = 1500;
+
+        int x = (int)(Math.random() * 650) + 200;
+        int y = (int)(Math.random() * 450) + 150;
+
+        getCollider().x = x;
+        getCollider().y = y;
     }
 
     public Rectangle getCollider()  {
@@ -98,12 +104,18 @@ public class Entity {
             droppable.add(new FatSword());
         }
 
-        RoomManager.getCurrentRoom().getGroundItems().add(droppable.get((int)(Math.random() * droppable.size())));
+        Item temp = droppable.get((int)(Math.random() * droppable.size()));
+
+        System.out.println(collider.x + "    " + collider.y);
+        temp.getCollider().setPosition(collider.x, collider.y);
+
+
+        RoomManager.getCurrentRoom().getGroundItems().add(temp);
     }
 
     public void die() {
-        RoomManager.getCurrentRoom().getEntities().remove(this);
         dropItems();
+        RoomManager.getCurrentRoom().getEntities().remove(this);
     }
 
     public void move() {

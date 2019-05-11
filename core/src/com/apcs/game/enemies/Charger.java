@@ -11,7 +11,7 @@ public class Charger extends Entity {
     public Charger(){
         super();
 
-        setHealth(15);
+        setHealth(7);
         setCharacterFirst("enemies/charger/charger.png");
         setSpeed(15f);
         setStrength(2);

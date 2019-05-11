@@ -55,7 +55,7 @@ public class DefaultRoom extends Room {
             default:
                 myFloor = new Texture("rooms/background1.png"); // sets texture
                 entities.add(new Charger());
-                entities.add(new Charger());
+                entities.add(new Entity());
                 break;
         }
 

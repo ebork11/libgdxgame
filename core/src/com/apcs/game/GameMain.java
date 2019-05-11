@@ -224,7 +224,7 @@ public class GameMain extends ApplicationAdapter {
 
 	public void drawItems() {
 		for(int loop = 0; loop < rm.getCurrentRoom().getGroundItems().size(); loop++) {
-			batch.draw(rm.getCurrentRoom().getGroundItems().get(loop).getIcon(), rm.getCurrentRoom().getGroundItems().get(loop).getX(), rm.getCurrentRoom().getGroundItems().get(loop).getY());
+			batch.draw(rm.getCurrentRoom().getGroundItems().get(loop).getIcon(), rm.getCurrentRoom().getGroundItems().get(loop).getCollider().x, rm.getCurrentRoom().getGroundItems().get(loop).getCollider().y);
 		}
 	}
 

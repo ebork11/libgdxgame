@@ -8,8 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class Item {
     private Texture icon, myTextureU, myTextureD, myTextureR, myTextureL;
     private Rectangle collider;
-    private float myX;
-    private float myY;
+
 
     public Item() {
         myTextureU = new Texture("items/item.png"); // default image for items
@@ -18,8 +17,7 @@ public abstract class Item {
         myTextureL = new Texture("items/item.png"); // default image for items
         icon = new Texture("items/item.png"); // default image for items
         collider = new Rectangle(200, 200, icon.getWidth(), icon.getHeight()); // sets collider to the size of the image
-        myX = 200;
-        myY = 200;
+
     }
 
     /*
@@ -27,24 +25,14 @@ public abstract class Item {
      */
     public void drop() {
         GameMain.getRm().getCurrentRoom().getGroundItems().add(this);
-        myX = PlayerHandler.getCollider().x;
-        myY = PlayerHandler.getCollider().y;
 
-        collider.x = myX; // moves collider to location of dropped item
-        collider.y = myY; // ^^
+        collider.x = PlayerHandler.getCollider().x; // moves collider to location of dropped item
+        collider.y = PlayerHandler.getCollider().y; // ^^
     }
 
     public abstract void setClass(String newClass);
 
     public abstract String getItemClass();
-
-    public float getX() { // returns colliders x
-        return myX;
-    }
-
-    public float getY() { // returns colliders y
-        return myY;
-    }
 
     /*
         Method to access the texture of the item, all items will inherit this
