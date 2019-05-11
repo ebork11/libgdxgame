@@ -2,6 +2,7 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
 import com.apcs.game.player.PlayerCombat;
@@ -10,6 +11,7 @@ import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,33 +25,36 @@ public class GameMain extends ApplicationAdapter {
 	private static SpriteBatch batch;
 
 	// class accessors
+	private MenuManager mm;
 	private PlayerHandler player;
 	private static RoomManager rm;
 	private PlayerAnimation pa;
 
 
-	// inventory outline texture
-	private Texture invSelectTex;
+	boolean menu;
+	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
 	public static boolean attacking = false;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
-	private long lastHit;
-	private long cooldown;
+	private long lastHit; // also spike I believe
+	private long cooldown; // spike cooldown??? needs to be redone
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 
+		mm = new MenuManager();
 		player = new PlayerHandler();
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
+		menu = true;
 		invSelectTex = new Texture("items/outlineselection.png");
 
-		lastHit = System.currentTimeMillis();
+		lastHit = System.currentTimeMillis(); // spike stuff needs to be redone eventually and line below
 		cooldown = 1500;
 	}
 
@@ -66,9 +71,27 @@ public class GameMain extends ApplicationAdapter {
 
 		batch.begin(); // beginning of where everything is drawn
 
-		renderGameLevel();
+		if (menu) {
+			renderMenu();
+		} else {
+			renderGameLevel();
+		}
 
 		batch.end(); // ending of where everything is drawn
+	}
+
+	public void renderMenu() {
+		batch.draw(mm.getBackground(), 0, 0);
+		batch.draw(mm.getPlayButton(), 500, 150);
+
+		int mouseY = Math.abs(720 - Gdx.input.getY());
+
+		if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getPlayButton().getWidth() && mouseY > 150 && mouseY < 150 + mm.getPlayButton().getHeight()) {
+			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+				menu = false;
+			}
+		}
+
 	}
 
 	public void renderGameLevel() {
@@ -84,7 +107,7 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	/*
-		Handles all com.apcs.game.player things i.e. movement
+		Handles all player things i.e. movement
 	 */
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly

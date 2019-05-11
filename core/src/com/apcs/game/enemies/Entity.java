@@ -106,9 +106,7 @@ public class Entity {
 
         Item temp = droppable.get((int)(Math.random() * droppable.size()));
 
-        System.out.println(collider.x + "    " + collider.y);
         temp.getCollider().setPosition(collider.x, collider.y);
-
 
         RoomManager.getCurrentRoom().getGroundItems().add(temp);
     }
