@@ -33,13 +33,13 @@ public class Entity {
         collider = new Rectangle(100, 100, 100, 100);
 
         //movement
-        speed = 5f;
+        speed = 4f;
 
         // combat stuff
         strength = 1;
         health = 5;
         inColl = System.currentTimeMillis();
-        cooldown = 1500;
+        cooldown = 1250;
 
         int x = (int)(Math.random() * 650) + 200;
         int y = (int)(Math.random() * 400) + 200;
