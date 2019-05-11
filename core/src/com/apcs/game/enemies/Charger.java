@@ -20,7 +20,7 @@ public class Charger extends Entity {
         chargeCooldown = System.currentTimeMillis();
 
         int x = (int)(Math.random() * 650) + 200;
-        int y = (int)(Math.random() * 450) + 150;
+        int y = (int)(Math.random() * 400) + 200;
 
         getCollider().x = x;
         getCollider().y = y;
