@@ -2,6 +2,7 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
 import com.apcs.game.player.PlayerCombat;
@@ -10,6 +11,7 @@ import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,33 +25,38 @@ public class GameMain extends ApplicationAdapter {
 	private static SpriteBatch batch;
 
 	// class accessors
+	private MenuManager mm;
 	private PlayerHandler player;
 	private static RoomManager rm;
 	private PlayerAnimation pa;
 
 
-	// inventory outline texture
-	private Texture invSelectTex;
+	boolean menu, pause, helpMenu;
+	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
 	public static boolean attacking = false;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
-	private long lastHit;
-	private long cooldown;
+	private long lastHit; // also spike I believe
+	private long cooldown; // spike cooldown??? needs to be redone
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 
+		mm = new MenuManager();
 		player = new PlayerHandler();
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
+		menu = true;
+		helpMenu = false;
+		pause = false;
 		invSelectTex = new Texture("items/outlineselection.png");
 
-		lastHit = System.currentTimeMillis();
+		lastHit = System.currentTimeMillis(); // spike stuff needs to be redone eventually and line below
 		cooldown = 1500;
 	}
 
@@ -62,13 +69,74 @@ public class GameMain extends ApplicationAdapter {
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1); // sets the basic background color
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		playerManage(); // handles everything regarding the com.apcs.game.player
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			pause = !pause;
+		}
+
+		if (!pause) {
+			playerManage(); // handles everything regarding the com.apcs.game.player
+		}
 
 		batch.begin(); // beginning of where everything is drawn
 
-		renderGameLevel();
+		if (menu) {
+			renderMenu();
+			pause = false;
+		} else {
+			renderGameLevel();
+
+			if (pause) {
+				int mouseY = Math.abs(720 - Gdx.input.getY());
+
+				batch.draw(mm.getQuitButton(), 500, 350);
+
+				if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 350 && mouseY < 350 + mm.getQuitButton().getHeight()) {
+					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+						Gdx.app.exit();
+					}
+				}
+			}
+		}
 
 		batch.end(); // ending of where everything is drawn
+	}
+
+	public void renderMenu() {
+		batch.draw(mm.getBackground(), 0, 0);
+		if (!helpMenu) {
+			batch.draw(mm.getPlayButton(), 50, 400);
+			batch.draw(mm.getHelpButton(), 50, 225);
+			batch.draw(mm.getQuitButton(), 50, 50);
+		} else {
+			batch.draw(mm.getBackButton(), 500, 50);
+		}
+
+
+		int mouseY = Math.abs(720 - Gdx.input.getY());
+
+		if (!helpMenu) {
+			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 400 && mouseY < 400 + mm.getPlayButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					menu = false;
+				}
+			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 225 && mouseY < 225 + mm.getHelpButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					helpMenu = true;
+				}
+			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					Gdx.app.exit();
+				}
+			}
+		} else {
+			if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					helpMenu = false;
+				}
+			}
+		}
+
+
 	}
 
 	public void renderGameLevel() {
@@ -84,7 +152,7 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	/*
-		Handles all com.apcs.game.player things i.e. movement
+		Handles all player things i.e. movement
 	 */
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
@@ -230,11 +298,14 @@ public class GameMain extends ApplicationAdapter {
 		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
         for(int loop = 0; loop < entities.size(); loop++) {
-            entities.get(loop).move();
-            batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+			batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
 
-            if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
-            	entities.get(loop).attack();
+			if (!pause) {
+				entities.get(loop).move();
+
+				if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
+					entities.get(loop).attack();
+				}
 			}
         }
     }
