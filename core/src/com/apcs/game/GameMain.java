@@ -31,7 +31,7 @@ public class GameMain extends ApplicationAdapter {
 	private PlayerAnimation pa;
 
 
-	boolean menu, pause;
+	boolean menu, pause, helpMenu;
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
@@ -52,6 +52,7 @@ public class GameMain extends ApplicationAdapter {
 		pa = new PlayerAnimation();
 
 		menu = true;
+		helpMenu = false;
 		pause = false;
 		invSelectTex = new Texture("items/outlineselection.png");
 
@@ -83,6 +84,18 @@ public class GameMain extends ApplicationAdapter {
 			pause = false;
 		} else {
 			renderGameLevel();
+
+			if (pause) {
+				int mouseY = Math.abs(720 - Gdx.input.getY());
+
+				batch.draw(mm.getQuitButton(), 500, 350);
+
+				if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 350 && mouseY < 350 + mm.getQuitButton().getHeight()) {
+					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+						Gdx.app.exit();
+					}
+				}
+			}
 		}
 
 		batch.end(); // ending of where everything is drawn
@@ -90,15 +103,39 @@ public class GameMain extends ApplicationAdapter {
 
 	public void renderMenu() {
 		batch.draw(mm.getBackground(), 0, 0);
-		batch.draw(mm.getPlayButton(), 500, 150);
+		if (!helpMenu) {
+			batch.draw(mm.getPlayButton(), 50, 400);
+			batch.draw(mm.getHelpButton(), 50, 225);
+			batch.draw(mm.getQuitButton(), 50, 50);
+		} else {
+			batch.draw(mm.getBackButton(), 500, 50);
+		}
+
 
 		int mouseY = Math.abs(720 - Gdx.input.getY());
 
-		if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getPlayButton().getWidth() && mouseY > 150 && mouseY < 150 + mm.getPlayButton().getHeight()) {
-			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-				menu = false;
+		if (!helpMenu) {
+			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 400 && mouseY < 400 + mm.getPlayButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					menu = false;
+				}
+			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 225 && mouseY < 225 + mm.getHelpButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					helpMenu = true;
+				}
+			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					Gdx.app.exit();
+				}
+			}
+		} else {
+			if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					helpMenu = false;
+				}
 			}
 		}
+
 
 	}
 
