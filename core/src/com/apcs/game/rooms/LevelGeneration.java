@@ -6,7 +6,7 @@ public class LevelGeneration {
     private Room[][] level1;
 
     public LevelGeneration() {
-        level1 = new Room[5][5];
+        level1 = new Room[7][7];
         loadLevel1();
     }
 
@@ -16,11 +16,11 @@ public class LevelGeneration {
         StartingRoom start = new StartingRoom();
         RoomManager.setCurrentRoom(start);
 
-        level1[2][2] = start;
+        level1[3][3] = start;
 
         int row, col;
 
-        while (numRooms < 7) {
+        while (numRooms < 10) {
             row = (int)(Math.random() * level1.length);
             col = (int)(Math.random() * level1.length);
 
