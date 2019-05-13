@@ -111,15 +111,16 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(mm.getBackButton(), 500, 50);
 		}
 
-
 		int mouseY = Math.abs(720 - Gdx.input.getY());
 
+		//System.out.println(mouseY);
+
 		if (!helpMenu) {
-			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 400 && mouseY < 400 + mm.getPlayButton().getHeight()) {
+			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 398 && mouseY < 398 + mm.getPlayButton().getHeight()) {
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 					menu = false;
 				}
-			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 225 && mouseY < 225 + mm.getHelpButton().getHeight()) {
+			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 224 && mouseY < 224 + mm.getHelpButton().getHeight()) {
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 					helpMenu = true;
 				}
