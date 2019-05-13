@@ -1,12 +1,10 @@
 package com.apcs.game.rooms;
 
-import java.util.ArrayList;
-
 public class LevelGeneration {
     private Room[][] level1;
 
     public LevelGeneration() {
-        level1 = new Room[7][7];
+        level1 = new Room[6][6];
         loadLevel1();
     }
 
