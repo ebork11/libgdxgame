@@ -7,6 +7,7 @@ import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerInventory;
+import com.apcs.game.rooms.LevelGeneration;
 import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -150,6 +151,7 @@ public class GameMain extends ApplicationAdapter {
 			drawWeapon();
 		}
 		drawInventory(); // drawing right side stuff
+		drawMap();
 	}
 
 	/*
@@ -159,6 +161,26 @@ public class GameMain extends ApplicationAdapter {
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
 		player.checkForPickup();
 		player.getCombat().checkAttack();
+	}
+
+	public void drawMap() {
+		for (int cnt = 0; cnt < LevelGeneration.getLevel()[0].length; cnt++) {
+			for (int cnt2 = 0; cnt2 < LevelGeneration.getLevel().length; cnt2++) {
+				if (LevelGeneration.getLevel()[cnt][cnt2] != null) {
+					if (LevelGeneration.getLevel()[cnt][cnt2].getEntities().size() > 0) {
+						batch.draw(rm.getUncleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+					} else {
+						batch.draw(rm.getCleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+					}
+
+					if (LevelGeneration.getLevel()[cnt][cnt2] == RoomManager.getCurrentRoom()) {
+						batch.draw(rm.getPlayer(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+					}
+				} else {
+					// nothing
+				}
+			}
+		}
 	}
 
 	/*

@@ -1,7 +1,7 @@
 package com.apcs.game.rooms;
 
 public class LevelGeneration {
-    private Room[][] level1;
+    private static Room[][] level1;
 
     public LevelGeneration() {
         level1 = new Room[6][6];
@@ -32,10 +32,10 @@ public class LevelGeneration {
 
         for (int cnt = 0; cnt < level1[0].length; cnt++) {
             for (int cnt2 = 0; cnt2 < level1.length; cnt2++) {
-                if (level1[cnt][cnt2] == null) {
-                    System.out.print(" 0");
+                if (level1[cnt][cnt2] != null) {
+                    System.out.print("1 ");
                 } else {
-                    System.out.print(" 1");
+                    System.out.print("0 ");
                 }
             }
             System.out.println();
@@ -56,6 +56,10 @@ public class LevelGeneration {
                 }
             }
         }
+    }
+
+    public static Room[][] getLevel() {
+        return level1;
     }
 
 
