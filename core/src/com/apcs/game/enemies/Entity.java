@@ -3,6 +3,7 @@ package com.apcs.game.enemies;
 import com.apcs.game.GameMain;
 import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
+import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.Item;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
@@ -104,6 +105,7 @@ public class Entity {
             if (droppable.size() == 0) {
                 droppable.add(new Armor());
                 droppable.add(new FatSword());
+                droppable.add(new HealthPotion());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

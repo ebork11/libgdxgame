@@ -19,24 +19,24 @@ public class Door {
         switch (loc) {
             case "top":
                 xLoc = 460;
-                yLoc = 650;
+                yLoc = 670;
                 closedDoor = new Texture("rooms/doors/closeddoorT.png");
                 openDoor = new Texture("rooms/doors/opendoorT.png");
                 break;
             case "bottom":
                 xLoc = 460;
-                yLoc = 30;
+                yLoc = 10;
                 closedDoor = new Texture("rooms/doors/closeddoorB.png");
                 openDoor = new Texture("rooms/doors/opendoorB.png");
                 break;
             case "left":
-                xLoc = 30;
+                xLoc = 10;
                 yLoc = 360;
                 closedDoor = new Texture("rooms/doors/closeddoorL.png");
                 openDoor = new Texture("rooms/doors/opendoorL.png");
                 break;
             case "right":
-                xLoc = 930;
+                xLoc = 950;
                 yLoc = 360;
                 closedDoor = new Texture("rooms/doors/closeddoorR.png");
                 openDoor = new Texture("rooms/doors/opendoorR.png");

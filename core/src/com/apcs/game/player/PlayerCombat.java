@@ -117,6 +117,10 @@ public class PlayerCombat {
         }
     }
 
+    public static void addHealth(int num) {
+        health += num;
+    }
+
     public static Texture getHalfHeart() {
         return halfHeart;
     }
