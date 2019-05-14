@@ -34,7 +34,7 @@ public class PlayerCombat {
         }
       
         if (health <= 0) {
-            System.out.println("You lose");
+            Gdx.app.exit();
         }
     }
 

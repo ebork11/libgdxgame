@@ -30,13 +30,13 @@ public class Door {
                 openDoor = new Texture("rooms/doors/opendoorB.png");
                 break;
             case "left":
-                xLoc = 10;
+                xLoc = 5;
                 yLoc = 360;
                 closedDoor = new Texture("rooms/doors/closeddoorL.png");
                 openDoor = new Texture("rooms/doors/opendoorL.png");
                 break;
             case "right":
-                xLoc = 950;
+                xLoc = 955;
                 yLoc = 360;
                 closedDoor = new Texture("rooms/doors/closeddoorR.png");
                 openDoor = new Texture("rooms/doors/opendoorR.png");

@@ -41,8 +41,8 @@ public class Entity {
         inColl = System.currentTimeMillis();
         cooldown = 1250;
 
-        int x = (int)(Math.random() * 650) + 200;
-        int y = (int)(Math.random() * 400) + 200;
+        int x = (int)(Math.random() * 550) + 300;
+        int y = (int)(Math.random() * 300) + 200;
 
         getCollider().x = x;
         getCollider().y = y;
@@ -97,14 +97,14 @@ public class Entity {
     }
 
     public void dropItems() {
-        int ifDrop = (int)(Math.random() * 2) + 1;
+        int ifDrop = (int)(Math.random() * 10) + 1;
 
-        if (ifDrop == 2) {
+        if (ifDrop <= 4) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             if (droppable.size() == 0) {
                 droppable.add(new Armor());
-                droppable.add(new FatSword());
+                droppable.add(new HealthPotion());
                 droppable.add(new HealthPotion());
             }
 

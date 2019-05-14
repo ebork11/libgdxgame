@@ -50,7 +50,7 @@ public class PlayerHandler {
          */
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             inventory.removeItem(currentSlot);
-        } if (Gdx.input.isKeyJustPressed(Input.Keys.F)) {
+        } if (Gdx.input.isKeyJustPressed(Input.Keys.F) && inventory.getInventory()[currentSlot] != null) {
             if (inventory.getInventory()[currentSlot].getItemClass().equals("consumable")) {
                 HealthPotion hp = (HealthPotion)(inventory.getInventory()[currentSlot]);
 

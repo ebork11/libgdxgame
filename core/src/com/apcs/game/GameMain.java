@@ -249,10 +249,10 @@ public class GameMain extends ApplicationAdapter {
 						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 10);
 						break;
 					case "left":
-						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc() - 10, room.getDoors().get(cnt).getyLoc());
+						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc() - 5, room.getDoors().get(cnt).getyLoc());
 						break;
 					case "right":
-						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc() + 10, room.getDoors().get(cnt).getyLoc());
+						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc() + 5, room.getDoors().get(cnt).getyLoc());
 						break;
 					default:
 						break;
@@ -266,10 +266,10 @@ public class GameMain extends ApplicationAdapter {
 						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 10);
 						break;
 					case "left":
-						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 10, room.getDoors().get(cnt).getyLoc());
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 5, room.getDoors().get(cnt).getyLoc());
 						break;
 					case "right":
-						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 10, room.getDoors().get(cnt).getyLoc());
+						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 5, room.getDoors().get(cnt).getyLoc());
 						break;
 					default:
 						break;

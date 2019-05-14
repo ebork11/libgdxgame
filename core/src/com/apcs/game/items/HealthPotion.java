@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class HealthPotion extends Item {
 
     private String myClass;
-    private Texture texU, icon;
+    private Texture texU;
     private int healthBonus;
 
 
@@ -17,11 +17,10 @@ public class HealthPotion extends Item {
         myClass = "";
         healthBonus = 2;
 
-        texU = new Texture("rooms/clearedroom.png");
-        icon = new Texture("rooms/clearedroom.png");
+        texU = new Texture("items/healthpotion/healthpot.png");
 
         setTextureU(texU);
-        setIcon(icon);
+        setIcon(texU);
 
         setClass("consumable");
 
