@@ -45,19 +45,6 @@ public class PlayerHandler {
         float diagSpeed = (float)Math.sqrt(Math.pow(speed, 2) / 2);
 
         /*
-            Test to add items to inventory
-         */
-        if (Gdx.input.isKeyJustPressed((Input.Keys.J))) {
-            GameMain.getRm().getCurrentRoom().getGroundItems().add(new FatSword());
-        } if (Gdx.input.isKeyJustPressed((Input.Keys.K))) {
-            GameMain.getRm().getCurrentRoom().getGroundItems().add(new Armor());
-        } if (Gdx.input.isKeyJustPressed((Input.Keys.L))) {
-            PlayerCombat.printStats();
-        } if (Gdx.input.isKeyJustPressed((Input.Keys.P))) {
-            PlayerCombat.takeDamage(1);
-        }
-
-        /*
             Removes current selected slot
          */
         if (Gdx.input.isKeyPressed(Input.Keys.Q)) {

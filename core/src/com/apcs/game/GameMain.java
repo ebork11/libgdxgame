@@ -1,6 +1,7 @@
 package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
 import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;

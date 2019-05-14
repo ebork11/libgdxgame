@@ -96,18 +96,22 @@ public class Entity {
     }
 
     public void dropItems() {
-        ArrayList<Item> droppable = new ArrayList<Item>();
+        int ifDrop = (int)(Math.random() * 2) + 1;
 
-        if (droppable.size() == 0) {
-            droppable.add(new Armor());
-            droppable.add(new FatSword());
+        if (ifDrop == 2) {
+            ArrayList<Item> droppable = new ArrayList<Item>();
+
+            if (droppable.size() == 0) {
+                droppable.add(new Armor());
+                droppable.add(new FatSword());
+            }
+
+            Item temp = droppable.get((int)(Math.random() * droppable.size()));
+
+            temp.getCollider().setPosition(collider.x, collider.y);
+
+            RoomManager.getCurrentRoom().getGroundItems().add(temp);
         }
-
-        Item temp = droppable.get((int)(Math.random() * droppable.size()));
-
-        temp.getCollider().setPosition(collider.x, collider.y);
-
-        RoomManager.getCurrentRoom().getGroundItems().add(temp);
     }
 
     public void die() {
