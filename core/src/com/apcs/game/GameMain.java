@@ -14,8 +14,10 @@ import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.apcs.game.player.PlayerHandler;
 
@@ -25,6 +27,7 @@ public class GameMain extends ApplicationAdapter {
 
 	// libgdx batch
 	private static SpriteBatch batch;
+	private BitmapFont font;
 
 	// class accessors
 	private MenuManager mm;
@@ -34,6 +37,7 @@ public class GameMain extends ApplicationAdapter {
 
 
 	boolean menu, pause, helpMenu;
+	public static boolean overItem;
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
@@ -48,6 +52,9 @@ public class GameMain extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 
+		font = new BitmapFont();
+		font.setColor(Color.WHITE);
+
 		mm = new MenuManager();
 		player = new PlayerHandler();
 		rm = new RoomManager();
@@ -56,6 +63,7 @@ public class GameMain extends ApplicationAdapter {
 		menu = true;
 		helpMenu = false;
 		pause = false;
+		overItem = false;
 		invSelectTex = new Texture("items/outlineselection.png");
 
 		lastHit = System.currentTimeMillis(); // spike stuff needs to be redone eventually and line below
@@ -151,6 +159,10 @@ public class GameMain extends ApplicationAdapter {
 		if (attacking) {
 			drawWeapon();
 		}
+		if (overItem) {
+			font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
+		}
+
 		drawInventory(); // drawing right side stuff
 		drawMap();
 	}
@@ -356,6 +368,7 @@ public class GameMain extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		font.dispose();
 		player.disposer(); // disposes all of the players textures
 		rm.getCurrentRoom().disposer(); // disposes the textures for the room
 	}

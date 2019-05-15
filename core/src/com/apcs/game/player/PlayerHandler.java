@@ -50,7 +50,7 @@ public class PlayerHandler {
          */
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             inventory.removeItem(currentSlot);
-        } if (Gdx.input.isKeyJustPressed(Input.Keys.F) && inventory.getInventory()[currentSlot] != null) {
+        } if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && inventory.getInventory()[currentSlot] != null) {
             if (inventory.getInventory()[currentSlot].getItemClass().equals("consumable")) {
                 HealthPotion hp = (HealthPotion)(inventory.getInventory()[currentSlot]);
 
@@ -107,14 +107,18 @@ public class PlayerHandler {
 
 
     public void checkForPickup() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
-            for (int cnt = 0; cnt < GameMain.getRm().getCurrentRoom().getGroundItems().size(); cnt++) {
-                if (collider.overlaps(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt).getCollider())) {
+        GameMain.overItem = false;
 
+        for (int cnt = 0; cnt < GameMain.getRm().getCurrentRoom().getGroundItems().size(); cnt++) {
+            if (collider.overlaps(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt).getCollider())) {
+                GameMain.overItem = true;
+                if (Gdx.input.isKeyJustPressed(Input.Keys.E) ) {
                     if (inventory.equip(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt))) {
                     } else if (inventory.addItem(GameMain.getRm().getCurrentRoom().getGroundItems().get(cnt))) {
                         GameMain.getRm().getCurrentRoom().getGroundItems().remove(cnt);
                     }
+
+                    GameMain.overItem = false;
                     break;
                 }
             }
