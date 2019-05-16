@@ -8,14 +8,14 @@ public class PlayerAnimation {
     private long frame, start;
 
     public PlayerAnimation() {
-        walk1 = new Texture("player/walk1.png");
-        walk2 = new Texture("player/walk2.png");
-        walk3 = new Texture("player/walk3.png");
-        walk4 = new Texture("player/walk4.png");
-        walk5 = new Texture("player/walk5.png");
-        walk6 = new Texture("player/walk6.png");
-        walk7 = new Texture("player/walk7.png");
-        walk8 = new Texture("player/walk8.png");
+        walk1 = new Texture("player/default/defaultwalk1.png");
+        walk2 = new Texture("player/default/defaultwalk2.png");
+        walk3 = new Texture("player/default/defaultwalk3.png");
+        walk4 = new Texture("player/default/defaultwalk4.png");
+        walk5 = new Texture("player/default/defaultwalk5.png");
+        walk6 = new Texture("player/default/defaultwalk6.png");
+        walk7 = new Texture("player/default/defaultwalk7.png");
+        walk8 = new Texture("player/default/defaultwalk8.png");
 
         frame = 50;
         start = System.currentTimeMillis();

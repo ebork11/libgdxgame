@@ -37,7 +37,7 @@ public class Entity {
 
         // combat stuff
         strength = 1;
-        health = 5;
+        health = 10;
         inColl = System.currentTimeMillis();
         cooldown = 1250;
 

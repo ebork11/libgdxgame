@@ -16,7 +16,7 @@ public abstract class Item {
         myTextureR = new Texture("items/item.png"); // default image for items
         myTextureL = new Texture("items/item.png"); // default image for items
         icon = new Texture("items/item.png"); // default image for items
-        collider = new Rectangle(200, 200, icon.getWidth(), icon.getHeight()); // sets collider to the size of the image
+        collider = new Rectangle(200, 200, myTextureU.getWidth(), myTextureU.getHeight()); // sets collider to the size of the image
 
     }
 

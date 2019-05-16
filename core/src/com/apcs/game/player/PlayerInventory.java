@@ -4,6 +4,7 @@ import com.apcs.game.GameMain;
 import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
+import com.apcs.game.items.Spear;
 import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerInventory {
@@ -24,7 +25,7 @@ public class PlayerInventory {
         invTexture = new Texture("gui/inventory.png");
         equipTex = new Texture("gui/armorweaponslot.png");
 
-        weapon = new FatSword(); // starting weapon
+        weapon = new Spear(); // starting weapon
         armor = null;
     }
 

@@ -351,7 +351,8 @@ public class GameMain extends ApplicationAdapter {
 
         for(int loop = 0; loop <entities.size(); loop++) {
             if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
-                entities.get(loop).hit(1);
+            	FatSword wep = (FatSword)PlayerHandler.getInventory().getWeapon();
+                entities.get(loop).hit(wep.getDamage());
             }
         }
 

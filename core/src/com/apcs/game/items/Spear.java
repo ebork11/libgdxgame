@@ -2,24 +2,24 @@ package com.apcs.game.items;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class FatSword extends Item {
+public class Spear extends FatSword {
     private Texture texU, texD, texR, texL, icon;
     private String myClass;
 
     private int damage;
 
-    public FatSword() {
+    public Spear() {
         super();
 
         myClass = "";
 
-        damage = 2;
+        damage = 1;
 
-        texU = new Texture("items/fat sword/fattyu.png");
-        texD = new Texture("items/fat sword/fattyd.png");
-        texR = new Texture("items/fat sword/fattyr.png");
-        texL = new Texture("items/fat sword/fattyl.png");
-        icon = new Texture("items/fat sword/fattyicon.png");
+        texU = new Texture("items/spear/spearu.png");
+        texD = new Texture("items/spear/speard.png");
+        texR = new Texture("items/spear/spearr.png");
+        texL = new Texture("items/spear/spearl.png");
+        icon = new Texture("items/spear/spearicon.png");
 
         setTextureU(texU);
         setTextureD(texD);
