@@ -106,6 +106,7 @@ public class Entity {
                 droppable.add(new Armor());
                 droppable.add(new HealthPotion());
                 droppable.add(new HealthPotion());
+                droppable.add(new FatSword());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

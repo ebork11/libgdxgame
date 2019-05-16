@@ -10,15 +10,16 @@ public class Spike {
     private Texture text;
     private Rectangle collider;
 
-    public Spike() {
-        damage = 1;
-        text = new Texture("objects/bigspikes.png");
-        collider = new Rectangle(500, 300, text.getWidth(), text.getHeight());
-    }
-
     public Spike(int x, int y) {
         damage = 1;
-        text = new Texture("objects/bigspikes.png");
+
+        if ((int)(Math.random() * 2) + 1 == 1) {
+            text = new Texture("objects/spikes/spikes.png");
+        } else {
+            text = new Texture("objects/spikes/spikes2.png");
+        }
+
+
         collider = new Rectangle(x, y, text.getWidth(), text.getHeight());
     }
 
