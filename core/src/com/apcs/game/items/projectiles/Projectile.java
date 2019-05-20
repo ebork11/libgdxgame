@@ -7,11 +7,16 @@ public class Projectile {
     Rectangle coll;
     Texture tex;
     float myX, myY;
+    int dmg;
 
-    public Projectile(float x, float y) {
+    public Projectile(float x, float y, int damage) {
         tex = new Texture("gui/halfheart.png");
 
         coll = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
+
+        dmg = damage;
+        myX = x;
+        myY = y;
     }
 
     public float getMyX() {
@@ -20,5 +25,9 @@ public class Projectile {
 
     public float getMyY() {
         return myY;
+    }
+
+    public int getDamage() {
+        return dmg;
     }
 }
