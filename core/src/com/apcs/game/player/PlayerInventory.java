@@ -68,7 +68,7 @@ public class PlayerInventory {
 
     public boolean equip(Item it) {
         if (it != null) {
-            if (it.getItemClass().equalsIgnoreCase("weapon")) {
+            if (it.getItemClass().equalsIgnoreCase("weapon") || it.getItemClass().equalsIgnoreCase("ranged_weapon")) {
                 if (weapon == null) {
                     weapon = it;
                     GameMain.getRm().getCurrentRoom().getGroundItems().remove(it);

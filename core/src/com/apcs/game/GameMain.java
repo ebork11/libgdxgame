@@ -50,6 +50,7 @@ public class GameMain extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
 		batch = new SpriteBatch();
 
 		font = new BitmapFont();
@@ -162,7 +163,6 @@ public class GameMain extends ApplicationAdapter {
 		if (overItem) {
 			font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
 		}
-
 		drawInventory(); // drawing right side stuff
 		drawMap();
 	}
