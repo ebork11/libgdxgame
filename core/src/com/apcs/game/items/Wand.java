@@ -1,12 +1,14 @@
 package com.apcs.game.items;
 
+import com.apcs.game.items.projectiles.Projectile;
 import com.badlogic.gdx.graphics.Texture;
+
+import java.util.ArrayList;
 
 public class Wand extends FatSword {
 
     private Texture texU, texD, texR, texL, icon;
     private String myClass;
-
     private int damage;
 
     public Wand() {

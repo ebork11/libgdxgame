@@ -44,8 +44,8 @@ public class Entity {
         int x = (int)(Math.random() * 550) + 300;
         int y = (int)(Math.random() * 300) + 200;
 
-        getCollider().x = x;
-        getCollider().y = y;
+        collider.x = x;
+        collider.y = y;
     }
 
     public Rectangle getCollider()  {

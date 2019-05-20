@@ -6,10 +6,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class Projectile {
     Rectangle coll;
     Texture tex;
-    float myX, myY;
+    float myX, myY, speed;
     int dmg;
+    String dir;
 
-    public Projectile(float x, float y, int damage) {
+    public Projectile(float x, float y, int damage, float sped, String direction) {
         tex = new Texture("gui/halfheart.png");
 
         coll = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
@@ -17,6 +18,16 @@ public class Projectile {
         dmg = damage;
         myX = x;
         myY = y;
+        speed = sped;
+        dir = direction;
+    }
+
+    public Texture getTexture() {
+        return tex;
+    }
+
+    public Rectangle getCollider() {
+        return coll;
     }
 
     public float getMyX() {
@@ -29,5 +40,13 @@ public class Projectile {
 
     public int getDamage() {
         return dmg;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public String getDirection() {
+        return dir;
     }
 }
