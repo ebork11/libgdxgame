@@ -1,9 +1,6 @@
 package com.apcs.game.enemies;
 
-import com.apcs.game.items.Armor;
-import com.apcs.game.items.FatSword;
-import com.apcs.game.items.HealthPotion;
-import com.apcs.game.items.Item;
+import com.apcs.game.items.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -99,13 +96,12 @@ public class Charger extends Entity {
     public void dropItems() {
         int ifDrop = (int)(Math.random() * 10) + 1;
 
-        if (ifDrop <= 4) {
+        if (ifDrop <= 5) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             if (droppable.size() == 0) {
-                droppable.add(new Armor());
-                droppable.add(new HealthPotion());
-                droppable.add(new HealthPotion());
+                droppable.add(new Dagger());
+                droppable.add(new Wand());
                 droppable.add(new FatSword());
             }
 
