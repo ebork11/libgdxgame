@@ -11,7 +11,22 @@ public class Projectile {
     String dir;
 
     public Projectile(float x, float y, int damage, float sped, String direction) {
-        tex = new Texture("items/projectile.png");
+        switch(direction) {
+            case "up":
+                tex = new Texture("items/projectile/pojectileu.png");
+                break;
+            case "down":
+                tex = new Texture("items/projectile/projectiled.png");
+                break;
+            case "left":
+                tex = new Texture("items/projectile/projectilel.png");
+                break;
+            case "right":
+                tex = new Texture("items/projectile/projectiler.png");
+                break;
+            default:
+                break;
+        }
 
         coll = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
 
