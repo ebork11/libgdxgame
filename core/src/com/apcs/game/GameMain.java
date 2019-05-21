@@ -113,6 +113,7 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	public void renderMenu() {
+
 		batch.draw(mm.getBackground(), 0, 0);
 		if (!helpMenu) {
 			batch.draw(mm.getPlayButton(), 50, 400);
@@ -370,9 +371,11 @@ public class GameMain extends ApplicationAdapter {
 
 			batch.draw(PlayerCombat.proj.get(cnt).getTexture(), PlayerCombat.proj.get(cnt).getCollider().x, PlayerCombat.proj.get(cnt).getCollider().y);
 
-			for (int enemCnt = RoomManager.getCurrentRoom().getEntities().size() - 1; enemCnt > 0; enemCnt--) {
-				if (PlayerCombat.proj.get(cnt).getCollider().overlaps(RoomManager.getCurrentRoom().getEntities().get(enemCnt).getCollider())) {
-					RoomManager.getCurrentRoom().getEntities().get(enemCnt).hit(PlayerCombat.proj.get(cnt).getDamage());
+			ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
+
+			for(int loop = 0; loop < entities.size(); loop++) {
+				if(PlayerCombat.proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider())) {
+					entities.get(loop).hit(PlayerCombat.proj.get(cnt).getDamage());
 					PlayerCombat.proj.remove(cnt);
 					break;
 				}
@@ -384,7 +387,7 @@ public class GameMain extends ApplicationAdapter {
 		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
 		if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("weapon")) {
-			for(int loop = 0; loop <entities.size(); loop++) {
+			for(int loop = 0; loop < entities.size(); loop++) {
 				if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
 					FatSword wep = (FatSword)PlayerHandler.getInventory().getWeapon();
 					entities.get(loop).hit(wep.getDamage());
