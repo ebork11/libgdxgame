@@ -53,9 +53,10 @@ public class PlayerHandler {
         } if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && inventory.getInventory()[currentSlot] != null) {
             if (inventory.getInventory()[currentSlot].getItemClass().equals("consumable")) {
                 HealthPotion hp = (HealthPotion)(inventory.getInventory()[currentSlot]);
-
-                PlayerCombat.addHealth(hp.usePot());
-                inventory.getInventory()[currentSlot] = null;
+                if (hp.usePot() != 0){
+                    PlayerCombat.addHealth(hp.usePot());
+                    inventory.getInventory()[currentSlot] = null;
+                }
             }
         }
 

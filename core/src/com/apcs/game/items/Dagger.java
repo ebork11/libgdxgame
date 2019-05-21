@@ -16,11 +16,12 @@ public class Dagger extends FatSword {
 
         damage = 3;
 
-        texU = new Texture("items/dagger/Dagger3.png");
-        texD = new Texture("items/dagger/Dagger3.png");
-        texR = new Texture("items/dagger/Dagger3.png");
-        texL = new Texture("items/dagger/Dagger3.png");
-        icon = new Texture("items/dagger/Dagger3.png");
+        texU = new Texture("items/dagger/daggeru.png");
+        texD = new Texture("items/dagger/daggerd.png");
+        texR = new Texture("items/dagger/daggerr.png");
+        texL = new Texture("items/dagger/daggerl.png");
+
+        icon = new Texture("items/dagger/daggericon.png");
 
         setTextureU(texU);
         setTextureD(texD);
