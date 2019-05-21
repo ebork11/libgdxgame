@@ -31,9 +31,6 @@ public abstract class Entity {
         // basics
         text = new Texture("clark.png");
 
-
-
-
         // combat stuff
         strength = 1;
         health = 10;
@@ -71,9 +68,11 @@ public abstract class Entity {
     }
 
     public void attack() {
-        if (System.currentTimeMillis() - inColl > cooldown) {
-            inColl = System.currentTimeMillis();
-            PlayerHandler.getCombat().takeDamage(strength);
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
+            if (System.currentTimeMillis() - inColl > cooldown) {
+                inColl = System.currentTimeMillis();
+                PlayerHandler.getCombat().takeDamage(strength);
+            }
         }
     }
 

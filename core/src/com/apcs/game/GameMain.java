@@ -47,6 +47,7 @@ public class GameMain extends ApplicationAdapter {
 	public static float wepY;
 	private long lastHit; // also spike I believe
 	private long cooldown; // spike cooldown??? needs to be redone
+	public static long enteredNewRoom;
 
 	@Override
 	public void create () {
@@ -69,6 +70,8 @@ public class GameMain extends ApplicationAdapter {
 
 		lastHit = System.currentTimeMillis(); // spike stuff needs to be redone eventually and line below
 		cooldown = 1500;
+
+		enteredNewRoom = System.currentTimeMillis();
 	}
 
 	@Override
@@ -309,6 +312,8 @@ public class GameMain extends ApplicationAdapter {
 						default:
 							break;
 					}
+
+					enteredNewRoom = System.currentTimeMillis();
 
 				}
 			}

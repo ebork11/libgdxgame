@@ -1,5 +1,6 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.GameMain;
 import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.HealthPotion;
@@ -52,28 +53,30 @@ public class Basic extends Entity {
     }
 
     public void move() {
-        float x = PlayerHandler.getCollider().x - collider.x;
-        float y = PlayerHandler.getCollider().y - collider.y;
-        double ang1 = Math.atan(y / x);
-        double ang2 = Math.atan(x / y);
-        float sx = (float)(speed*(Math.sin(ang2)));
-        float sy = (float)(speed*(Math.sin(ang1)));
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
+            float x = PlayerHandler.getCollider().x - collider.x;
+            float y = PlayerHandler.getCollider().y - collider.y;
+            double ang1 = Math.atan(y / x);
+            double ang2 = Math.atan(x / y);
+            float sx = (float)(speed*(Math.sin(ang2)));
+            float sy = (float)(speed*(Math.sin(ang1)));
 
-        sx = Math.abs(sx);
-        sy = Math.abs(sy);
+            sx = Math.abs(sx);
+            sy = Math.abs(sy);
 
-        if (x > 0 && y > 0) {
-            collider.x += sx;
-            collider.y += sy;
-        } else if (x < 0 && y > 0) {
-            collider.x -= sx;
-            collider.y += sy;
-        }  else if (x < 0 && y < 0) {
-            collider.x -= sx;
-            collider.y -= sy;
-        }  else if (x > 0 && y < 0) {
-            collider.x += sx;
-            collider.y -= sy;
+            if (x > 0 && y > 0) {
+                collider.x += sx;
+                collider.y += sy;
+            } else if (x < 0 && y > 0) {
+                collider.x -= sx;
+                collider.y += sy;
+            }  else if (x < 0 && y < 0) {
+                collider.x -= sx;
+                collider.y -= sy;
+            }  else if (x > 0 && y < 0) {
+                collider.x += sx;
+                collider.y -= sy;
+            }
         }
     }
 }

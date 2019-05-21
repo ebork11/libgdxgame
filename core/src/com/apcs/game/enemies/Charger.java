@@ -1,5 +1,6 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
@@ -35,19 +36,21 @@ public class Charger extends Entity {
     }
 
     public void move() {
-        if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
-            setCharacter("enemies/charger/charge1.png");
-            walk(moveX,moveY);
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
+            if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
+                setCharacter("enemies/charger/charge1.png");
+                walk(moveX,moveY);
 
-            if (System.currentTimeMillis() - start > chargeTime) {
-                chargeCooldown = System.currentTimeMillis();
-                setCharacter("enemies/charger/charger.png");
+                if (System.currentTimeMillis() - start > chargeTime) {
+                    chargeCooldown = System.currentTimeMillis();
+                    setCharacter("enemies/charger/charger.png");
+                }
+            } else {
+                moveX = PlayerHandler.getCollider().x - collider.x;
+                moveY = PlayerHandler.getCollider().y - collider.y;
+
+                start = System.currentTimeMillis();
             }
-        } else {
-            moveX = PlayerHandler.getCollider().x - collider.x;
-            moveY = PlayerHandler.getCollider().y - collider.y;
-
-            start = System.currentTimeMillis();
         }
     }
 
