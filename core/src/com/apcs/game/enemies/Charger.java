@@ -40,7 +40,7 @@ public class Charger extends Entity {
     public void move() {
         if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
             setCharacter("enemies/charger/charge1.png");
-            walk(moveX, moveY);
+            walk(moveX,moveY);
 
             if (System.currentTimeMillis() - start > chargeTime) {
                 chargeCooldown = System.currentTimeMillis();
