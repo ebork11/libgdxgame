@@ -1,5 +1,6 @@
 package com.apcs.game.rooms;
 
+import com.apcs.game.enemies.Basic;
 import com.apcs.game.enemies.Charger;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
@@ -26,21 +27,19 @@ public class DefaultRoom extends Room {
         switch (choice) {
             case 1:
                 myFloor = new Texture("rooms/background1.png"); // sets texture
-                spikes.add(new Spike(140, 40)); // 4 corners and 4 in middle
-
-
+                spikes.add(new Spike(140, 40));
                 spikes.add(new Spike(450, 320));
                 spikes.add(new Spike(500, 360));
                 spikes.add(new Spike(450, 360));
                 spikes.add(new Spike(500, 320));
                 entities.add(new Charger());
-                entities.add(new Entity());
+                entities.add(new Basic());
                 break;
             case 2:
                 myFloor = new Texture("rooms/background2.png"); // sets texture
                 entities.add(new Charger());
-                entities.add(new Entity());
-                entities.add(new Entity());
+                entities.add(new Basic());
+                entities.add(new Basic());
                 spikes.add(new Spike(800, 580));
                 break;
             case 3:
@@ -50,12 +49,12 @@ public class DefaultRoom extends Room {
                 spikes.add(new Spike(500, 360));
                 spikes.add(new Spike(500, 320));
                 entities.add(new Charger());
-                entities.add(new Entity());
+                entities.add(new Basic());
                 break;
             default:
                 myFloor = new Texture("rooms/background1.png"); // sets texture
                 entities.add(new Charger());
-                entities.add(new Entity());
+                entities.add(new Basic());
                 spikes.add(new Spike(450, 360));
                 spikes.add(new Spike(780, 40));
                 break;

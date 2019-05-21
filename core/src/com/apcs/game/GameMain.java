@@ -50,6 +50,7 @@ public class GameMain extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
 		batch = new SpriteBatch();
 
 		font = new BitmapFont();
@@ -112,6 +113,7 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	public void renderMenu() {
+
 		batch.draw(mm.getBackground(), 0, 0);
 		if (!helpMenu) {
 			batch.draw(mm.getPlayButton(), 50, 400);
@@ -159,10 +161,12 @@ public class GameMain extends ApplicationAdapter {
 		if (attacking) {
 			drawWeapon();
 		}
+		if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("ranged_weapon")) {
+			drawProjectiles();
+		}
 		if (overItem) {
 			font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
 		}
-
 		drawInventory(); // drawing right side stuff
 		drawMap();
 	}
@@ -346,16 +350,50 @@ public class GameMain extends ApplicationAdapter {
         }
     }
 
+    public void drawProjectiles() {
+		for (int cnt = PlayerCombat.proj.size() - 1; cnt > 0; cnt--) {
+			switch (PlayerCombat.proj.get(cnt).getDirection()) {
+				case "up":
+					PlayerCombat.proj.get(cnt).getCollider().y += PlayerCombat.proj.get(cnt).getSpeed();
+					break;
+				case"down":
+					PlayerCombat.proj.get(cnt).getCollider().y -= PlayerCombat.proj.get(cnt).getSpeed();
+					break;
+				case"left":
+					PlayerCombat.proj.get(cnt).getCollider().x -= PlayerCombat.proj.get(cnt).getSpeed();
+					break;
+				case"right":
+					PlayerCombat.proj.get(cnt).getCollider().x += PlayerCombat.proj.get(cnt).getSpeed();
+					break;
+				default:
+					break;
+			}
+
+			batch.draw(PlayerCombat.proj.get(cnt).getTexture(), PlayerCombat.proj.get(cnt).getCollider().x, PlayerCombat.proj.get(cnt).getCollider().y);
+
+			ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
+
+			for(int loop = 0; loop < entities.size(); loop++) {
+				if(PlayerCombat.proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider())) {
+					entities.get(loop).hit(PlayerCombat.proj.get(cnt).getDamage());
+					PlayerCombat.proj.remove(cnt);
+					break;
+				}
+			}
+		}
+	}
+
 	public static void ifEnemyHit() {
 		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
-        for(int loop = 0; loop <entities.size(); loop++) {
-            if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
-            	FatSword wep = (FatSword)PlayerHandler.getInventory().getWeapon();
-                entities.get(loop).hit(wep.getDamage());
-            }
-        }
-
+		if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("weapon")) {
+			for(int loop = 0; loop < entities.size(); loop++) {
+				if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
+					FatSword wep = (FatSword)PlayerHandler.getInventory().getWeapon();
+					entities.get(loop).hit(wep.getDamage());
+				}
+			}
+		}
     }
 
     public static void drawWeapon() {
