@@ -11,7 +11,7 @@ public class Projectile {
     String dir;
 
     public Projectile(float x, float y, int damage, float sped, String direction) {
-        tex = new Texture("gui/halfheart.png");
+        tex = new Texture("items/projectile.png");
 
         coll = new Rectangle(x, y, tex.getWidth(), tex.getHeight());
 

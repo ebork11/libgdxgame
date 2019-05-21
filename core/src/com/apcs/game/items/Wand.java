@@ -18,11 +18,11 @@ public class Wand extends FatSword {
 
         damage = 1;
 
-        texU = new Texture("items/spear/spearu.png");
-        texD = new Texture("items/spear/speard.png");
-        texR = new Texture("items/spear/spearr.png");
-        texL = new Texture("items/spear/spearl.png");
-        icon = new Texture("items/spear/spearicon.png");
+        texU = new Texture("items/wand/wandu.png");
+        texD = new Texture("items/wand/wandd.png");
+        texR = new Texture("items/wand/wandr.png");
+        texL = new Texture("items/wand/wandl.png");
+        icon = new Texture("items/wand/wandicon.png");
 
         setTextureU(texU);
         setTextureD(texD);
