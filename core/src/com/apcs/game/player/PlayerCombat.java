@@ -1,6 +1,7 @@
 package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
+import com.apcs.game.items.Wand;
 import com.apcs.game.items.projectiles.Projectile;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -123,6 +124,8 @@ public class PlayerCombat {
                 Texture r = PlayerHandler.getInventory().getWeapon().getTextureR();
                 Texture l = PlayerHandler.getInventory().getWeapon().getTextureL();
 
+                Wand temp = (Wand)(PlayerHandler.getInventory().getWeapon());
+
                 if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                     coll.x = PlayerHandler.getCollider().x + (PlayerHandler.getCollider().getWidth() / 1.3f);
                     coll.y = PlayerHandler.getCollider().y + 10;
@@ -134,7 +137,7 @@ public class PlayerCombat {
                     GameMain.wepX = coll.x;
                     GameMain.wepY = coll.y;
 
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) && proj.size() <= temp.getShots()) {
                         proj.add(new Projectile(PlayerHandler.getCollider().x + 20, PlayerHandler.getCollider().y + 20, 1, 15,  "right", 150));
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -148,7 +151,7 @@ public class PlayerCombat {
                     GameMain.wepX = coll.x;
                     GameMain.wepY = coll.y;
 
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && proj.size() <= temp.getShots()) {
                         proj.add(new Projectile(PlayerHandler.getCollider().x - 20, PlayerHandler.getCollider().y + 20, 1, 15,  "left", 150));
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
@@ -162,7 +165,7 @@ public class PlayerCombat {
                     GameMain.wepX = coll.x;
                     GameMain.wepY = coll.y;
 
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && proj.size() <= temp.getShots()) {
                         proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 35, 1, 15,  "up", 150));
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
@@ -176,7 +179,7 @@ public class PlayerCombat {
                     GameMain.wepX = coll.x;
                     GameMain.wepY = coll.y;
 
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN) && proj.size() <= temp.getShots()) {
                         proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y - 20, 1, 15,  "down", 150));
                     }
                 } else {
