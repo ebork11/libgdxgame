@@ -22,7 +22,7 @@ public class PlayerInventory {
         invTexture = new Texture("gui/inventory.png");
         equipTex = new Texture("gui/armorweaponslot.png");
 
-        weapon = new Spear(); // starting weapon
+        weapon = new Wand(); // starting weapon
         armor = null;
     }
 
