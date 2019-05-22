@@ -3,6 +3,7 @@ package com.apcs.game;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
+import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
@@ -356,41 +357,44 @@ public class GameMain extends ApplicationAdapter {
     }
 
     public void drawProjectiles() {
-		for (int cnt = PlayerCombat.proj.size() - 1; cnt > 0; cnt--) {
-			switch (PlayerCombat.proj.get(cnt).getDirection()) {
+
+		ArrayList<Projectile> proj = rm.getCurrentRoom().getProjectile();
+
+		for (int cnt = proj.size() - 1; cnt > 0; cnt--) {
+			switch (proj.get(cnt).getDirection()) {
 				case "up":
-					PlayerCombat.proj.get(cnt).getCollider().y += PlayerCombat.proj.get(cnt).getSpeed();
+					proj.get(cnt).getCollider().y += proj.get(cnt).getSpeed();
 					break;
 				case"down":
-					PlayerCombat.proj.get(cnt).getCollider().y -= PlayerCombat.proj.get(cnt).getSpeed();
+					proj.get(cnt).getCollider().y -= proj.get(cnt).getSpeed();
 					break;
 				case"left":
-					PlayerCombat.proj.get(cnt).getCollider().x -= PlayerCombat.proj.get(cnt).getSpeed();
+					proj.get(cnt).getCollider().x -= proj.get(cnt).getSpeed();
 					break;
 				case"right":
-					PlayerCombat.proj.get(cnt).getCollider().x += PlayerCombat.proj.get(cnt).getSpeed();
+					proj.get(cnt).getCollider().x += proj.get(cnt).getSpeed();
 					break;
 				default:
 					break;
 			}
 
-			batch.draw(PlayerCombat.proj.get(cnt).getTexture(), PlayerCombat.proj.get(cnt).getCollider().x, PlayerCombat.proj.get(cnt).getCollider().y);
+			batch.draw(proj.get(cnt).getTexture(), proj.get(cnt).getCollider().x, proj.get(cnt).getCollider().y);
 
 			ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
 			boolean removed = false;
 
 			for(int loop = 0; loop < entities.size(); loop++) {
-				if(PlayerCombat.proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider())) {
-					entities.get(loop).hit(PlayerCombat.proj.get(cnt).getDamage());
-					PlayerCombat.proj.remove(cnt);
+				if(proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider())) {
+					entities.get(loop).hit(proj.get(cnt).getDamage());
+					proj.remove(cnt);
 					removed = true;
 					break;
 				}
 			}
 
-			if (!removed && (Math.abs(PlayerCombat.proj.get(cnt).getCollider().x - PlayerCombat.proj.get(cnt).getInitX()) + Math.abs(PlayerCombat.proj.get(cnt).getCollider().y - PlayerCombat.proj.get(cnt).getInitY()) > PlayerCombat.proj.get(cnt).getRange())){
-				PlayerCombat.proj.remove(cnt);
+			if (!removed && (Math.abs(proj.get(cnt).getCollider().x - proj.get(cnt).getInitX()) + Math.abs(proj.get(cnt).getCollider().y - proj.get(cnt).getInitY()) > proj.get(cnt).getRange())){
+				proj.remove(cnt);
 			}
 		}
 	}

@@ -9,7 +9,8 @@ public class Wand extends FatSword {
 
     private Texture texU, texD, texR, texL, icon;
     private String myClass;
-    private int damage, shots;
+    private int damage, shots, range;
+    private float speed;
 
     public Wand() {
         super();
@@ -19,6 +20,10 @@ public class Wand extends FatSword {
         damage = 1;
 
         shots = 1;
+
+        speed = 5;
+
+        range = 150;
 
         texU = new Texture("items/wand/wandu.png");
         texD = new Texture("items/wand/wandd.png");
@@ -50,5 +55,9 @@ public class Wand extends FatSword {
     public int getDamage() {
         return damage;
     }
+
+    public int getRange() {return range;}
+
+    public float getSpeed() {return speed;}
 }
 

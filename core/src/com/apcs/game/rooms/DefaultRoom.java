@@ -4,6 +4,7 @@ import com.apcs.game.enemies.Basic;
 import com.apcs.game.enemies.Charger;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.Item;
+import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,12 +17,15 @@ public class DefaultRoom extends Room {
     private ArrayList<Entity> entities;
     private ArrayList<Spike> spikes;
     private ArrayList<Item> groundItems;
+    private ArrayList<Projectile> proj;
 
     public DefaultRoom() {
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         spikes = new ArrayList<Spike>();
         groundItems = new ArrayList<Item>();
+        proj = new ArrayList<Projectile>();
+
 
         int choice = (int)(Math.random() * 3) + 1;
         switch (choice) {
@@ -77,6 +81,8 @@ public class DefaultRoom extends Room {
     public ArrayList<Spike> getHazards() {
         return spikes;
     }
+
+    public ArrayList<Projectile> getProjectile() { return proj; }
 
     public ArrayList<Item> getGroundItems() {
         return groundItems;
