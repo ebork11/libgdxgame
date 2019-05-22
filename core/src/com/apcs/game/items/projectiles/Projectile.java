@@ -6,11 +6,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class Projectile {
     Rectangle coll;
     Texture tex;
-    float myX, myY, speed;
-    int dmg;
+    float myX, myY, speed, initX, initY;
+    int dmg, range;
     String dir;
 
-    public Projectile(float x, float y, int damage, float sped, String direction) {
+    public Projectile(float x, float y, int damage, float sped, String direction, int rng) {
         switch(direction) {
             case "up":
                 tex = new Texture("items/projectile/pojectileu.png");
@@ -35,6 +35,9 @@ public class Projectile {
         myY = y;
         speed = sped;
         dir = direction;
+        initX = myX;
+        initY = myY;
+        range = rng;
     }
 
     public Texture getTexture() {
@@ -45,12 +48,24 @@ public class Projectile {
         return coll;
     }
 
+    public float getRange() {
+        return range;
+    }
+
     public float getMyX() {
         return myX;
     }
 
     public float getMyY() {
         return myY;
+    }
+
+    public float getInitX() {
+        return initX;
+    }
+
+    public float getInitY() {
+        return initY;
     }
 
     public int getDamage() {
