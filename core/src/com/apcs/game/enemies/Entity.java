@@ -21,8 +21,7 @@ public abstract class Entity {
 
 
     // combat stuff
-    private int health;
-    private int strength;
+    private int health, strength;
     private long inColl;
     private long cooldown;
 
@@ -82,6 +81,7 @@ public abstract class Entity {
         dropItems();
         RoomManager.getCurrentRoom().getEntities().remove(this);
     }
+
     public abstract void move();
 }
 

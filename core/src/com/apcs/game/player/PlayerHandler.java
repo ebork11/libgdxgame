@@ -105,8 +105,6 @@ public class PlayerHandler {
         }
     }
 
-
-
     public void checkForPickup() {
         GameMain.overItem = false;
 
