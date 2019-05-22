@@ -378,12 +378,19 @@ public class GameMain extends ApplicationAdapter {
 
 			ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
+			boolean removed = false;
+
 			for(int loop = 0; loop < entities.size(); loop++) {
 				if(PlayerCombat.proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider())) {
 					entities.get(loop).hit(PlayerCombat.proj.get(cnt).getDamage());
 					PlayerCombat.proj.remove(cnt);
+					removed = true;
 					break;
 				}
+			}
+
+			if (!removed && (Math.abs(PlayerCombat.proj.get(cnt).getCollider().x - PlayerCombat.proj.get(cnt).getInitX()) + Math.abs(PlayerCombat.proj.get(cnt).getCollider().y - PlayerCombat.proj.get(cnt).getInitY()) > PlayerCombat.proj.get(cnt).getRange())){
+				PlayerCombat.proj.remove(cnt);
 			}
 		}
 	}
