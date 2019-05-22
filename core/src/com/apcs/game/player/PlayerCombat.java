@@ -135,7 +135,7 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 20, 1, 15,  "right", 150));
+                        proj.add(new Projectile(PlayerHandler.getCollider().x + 20, PlayerHandler.getCollider().y + 20, 1, 15,  "right", 150));
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                     coll.x = PlayerHandler.getCollider().x - (l.getWidth() / 1.1f);
@@ -149,7 +149,7 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x - 10, PlayerHandler.getCollider().y + 20, 1, 15,  "left", 150));
+                        proj.add(new Projectile(PlayerHandler.getCollider().x - 20, PlayerHandler.getCollider().y + 20, 1, 15,  "left", 150));
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                     coll.x = PlayerHandler.getCollider().x;
@@ -163,7 +163,7 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x + 5, PlayerHandler.getCollider().y + 30, 1, 15,  "up", 150));
+                        proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 35, 1, 15,  "up", 150));
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                     coll.x = PlayerHandler.getCollider().x;
@@ -177,7 +177,7 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x + 5, PlayerHandler.getCollider().y - 20, 1, 15,  "down", 150));
+                        proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y - 20, 1, 15,  "down", 150));
                     }
                 } else {
                     GameMain.attacking = false;
