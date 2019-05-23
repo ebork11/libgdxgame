@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 public class Wand extends FatSword {
 
-    private Texture texU, texD, texR, texL, icon;
-    private String myClass;
-    private int damage, shots, range;
-    private float speed;
+    protected Texture texU, texD, texR, texL, icon;
+    protected String myClass, subclass;
+    protected int damage, shots, range;
+    protected float speed;
+
 
     public Wand() {
         super();
@@ -38,6 +39,7 @@ public class Wand extends FatSword {
         setIcon(icon);
 
         setClass("ranged_weapon");
+        subclass = "wand";
 
         getCollider().setSize(texU.getWidth(), texU.getHeight());
     }
@@ -59,5 +61,13 @@ public class Wand extends FatSword {
     public int getRange() {return range;}
 
     public float getSpeed() {return speed;}
+
+    public String getSubclass() {
+        return subclass;
+    }
+
+    public void setSubclass(String temp) {
+        subclass = temp;
+    }
 }
 

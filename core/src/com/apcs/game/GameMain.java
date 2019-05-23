@@ -3,6 +3,7 @@ package com.apcs.game;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
+import com.apcs.game.items.Wand;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;
@@ -387,12 +388,19 @@ public class GameMain extends ApplicationAdapter {
 
 			boolean removed = false;
 
+			Wand wep = (Wand)(PlayerInventory.getWeapon());
+
 			for(int loop = 0; loop < entities.size(); loop++) {
-				if(proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider())) {
-					entities.get(loop).hit(proj.get(cnt).getDamage());
-					proj.remove(cnt);
-					removed = true;
-					break;
+				if (proj.get(cnt).checkCanHit(entities.get(loop))) {
+					if(proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider()) && wep.getSubclass().equals("wand")) {
+						entities.get(loop).hit(proj.get(cnt).getDamage());
+						proj.remove(cnt);
+						removed = true;
+						break;
+					} else if (proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider()) && wep.getSubclass().equals("bow")) {
+						entities.get(loop).hit(proj.get(cnt).getDamage());
+					}
+					proj.get(cnt).getEnemList().add(entities.get(loop));
 				}
 			}
 
