@@ -28,6 +28,7 @@ public class PlayerCombat {
 
     public static void takeDamage(int dam) {
 
+        GameMain.hit = true;
         if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() > 0) {
             PlayerInventory.getArmor().damage(dam);
         } else {

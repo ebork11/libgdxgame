@@ -42,7 +42,7 @@ public class GameMain extends ApplicationAdapter {
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
-	public static boolean attacking = false;
+	public static boolean attacking = false, hit = false;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
@@ -162,6 +162,9 @@ public class GameMain extends ApplicationAdapter {
 		drawSpikes();
 		drawEntities();
 		batch.draw(pa.getFrameTex(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
+		if (hit){
+			batch.draw(pa.hitAnim(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y);
+		}
 		if (attacking) {
 			drawWeapon();
 		}
