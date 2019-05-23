@@ -1,7 +1,10 @@
 package com.apcs.game.items.projectiles;
 
+import com.apcs.game.enemies.Entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+
+import java.util.ArrayList;
 
 public class Projectile {
     Rectangle coll;
@@ -9,6 +12,7 @@ public class Projectile {
     float myX, myY, speed, initX, initY;
     int dmg, range;
     String dir;
+    ArrayList<Entity> enem = new ArrayList<Entity>();
 
     public Projectile(float x, float y, int damage, float sped, String direction, int rng) {
         switch(direction) {
@@ -40,8 +44,21 @@ public class Projectile {
         range = rng;
     }
 
+    public boolean checkCanHit(Entity temp) {
+        for (int cnt = 0; cnt < enem.size(); cnt++) {
+            if (enem.get(cnt) == temp) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public Texture getTexture() {
         return tex;
+    }
+
+    public ArrayList<Entity> getEnemList() {
+        return enem;
     }
 
     public Rectangle getCollider() {
