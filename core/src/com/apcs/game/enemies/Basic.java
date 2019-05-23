@@ -7,6 +7,7 @@ import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.Item;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
@@ -15,9 +16,12 @@ public class Basic extends Entity {
 
     private Rectangle collider;
     private float speed;
+    private boolean isHit;
 
     public Basic() {
         super();
+
+        isHit = false;
 
         //movement
         speed = 4f;
@@ -78,5 +82,17 @@ public class Basic extends Entity {
                 collider.y -= sy;
             }
         }
+    }
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void nowHit() {
+        isHit = !isHit;
+    }
+
+    public Texture getHitTex() {
+        return getTexture();
     }
 }

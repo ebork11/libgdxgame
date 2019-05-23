@@ -349,7 +349,12 @@ public class GameMain extends ApplicationAdapter {
 		ArrayList<Entity> entities = rm.getCurrentRoom().getEntities();
 
         for(int loop = 0; loop < entities.size(); loop++) {
-			batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+        	if (!entities.get(loop).isHit()) {
+				batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+			} else {
+				batch.draw(entities.get(loop).getHitTex(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
+				entities.get(loop).nowHit();
+        	}
 
 			if (!pause) {
 				entities.get(loop).move();

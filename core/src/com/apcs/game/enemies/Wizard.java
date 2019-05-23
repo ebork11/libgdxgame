@@ -5,6 +5,7 @@ import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class Wizard extends Entity {
 
     private Rectangle collider;
     private float speed, moveX, moveY, targetX, targetY;
-    private boolean moving, firstTime;
+    private boolean moving, firstTime, isHit;
     private long moveTimer, shootCooldown;
     String fireDir;
 
@@ -22,6 +23,7 @@ public class Wizard extends Entity {
 
         speed = 4f;
 
+        isHit = false;
         fireDir = "";
         moving = false;
         firstTime = false;
@@ -123,5 +125,17 @@ public class Wizard extends Entity {
 
     public void attack() {
         // override the wizards attack so it cannot melee
+    }
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void nowHit() {
+        isHit = !isHit;
+    }
+
+    public Texture getHitTex() {
+        return getTexture();
     }
 }

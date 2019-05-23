@@ -15,9 +15,12 @@ public class Charger extends Entity {
     private int moveCooldown, chargeTime;
     private float moveX, moveY, speed;
     private long chargeCooldown, start;
+    private boolean isHit;
 
     public Charger(){
         super();
+
+        isHit = false;
 
         Texture temp = new Texture("enemies/charger/charger.png");
 
@@ -113,5 +116,17 @@ public class Charger extends Entity {
 
             RoomManager.getCurrentRoom().getGroundItems().add(temp);
         }
+    }
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void nowHit() {
+        isHit = !isHit;
+    }
+
+    public Texture getHitTex() {
+        return getTexture();
     }
 }

@@ -77,6 +77,12 @@ public abstract class Entity {
 
     public abstract void dropItems();
 
+    public abstract boolean isHit();
+
+    public abstract void nowHit();
+
+    public abstract Texture getHitTex();
+
     public void die() {
         dropItems();
         RoomManager.getCurrentRoom().getEntities().remove(this);
