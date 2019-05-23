@@ -104,7 +104,6 @@ public class Charger extends Entity {
 
             if (droppable.size() == 0) {
                 droppable.add(new Dagger());
-                droppable.add(new Wand());
                 droppable.add(new FatSword());
             }
 

@@ -1,10 +1,13 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.items.*;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.math.Rectangle;
+
+import java.util.ArrayList;
 
 public class Wizard extends Entity {
 
@@ -100,6 +103,21 @@ public class Wizard extends Entity {
     }
 
     public void dropItems() {
+        int ifDrop = (int)(Math.random() * 10) + 1;
 
+        if (ifDrop <= 5) {
+            ArrayList<Item> droppable = new ArrayList<Item>();
+
+            if (droppable.size() == 0) {
+                droppable.add(new Wand());
+                droppable.add(new Bow());
+            }
+
+            Item temp = droppable.get((int)(Math.random() * droppable.size()));
+
+            temp.getCollider().setPosition(collider.x, collider.y);
+
+            RoomManager.getCurrentRoom().getGroundItems().add(temp);
+        }
     }
 }
