@@ -1,6 +1,7 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.enemies.Wizard;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
@@ -14,7 +15,7 @@ public class StartingRoom extends Room {
     private static ArrayList<Entity> entities;
     private static ArrayList<Spike> hazards;
     private ArrayList<Item> groundItems;
-    private ArrayList<Projectile> proj;
+    private ArrayList<Projectile> proj, enemProj;
 
     public StartingRoom() {
         myFloor = new Texture("rooms/background1.png"); // sets texture
@@ -23,6 +24,7 @@ public class StartingRoom extends Room {
         hazards = new ArrayList<Spike>();
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
+        enemProj = new ArrayList<Projectile>();
     }
 
     public Texture getFloor() {
@@ -42,6 +44,8 @@ public class StartingRoom extends Room {
     }
 
     public ArrayList<Projectile> getProjectile() { return proj; }
+
+    public ArrayList<Projectile> getEnemProj() { return enemProj; }
 
     public ArrayList<Item> getGroundItems() {
         return groundItems;

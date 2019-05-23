@@ -28,6 +28,8 @@ public abstract class Room {
 
     public abstract ArrayList<Projectile> getProjectile();
 
+    public abstract ArrayList<Projectile> getEnemProj();
+
     public void disposer() {
         myFloor.dispose();
     }
