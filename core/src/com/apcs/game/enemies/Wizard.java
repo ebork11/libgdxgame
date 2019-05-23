@@ -1,6 +1,7 @@
 package com.apcs.game.enemies;
 
 import com.apcs.game.EnemyAnimation;
+import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerCombat;
@@ -66,64 +67,65 @@ public class Wizard extends Entity {
 
     public void move() {
 
-        if (System.currentTimeMillis() - moveTimer > 2000) {
-            moving = true;
-            moveTimer = System.currentTimeMillis();
-        }
-
-        if (moving) {
-
-
-            if (!firstTime) {
-                firstTime = true;
-
-                moveX = collider.x - PlayerHandler.getCollider().x;
-                moveY = collider.y - PlayerHandler.getCollider().y;
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
+            if (System.currentTimeMillis() - moveTimer > 2000) {
+                moving = true;
+                moveTimer = System.currentTimeMillis();
             }
 
+            if (moving) {
 
 
-            if (Math.abs(moveX) < Math.abs(moveY)) {
-                if (moveX < 0) {
-                    collider.x += speed;
+                if (!firstTime) {
+                    firstTime = true;
+
+                    moveX = collider.x - PlayerHandler.getCollider().x;
+                    moveY = collider.y - PlayerHandler.getCollider().y;
+                }
+
+
+                if (Math.abs(moveX) < Math.abs(moveY)) {
+                    if (moveX < 0) {
+                        collider.x += speed;
+                    } else {
+                        collider.x -= speed;
+                    }
+
+                    if (moveY < 0) {
+                        fireDir = "up";
+                    } else {
+                        fireDir = "down";
+                    }
+
+                    if (Math.abs(collider.x - PlayerHandler.getCollider().x) <= 10) {
+                        moving = false;
+                        firstTime = false;
+                        moveTimer = System.currentTimeMillis();
+                    }
+
                 } else {
-                    collider.x -= speed;
+                    if (moveY < 0) {
+                        collider.y += speed;
+                    } else {
+                        collider.y -= speed;
+                    }
+
+                    if (moveX < 0) {
+                        fireDir = "right";
+                    } else {
+                        fireDir = "left";
+                    }
+
+                    if (Math.abs(collider.y - PlayerHandler.getCollider().y) <= 10) {
+                        moving = false;
+                        firstTime = false;
+                    }
                 }
 
-                if (moveY < 0) {
-                    fireDir = "up";
-                } else {
-                    fireDir = "down";
+                if (System.currentTimeMillis() - shootCooldown > 700) {
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + getTexture().getWidth() / 2, collider.y + getTexture().getHeight() / 2, 1, 10, fireDir, 500));
+                    shootCooldown = System.currentTimeMillis();
                 }
-
-                if (Math.abs(collider.x - PlayerHandler.getCollider().x) <= 10) {
-                    moving = false;
-                    firstTime = false;
-                    moveTimer = System.currentTimeMillis();
-                }
-
-            } else {
-                if (moveY < 0) {
-                    collider.y += speed;
-                } else {
-                    collider.y -= speed;
-                }
-
-                if (moveX < 0) {
-                    fireDir = "right";
-                } else {
-                    fireDir = "left";
-                }
-
-                if (Math.abs(collider.y - PlayerHandler.getCollider().y) <= 10) {
-                    moving = false;
-                    firstTime = false;
-                }
-            }
-
-            if (System.currentTimeMillis() - shootCooldown > 700) {
-                RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + getTexture().getWidth() / 2, collider.y + getTexture().getHeight() / 2, 1, 10, fireDir, 500));
-                shootCooldown = System.currentTimeMillis();
             }
         }
     }
