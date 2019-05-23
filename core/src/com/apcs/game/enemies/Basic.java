@@ -17,11 +17,13 @@ public class Basic extends Entity {
     private Rectangle collider;
     private float speed;
     private boolean isHit;
+    private Texture hitTex;
 
     public Basic() {
         super();
 
         isHit = false;
+        hitTex = new Texture("clarkhit.png");
 
         //movement
         speed = 4f;
@@ -93,6 +95,6 @@ public class Basic extends Entity {
     }
 
     public Texture getHitTex() {
-        return getTexture();
+        return hitTex;
     }
 }

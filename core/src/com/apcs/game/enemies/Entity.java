@@ -60,6 +60,7 @@ public abstract class Entity {
     }
 
     public void hit(int damage)  {
+        nowHit();
         health -= damage;
         if(health <= 0){
             die();

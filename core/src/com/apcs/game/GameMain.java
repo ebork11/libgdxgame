@@ -352,6 +352,7 @@ public class GameMain extends ApplicationAdapter {
         	if (!entities.get(loop).isHit()) {
 				batch.draw(entities.get(loop).getTexture(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
 			} else {
+        		System.out.println("here");
 				batch.draw(entities.get(loop).getHitTex(), entities.get(loop).getCollider().x, entities.get(loop).getCollider().y);
 				entities.get(loop).nowHit();
         	}
@@ -404,10 +405,10 @@ public class GameMain extends ApplicationAdapter {
 						removed = true;
 						break;
 					} else if (proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider()) && wep.getSubclass().equals("bow")) {
+						//entities.get(loop).nowHit();
 						proj.get(cnt).getEnemList().add(entities.get(loop));
 						entities.get(loop).hit(proj.get(cnt).getDamage());
 					}
-
 				}
 			}
 
@@ -463,7 +464,9 @@ public class GameMain extends ApplicationAdapter {
 			for(int loop = 0; loop < entities.size(); loop++) {
 				if(PlayerHandler.getInventory().getWeapon().getCollider().overlaps(entities.get(loop).getCollider())) {
 					FatSword wep = (FatSword)PlayerHandler.getInventory().getWeapon();
+					//entities.get(loop).nowHit();
 					entities.get(loop).hit(wep.getDamage());
+
 				}
 			}
 		}

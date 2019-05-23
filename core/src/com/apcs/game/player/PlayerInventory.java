@@ -23,7 +23,7 @@ public class PlayerInventory {
         equipTex = new Texture("gui/armorweaponslot.png");
 
 
-        weapon = new Spear(); // starting weapon
+        weapon = new Bow(); // starting weapon
         armor = null;
     }
 

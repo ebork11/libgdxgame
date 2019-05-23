@@ -12,10 +12,11 @@ import java.util.ArrayList;
 public class Charger extends Entity {
 
     Rectangle collider;
-    private int moveCooldown, chargeTime;
+    private int moveCooldown, chargeTime, currentTex;
     private float moveX, moveY, speed;
     private long chargeCooldown, start;
     private boolean isHit;
+    private Texture hit1, hit2;
 
     public Charger(){
         super();
@@ -23,9 +24,13 @@ public class Charger extends Entity {
         isHit = false;
 
         Texture temp = new Texture("enemies/charger/charger.png");
+        hit1 = new Texture("enemies/charger/chargerhit.png");
+        hit2 = new Texture("enemies/charger/charge1hit.png");
 
         int x = (int)(Math.random() * 550) + 300;
         int y = (int)(Math.random() * 300) + 200;
+
+        currentTex = 1;
 
         collider = new Rectangle(x, y, temp.getWidth(), temp.getHeight());
 
@@ -42,11 +47,13 @@ public class Charger extends Entity {
         if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
             if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
                 setCharacter("enemies/charger/charge1.png");
+                currentTex = 2;
                 walk(moveX,moveY);
 
                 if (System.currentTimeMillis() - start > chargeTime) {
                     chargeCooldown = System.currentTimeMillis();
                     setCharacter("enemies/charger/charger.png");
+                    currentTex = 1;
                 }
             } else {
                 moveX = PlayerHandler.getCollider().x - collider.x;
@@ -127,6 +134,10 @@ public class Charger extends Entity {
     }
 
     public Texture getHitTex() {
-        return getTexture();
+        if (currentTex == 1) {
+            return hit1;
+        } else {
+            return hit2;
+        }
     }
 }
