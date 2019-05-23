@@ -123,7 +123,7 @@ public class Wizard extends Entity {
                 }
 
                 if (System.currentTimeMillis() - shootCooldown > 700) {
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + getTexture().getWidth() / 2, collider.y + getTexture().getHeight() / 2, 1, 10, fireDir, 500));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + getTexture().getWidth() / 2, collider.y + getTexture().getHeight() / 2, 1, 10, fireDir, 500, "spell"));
                     shootCooldown = System.currentTimeMillis();
                 }
             }

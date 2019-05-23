@@ -14,19 +14,31 @@ public class Projectile {
     String dir;
     ArrayList<Entity> enem = new ArrayList<Entity>();
 
-    public Projectile(float x, float y, int damage, float sped, String direction, int rng) {
+    public Projectile(float x, float y, int damage, float sped, String direction, int rng, String type) {
         switch(direction) {
             case "up":
-                tex = new Texture("items/projectile/pojectileu.png");
+                if (type.equals("spell"))
+                    tex = new Texture("items/projectile/whitespell/pojectileu.png");
+                else
+                    tex = new Texture("items/projectile/arrow/arrowu.png");
                 break;
             case "down":
-                tex = new Texture("items/projectile/projectiled.png");
+                if (type.equals("spell"))
+                    tex = new Texture("items/projectile/whitespell/projectiled.png");
+                else
+                    tex = new Texture("items/projectile/arrow/arrowd.png");
                 break;
             case "left":
-                tex = new Texture("items/projectile/projectilel.png");
+                if (type.equals("spell"))
+                    tex = new Texture("items/projectile/whitespell/projectilel.png");
+                else
+                    tex = new Texture("items/projectile/arrow/arrowl.png");
                 break;
             case "right":
-                tex = new Texture("items/projectile/projectiler.png");
+                if (type.equals("spell"))
+                tex = new Texture("items/projectile/whitespell/projectiler.png");
+                    else
+                    tex = new Texture("items/projectile/arrow/arrowr.png");
                 break;
             default:
                 break;

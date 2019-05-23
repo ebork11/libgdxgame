@@ -138,7 +138,11 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT) && proj.size() <= temp.getShots()) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x + 20, PlayerHandler.getCollider().y + 20, temp.getDamage(), temp.getSpeed(),  "right", temp.getRange()));
+                        if (temp.getSubclass().equals("wand")) {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x + 20, PlayerHandler.getCollider().y + 20, temp.getDamage(), temp.getSpeed(),  "right", temp.getRange(), "spell"));
+                        } else {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x + 20, PlayerHandler.getCollider().y + 20, temp.getDamage(), temp.getSpeed(),  "right", temp.getRange(), "arrow"));
+                        }
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                     coll.x = PlayerHandler.getCollider().x - (l.getWidth() / 1.1f);
@@ -152,7 +156,11 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT) && proj.size() <= temp.getShots()) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x - 20, PlayerHandler.getCollider().y + 20, temp.getDamage(), temp.getSpeed(),  "left", temp.getRange()));
+                        if (temp.getSubclass().equals("wand")) {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x - 20, PlayerHandler.getCollider().y + 20, temp.getDamage(), temp.getSpeed(),  "left", temp.getRange(), "spell"));
+                        } else {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x - 20, PlayerHandler.getCollider().y + 20, temp.getDamage(), temp.getSpeed(),  "left", temp.getRange(), "arrow"));
+                        }
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                     coll.x = PlayerHandler.getCollider().x;
@@ -166,7 +174,11 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && proj.size() <= temp.getShots()) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 35, temp.getDamage(), temp.getSpeed(),  "up", temp.getRange()));
+                        if (temp.getSubclass().equals("wand")) {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 35, temp.getDamage(), temp.getSpeed(),  "up", temp.getRange(), "spell"));
+                        } else {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 35, temp.getDamage(), temp.getSpeed(),  "up", temp.getRange(), "arrow"));
+                        }
                     }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                     coll.x = PlayerHandler.getCollider().x;
@@ -180,20 +192,16 @@ public class PlayerCombat {
                     GameMain.wepY = coll.y;
 
                     if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN) && proj.size() <= temp.getShots()) {
-                        proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y - 20, temp.getDamage(), temp.getSpeed(),  "down", temp.getRange()));
+                        if (temp.getSubclass().equals("wand")) {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y - 20, temp.getDamage(), temp.getSpeed(),  "down", temp.getRange(), "spell"));
+                        } else {
+                            proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y - 20, temp.getDamage(), temp.getSpeed(),  "down", temp.getRange(), "arrow"));
+                        }
                     }
                 } else {
                     GameMain.attacking = false;
                 }
             }
-        }
-    }
-
-    public static void printStats() {
-        if (PlayerInventory.getArmor() != null) {
-            System.out.println("Health: " + health + " Armor: " + PlayerInventory.getArmor().getStat());
-        } else {
-            System.out.println("Health: " + health + " Armor: " + 0);
         }
     }
 

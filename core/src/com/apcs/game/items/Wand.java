@@ -20,9 +20,9 @@ public class Wand extends FatSword {
 
         damage = 1;
 
-        shots = 1;
+        shots = 2;
 
-        speed = 5;
+        speed = 6;
 
         range = 150;
 
