@@ -398,9 +398,10 @@ public class GameMain extends ApplicationAdapter {
 						removed = true;
 						break;
 					} else if (proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider()) && wep.getSubclass().equals("bow")) {
+						proj.get(cnt).getEnemList().add(entities.get(loop));
 						entities.get(loop).hit(proj.get(cnt).getDamage());
 					}
-					proj.get(cnt).getEnemList().add(entities.get(loop));
+
 				}
 			}
 
