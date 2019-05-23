@@ -1,5 +1,6 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.EnemyAnimation;
 import com.apcs.game.items.*;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerCombat;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class Wizard extends Entity {
 
+    private EnemyAnimation animation;
     private Rectangle collider;
     private float speed, moveX, moveY, targetX, targetY;
     private boolean moving, firstTime, isHit;
@@ -20,6 +22,7 @@ public class Wizard extends Entity {
 
     public Wizard() {
         super();
+
 
         speed = 4f;
 
@@ -32,8 +35,29 @@ public class Wizard extends Entity {
 
         int x = (int)(Math.random() * 550) + 300;
         int y = (int)(Math.random() * 300) + 200;
-
         collider = new Rectangle(x, y, 100, 100);
+
+        ArrayList<Texture> anim = new ArrayList<Texture>();
+        anim.add(new Texture("enemies/wizard/wizard1.png"));
+        anim.add(new Texture("enemies/wizard/wizard2.png"));
+        anim.add(new Texture("enemies/wizard/wizard3.png"));
+        anim.add(new Texture("enemies/wizard/wizard4.png"));
+        anim.add(new Texture("enemies/wizard/wizard5.png"));
+        anim.add(new Texture("enemies/wizard/wizard6.png"));
+        anim.add(new Texture("enemies/wizard/wizard7.png"));
+        anim.add(new Texture("enemies/wizard/wizard8.png"));
+
+        ArrayList<Texture> hit = new ArrayList<Texture>();
+        hit.add(new Texture("enemies/wizard/hit/wizhit1.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit2.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit3.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit4.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit5.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit6.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit7.png"));
+        hit.add(new Texture("enemies/wizard/hit/wizhit8.png"));
+
+        animation = new EnemyAnimation(anim, hit);
     }
 
     public Rectangle getCollider() {
@@ -135,7 +159,12 @@ public class Wizard extends Entity {
         isHit = !isHit;
     }
 
-    public Texture getHitTex() {
-        return getTexture();
+    public Texture getTexture() {
+        return animation.getTexture();
     }
+
+    public Texture getHitTex() {
+        return animation.getHitTex();
+    }
+
 }
