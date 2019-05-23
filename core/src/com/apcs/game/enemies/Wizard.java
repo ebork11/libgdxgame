@@ -120,4 +120,8 @@ public class Wizard extends Entity {
             RoomManager.getCurrentRoom().getGroundItems().add(temp);
         }
     }
+
+    public void attack() {
+        // override the wizards attack so it cannot melee
+    }
 }
