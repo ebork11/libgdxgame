@@ -3,6 +3,7 @@ package com.apcs.game.rooms;
 import com.apcs.game.enemies.Basic;
 import com.apcs.game.enemies.Charger;
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.enemies.Wizard;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
@@ -17,7 +18,7 @@ public class DefaultRoom extends Room {
     private ArrayList<Entity> entities;
     private ArrayList<Spike> spikes;
     private ArrayList<Item> groundItems;
-    private ArrayList<Projectile> proj;
+    private ArrayList<Projectile> proj, enemProj;
 
     public DefaultRoom() {
         doors = new ArrayList<Door>();
@@ -25,6 +26,7 @@ public class DefaultRoom extends Room {
         spikes = new ArrayList<Spike>();
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
+        enemProj = new ArrayList<Projectile>();
 
 
         int choice = (int)(Math.random() * 3) + 1;
@@ -38,6 +40,7 @@ public class DefaultRoom extends Room {
                 spikes.add(new Spike(500, 320));
                 entities.add(new Charger());
                 entities.add(new Basic());
+                entities.add(new Wizard());
                 break;
             case 2:
                 myFloor = new Texture("rooms/background2.png"); // sets texture
@@ -54,11 +57,13 @@ public class DefaultRoom extends Room {
                 spikes.add(new Spike(500, 320));
                 entities.add(new Charger());
                 entities.add(new Basic());
+                entities.add(new Wizard());
                 break;
             default:
                 myFloor = new Texture("rooms/background1.png"); // sets texture
                 entities.add(new Charger());
                 entities.add(new Basic());
+                entities.add(new Wizard());
                 spikes.add(new Spike(450, 360));
                 spikes.add(new Spike(780, 40));
                 break;
@@ -83,6 +88,8 @@ public class DefaultRoom extends Room {
     }
 
     public ArrayList<Projectile> getProjectile() { return proj; }
+
+    public ArrayList<Projectile> getEnemProj() { return enemProj; }
 
     public ArrayList<Item> getGroundItems() {
         return groundItems;

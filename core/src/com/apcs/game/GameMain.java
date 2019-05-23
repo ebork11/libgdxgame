@@ -168,6 +168,7 @@ public class GameMain extends ApplicationAdapter {
 		if (attacking) {
 			drawWeapon();
 		}
+		drawEnemProjectiles();
 		if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("ranged_weapon")) {
 			drawProjectiles();
 		}
@@ -394,6 +395,45 @@ public class GameMain extends ApplicationAdapter {
 					removed = true;
 					break;
 				}
+			}
+
+			if (!removed && (Math.abs(proj.get(cnt).getCollider().x - proj.get(cnt).getInitX()) + Math.abs(proj.get(cnt).getCollider().y - proj.get(cnt).getInitY()) > proj.get(cnt).getRange())){
+				proj.remove(cnt);
+			}
+		}
+	}
+
+	public void drawEnemProjectiles() {
+
+		ArrayList<Projectile> proj = rm.getCurrentRoom().getEnemProj();
+
+		for (int cnt = proj.size() - 1; cnt > 0; cnt--) {
+			switch (proj.get(cnt).getDirection()) {
+				case "up":
+					proj.get(cnt).getCollider().y += proj.get(cnt).getSpeed();
+					break;
+				case"down":
+					proj.get(cnt).getCollider().y -= proj.get(cnt).getSpeed();
+					break;
+				case"left":
+					proj.get(cnt).getCollider().x -= proj.get(cnt).getSpeed();
+					break;
+				case"right":
+					proj.get(cnt).getCollider().x += proj.get(cnt).getSpeed();
+					break;
+				default:
+					break;
+			}
+
+			batch.draw(proj.get(cnt).getTexture(), proj.get(cnt).getCollider().x, proj.get(cnt).getCollider().y);
+
+
+			boolean removed = false;
+
+			if (proj.get(cnt).getCollider().overlaps(player.getCollider())) {
+				player.getCombat().takeDamage(proj.get(cnt).getDamage());
+				proj.remove(cnt);
+				removed = true;
 			}
 
 			if (!removed && (Math.abs(proj.get(cnt).getCollider().x - proj.get(cnt).getInitX()) + Math.abs(proj.get(cnt).getCollider().y - proj.get(cnt).getInitY()) > proj.get(cnt).getRange())){
