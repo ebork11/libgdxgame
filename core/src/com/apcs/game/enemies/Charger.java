@@ -13,10 +13,12 @@ public class Charger extends Entity {
 
     Rectangle collider;
     private int moveCooldown, chargeTime, currentTex;
+    private double temp;
     private float moveX, moveY, speed;
     private long chargeCooldown, start;
     private boolean isHit;
     private Texture hit1, hit2;
+    ArrayList<Integer> chargeTimes = new ArrayList<>();
 
     public Charger(){
         super();
@@ -39,6 +41,10 @@ public class Charger extends Entity {
         speed = 15f;
         setStrength(2);
         moveCooldown = 2000;
+        chargeTimes.add(2000);
+        chargeTimes.add(1500);
+        chargeTimes.add(2500);
+        chargeTimes.add(3000);
         chargeTime = 2000;
         chargeCooldown = System.currentTimeMillis();
     }
@@ -51,6 +57,16 @@ public class Charger extends Entity {
                 walk(moveX,moveY);
 
                 if (System.currentTimeMillis() - start > chargeTime) {
+                    temp = (Math.random()*10);
+                    if(temp < 2.5){
+                        moveCooldown = chargeTimes.get(0);
+                    }else if (temp < 5){
+                        moveCooldown = chargeTimes.get(1);
+                    }else if (temp < 7.5){
+                        moveCooldown = chargeTimes.get(2);
+                    }else{
+                        moveCooldown = chargeTimes.get(3);
+                    }
                     chargeCooldown = System.currentTimeMillis();
                     setCharacter("enemies/charger/charger.png");
                     currentTex = 1;
