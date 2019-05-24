@@ -1,5 +1,6 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
 import com.apcs.game.player.PlayerHandler;
@@ -11,12 +12,13 @@ import java.util.ArrayList;
 
 public class Charger extends Entity {
 
+    EnemyAnimation idleAnimation, chargeAnimationR, chargeAnimationL;
     Rectangle collider;
     private int moveCooldown, chargeTime, currentTex;
     private double temp;
     private float moveX, moveY, speed;
     private long chargeCooldown, start;
-    private boolean isHit;
+    private boolean isHit, left;
     private Texture hit1, hit2;
     ArrayList<Integer> chargeTimes = new ArrayList<>();
 
@@ -25,9 +27,9 @@ public class Charger extends Entity {
 
         isHit = false;
 
-        Texture temp = new Texture("enemies/charger/charger.png");
-        hit1 = new Texture("enemies/charger/chargerhit.png");
-        hit2 = new Texture("enemies/charger/charge1hit.png");
+        left = false;
+
+        Texture temp = new Texture("enemies/charger/charger1.png");
 
         int x = (int)(Math.random() * 550) + 300;
         int y = (int)(Math.random() * 300) + 200;
@@ -37,7 +39,7 @@ public class Charger extends Entity {
         collider = new Rectangle(x, y, temp.getWidth(), temp.getHeight());
 
         setHealth(8);
-        setCharacterFirst("enemies/charger/charger.png");
+        setCharacterFirst("enemies/charger/charger1.png");
         speed = 15f;
         setStrength(2);
         moveCooldown = 2000;
@@ -47,12 +49,41 @@ public class Charger extends Entity {
         chargeTimes.add(3000);
         chargeTime = 2000;
         chargeCooldown = System.currentTimeMillis();
+
+        ArrayList<Texture> anim = new ArrayList<Texture>();
+        anim.add(new Texture("enemies/charger/charger1.png"));
+        anim.add(new Texture("enemies/charger/charger2.png"));
+        anim.add(new Texture("enemies/charger/charger3.png"));
+        anim.add(new Texture("enemies/charger/charger4.png"));
+        anim.add(new Texture("enemies/charger/charger5.png"));
+        anim.add(new Texture("enemies/charger/charger6.png"));
+        anim.add(new Texture("enemies/charger/charger7.png"));
+        idleAnimation = new EnemyAnimation(anim, anim);
+
+        ArrayList<Texture> animCR = new ArrayList<Texture>();
+        animCR.add(new Texture("enemies/charger/charge1.png"));
+        animCR.add(new Texture("enemies/charger/charge2.png"));
+        animCR.add(new Texture("enemies/charger/charge3.png"));
+        animCR.add(new Texture("enemies/charger/charge4.png"));
+        animCR.add(new Texture("enemies/charger/charge5.png"));
+        animCR.add(new Texture("enemies/charger/charge6.png"));
+        animCR.add(new Texture("enemies/charger/charge7.png"));
+        chargeAnimationR = new EnemyAnimation(animCR, animCR);
+
+        ArrayList<Texture> animCL = new ArrayList<Texture>();
+        animCL.add(new Texture("enemies/charger/charge7.png"));
+        animCL.add(new Texture("enemies/charger/charge6.png"));
+        animCL.add(new Texture("enemies/charger/charge5.png"));
+        animCL.add(new Texture("enemies/charger/charge4.png"));
+        animCL.add(new Texture("enemies/charger/charge3.png"));
+        animCL.add(new Texture("enemies/charger/charge2.png"));
+        animCL.add(new Texture("enemies/charger/charge1.png"));
+        chargeAnimationL = new EnemyAnimation(animCL, animCL);
     }
 
     public void move() {
         if (System.currentTimeMillis() - GameMain.enteredNewRoom > 500) {
             if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
-                setCharacter("enemies/charger/charge1.png");
                 currentTex = 2;
                 walk(moveX,moveY);
 
@@ -68,7 +99,6 @@ public class Charger extends Entity {
                         moveCooldown = chargeTimes.get(3);
                     }
                     chargeCooldown = System.currentTimeMillis();
-                    setCharacter("enemies/charger/charger.png");
                     currentTex = 1;
                 }
             } else {
@@ -91,25 +121,28 @@ public class Charger extends Entity {
         sy = Math.abs(sy);
 
         if (x > 0 && y > 0) {
+            left = false;
             if (collider.x + getTexture().getWidth() < 960) {
                 collider.x += sx;
-
             } if (collider.y < 610) {
                 collider.y += sy;
             }
         } else if (x < 0 && y > 0) {
+            left = true;
             if (collider.x > 40) {
                 collider.x -= sx;
             } if (collider.y < 610) {
                 collider.y += sy;
             }
         }  else if (x < 0 && y < 0) {
+            left = true;
             if (collider.x > 40) {
                 collider.x -= sx;
             } if (collider.y > 40) {
                 collider.y -= sy;
             }
         }  else if (x > 0 && y < 0) {
+            left = false;
             if (collider.x + getTexture().getWidth() < 960) {
                 collider.x += sx;
             } if (collider.y > 40) {
@@ -149,11 +182,27 @@ public class Charger extends Entity {
         isHit = !isHit;
     }
 
+    public Texture getTexture() {
+        if (currentTex == 1) {
+            return idleAnimation.getTexture();
+        } else {
+            if (left) {
+                return chargeAnimationL.getTexture();
+            } else {
+                return chargeAnimationR.getTexture();
+            }
+        }
+    }
+
     public Texture getHitTex() {
         if (currentTex == 1) {
-            return hit1;
+            return idleAnimation.getTexture();
         } else {
-            return hit2;
+            if (left) {
+                return chargeAnimationL.getTexture();
+            } else {
+                return chargeAnimationR.getTexture();
+            }
         }
     }
 }
