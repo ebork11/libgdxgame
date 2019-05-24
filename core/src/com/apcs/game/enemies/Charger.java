@@ -58,7 +58,10 @@ public class Charger extends Entity {
         anim.add(new Texture("enemies/charger/charger5.png"));
         anim.add(new Texture("enemies/charger/charger6.png"));
         anim.add(new Texture("enemies/charger/charger7.png"));
-        idleAnimation = new EnemyAnimation(anim, anim);
+
+        ArrayList<Texture> animH = new ArrayList<Texture>();
+        animH.add(new Texture("enemies/charger/chargehit.png"));
+        idleAnimation = new EnemyAnimation(anim, animH);
 
         ArrayList<Texture> animCR = new ArrayList<Texture>();
         animCR.add(new Texture("enemies/charger/charge1.png"));
@@ -68,7 +71,11 @@ public class Charger extends Entity {
         animCR.add(new Texture("enemies/charger/charge5.png"));
         animCR.add(new Texture("enemies/charger/charge6.png"));
         animCR.add(new Texture("enemies/charger/charge7.png"));
-        chargeAnimationR = new EnemyAnimation(animCR, animCR);
+
+        ArrayList<Texture> animHR = new ArrayList<Texture>();
+        animHR.add(new Texture("enemies/charger/chargehitr.png"));
+
+        chargeAnimationR = new EnemyAnimation(animCR, animHR);
 
         ArrayList<Texture> animCL = new ArrayList<Texture>();
         animCL.add(new Texture("enemies/charger/charge7.png"));
@@ -78,7 +85,11 @@ public class Charger extends Entity {
         animCL.add(new Texture("enemies/charger/charge3.png"));
         animCL.add(new Texture("enemies/charger/charge2.png"));
         animCL.add(new Texture("enemies/charger/charge1.png"));
-        chargeAnimationL = new EnemyAnimation(animCL, animCL);
+
+        ArrayList<Texture> animHL = new ArrayList<Texture>();
+        animHL.add(new Texture("enemies/charger/chargehitl.png"));
+
+        chargeAnimationL = new EnemyAnimation(animCL, animHL);
     }
 
     public void move() {
@@ -196,12 +207,12 @@ public class Charger extends Entity {
 
     public Texture getHitTex() {
         if (currentTex == 1) {
-            return idleAnimation.getTexture();
+            return idleAnimation.getHitTex();
         } else {
             if (left) {
-                return chargeAnimationL.getTexture();
+                return chargeAnimationL.getHitTex();
             } else {
-                return chargeAnimationR.getTexture();
+                return chargeAnimationR.getHitTex();
             }
         }
     }
