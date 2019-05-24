@@ -20,7 +20,7 @@ public class Wand extends FatSword {
 
         damage = 1;
 
-        shots = 2;
+        shots = 1;
 
         speed = 6;
 
