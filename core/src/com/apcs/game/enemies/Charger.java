@@ -44,7 +44,7 @@ public class Charger extends Entity {
     }
 
     public void move() {
-        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 500) {
             if (System.currentTimeMillis() - chargeCooldown > moveCooldown) {
                 setCharacter("enemies/charger/charge1.png");
                 currentTex = 2;

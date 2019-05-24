@@ -59,7 +59,7 @@ public class Basic extends Entity {
     }
 
     public void move() {
-        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 1000) {
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 500) {
             float x = PlayerHandler.getCollider().x - collider.x;
             float y = PlayerHandler.getCollider().y - collider.y;
             double ang1 = Math.atan(y / x);

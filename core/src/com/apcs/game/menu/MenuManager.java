@@ -3,15 +3,40 @@ package com.apcs.game.menu;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MenuManager {
-    Texture background, play, help, quit, back;
+    Texture background, play, playDown, help, helpDown, quit, quitDown, back;
+    ArrayList<Texture> title;
+    private long frame, start;
 
     public MenuManager() {
+        title = new ArrayList<Texture>();
+        title.add(new Texture("gui/menu/title/title1.png"));
+        title.add(new Texture("gui/menu/title/title2.png"));
+        title.add(new Texture("gui/menu/title/title3.png"));
+        title.add(new Texture("gui/menu/title/title4.png"));
+        title.add(new Texture("gui/menu/title/title5.png"));
+        title.add(new Texture("gui/menu/title/title6.png"));
+        title.add(new Texture("gui/menu/title/title7.png"));
+        title.add(new Texture("gui/menu/title/title8.png"));
+        title.add(new Texture("gui/menu/title/title9.png"));
+        title.add(new Texture("gui/menu/title/title10.png"));
+        title.add(new Texture("gui/menu/title/title11.png"));
+        title.add(new Texture("gui/menu/title/title12.png"));
+        title.add(new Texture("gui/menu/title/title13.png"));
+        title.add(new Texture("gui/menu/title/title14.png"));
+
+        frame = 50;
+        start = System.currentTimeMillis();
+
         background = new Texture("gui/menu.png");
-        play = new Texture("gui/playbutton.png");
-        help = new Texture("gui/helpbutton.png");
-        quit = new Texture("gui/quitbutton.png");
+        play = new Texture("gui/menu/startoff.png");
+        playDown = new Texture("gui/menu/starton.png");
+        help = new Texture("gui/menu/helpoff.png");
+        helpDown = new Texture("gui/menu/helpon.png");
+        quit = new Texture("gui/menu/quitoff.png");
+        quitDown = new Texture("gui/menu/quiton.png");
         back = new Texture("gui/backbutton.png");
     }
 
@@ -23,15 +48,40 @@ public class MenuManager {
         return play;
     }
 
+    public Texture getPlayButtonDown() {
+        return playDown;
+    }
+
     public Texture getHelpButton() {
         return help;
+    }
+
+    public Texture getHelpButtonDown() {
+        return helpDown;
     }
 
     public Texture getQuitButton() {
         return quit;
     }
 
+    public Texture getQuitButtonDown() {
+        return quitDown;
+    }
+
     public Texture getBackButton() {
         return back;
+    }
+
+    public Texture getTitleAnim() {
+        if (System.currentTimeMillis() - start > frame * 45) {
+            start = System.currentTimeMillis();
+        }
+
+        for (int cnt = 1; cnt <= title.size(); cnt++) {
+            if (System.currentTimeMillis() - start < frame * cnt) {
+                return title.get(cnt - 1);
+            }
+        }
+        return title.get(0);
     }
 }

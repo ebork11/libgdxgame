@@ -107,6 +107,7 @@ public class GameMain extends ApplicationAdapter {
 				batch.draw(mm.getQuitButton(), 500, 350);
 
 				if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 350 && mouseY < 350 + mm.getQuitButton().getHeight()) {
+					batch.draw(mm.getQuitButtonDown(), 500, 350);
 					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 						Gdx.app.exit();
 					}
@@ -124,6 +125,7 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(mm.getPlayButton(), 50, 400);
 			batch.draw(mm.getHelpButton(), 50, 225);
 			batch.draw(mm.getQuitButton(), 50, 50);
+			batch.draw(mm.getTitleAnim(), 50, 550);
 		} else {
 			batch.draw(mm.getBackButton(), 500, 50);
 		}
@@ -133,15 +135,18 @@ public class GameMain extends ApplicationAdapter {
 		//System.out.println(mouseY);
 
 		if (!helpMenu) {
-			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 398 && mouseY < 398 + mm.getPlayButton().getHeight()) {
+			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 398 && mouseY < 400 + mm.getPlayButton().getHeight()) {
+				batch.draw(mm.getPlayButtonDown(), 50, 400);
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 					menu = false;
 				}
-			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 224 && mouseY < 224 + mm.getHelpButton().getHeight()) {
+			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 224 && mouseY < 226 + mm.getHelpButton().getHeight()) {
+				batch.draw(mm.getHelpButtonDown(), 50, 225);
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 					helpMenu = true;
 				}
 			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
+				batch.draw(mm.getQuitButtonDown(), 50, 50);
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 					Gdx.app.exit();
 				}
