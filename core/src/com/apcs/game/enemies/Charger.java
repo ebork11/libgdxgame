@@ -36,7 +36,7 @@ public class Charger extends Entity {
 
         currentTex = 1;
 
-        collider = new Rectangle(x, y, temp.getWidth(), temp.getHeight());
+        collider = new Rectangle(x, y, 90, 90);
 
         setHealth(8);
         setCharacterFirst("enemies/charger/charger1.png");

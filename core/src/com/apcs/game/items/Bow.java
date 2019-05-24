@@ -10,13 +10,13 @@ public class Bow extends Wand {
 
         setSubclass("bow");
 
-        damage = 3;
+        damage = 2;
 
         shots = 1;
 
-        speed = 8;
+        speed = 10;
 
-        range = 600;
+        range = 800;
 
         texU = new Texture("items/bow/bowu.png");
         texD = new Texture("items/bow/bowd.png");

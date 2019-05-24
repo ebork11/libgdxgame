@@ -22,9 +22,9 @@ public class Wand extends FatSword {
 
         shots = 1;
 
-        speed = 6;
+        speed = 10;
 
-        range = 150;
+        range = 225;
 
         texU = new Texture("items/wand/wandu.png");
         texD = new Texture("items/wand/wandd.png");

@@ -48,6 +48,14 @@ public class PlayerHandler {
         /*
             Removes current selected slot
          */
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            Gdx.graphics.setWindowedMode(1280, 720);
+        }
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             inventory.removeItem(currentSlot);
         } if (Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT) && inventory.getInventory()[currentSlot] != null) {
