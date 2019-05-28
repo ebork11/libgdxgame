@@ -1,8 +1,10 @@
 package com.apcs.game.rooms;
 
+import com.apcs.game.GameMain;
 import com.apcs.game.rooms.DefaultRoom;
 import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.StartingRoom;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 
 public class RoomManager {
@@ -20,6 +22,9 @@ public class RoomManager {
     }
 
     public static void setCurrentRoom(Room room) {
+        if (room instanceof HealingRoom) {
+            GameMain.enterHealing = true;
+        }
         currentRoom = room;
     }
 

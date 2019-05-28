@@ -9,6 +9,7 @@ public class LevelGeneration {
     }
 
     public void loadLevel1() {
+        boolean healingRoom = false;
         int numRooms = 0;
 
         StartingRoom start = new StartingRoom();
@@ -18,13 +19,19 @@ public class LevelGeneration {
 
         int row, col;
 
-        while (numRooms < 10) {
+        while (numRooms < 11) {
             row = (int)(Math.random() * level1.length);
             col = (int)(Math.random() * level1.length);
 
             if (level1[row][col] == null) {
                 if (((row != 0 && level1[row - 1][col] != null) || (col != 0 && level1[row][col - 1] != null)) || ((row + 1) != level1.length && level1[row + 1][col] != null) || ((col + 1) != level1.length && level1[row][col + 1] != null)) {
-                    level1[row][col] = new DefaultRoom(); // adds room if there is a room on one of four sides next to it
+                    if ((Math.random() * 2) > 1 && !healingRoom) {
+                        level1[row][col] = new HealingRoom();
+                        healingRoom = true;
+                    } else {
+                        level1[row][col] = new DefaultRoom(); // adds room if there is a room on one of four sides next to it
+
+                    }
                     numRooms++;
                 }
             }

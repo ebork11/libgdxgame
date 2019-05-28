@@ -10,6 +10,7 @@ import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerInventory;
+import com.apcs.game.rooms.HealingRoom;
 import com.apcs.game.rooms.LevelGeneration;
 import com.apcs.game.rooms.Room;
 import com.apcs.game.rooms.RoomManager;
@@ -39,7 +40,7 @@ public class GameMain extends ApplicationAdapter {
 
 
 	boolean menu, pause, helpMenu;
-	public static boolean overItem;
+	public static boolean overItem, enterHealing;
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
@@ -64,6 +65,7 @@ public class GameMain extends ApplicationAdapter {
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
+		enterHealing = false;
 		menu = true;
 		helpMenu = false;
 		pause = false;
@@ -132,8 +134,6 @@ public class GameMain extends ApplicationAdapter {
 
 		int mouseY = Math.abs(720 - Gdx.input.getY());
 
-		//System.out.println(mouseY);
-
 		if (!helpMenu) {
 			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 398 && mouseY < 400 + mm.getPlayButton().getHeight()) {
 				batch.draw(mm.getPlayButtonDown(), 50, 400);
@@ -198,7 +198,7 @@ public class GameMain extends ApplicationAdapter {
 		for (int cnt = 0; cnt < LevelGeneration.getLevel()[0].length; cnt++) {
 			for (int cnt2 = 0; cnt2 < LevelGeneration.getLevel().length; cnt2++) {
 				if (LevelGeneration.getLevel()[cnt][cnt2] != null) {
-					if (LevelGeneration.getLevel()[cnt][cnt2].getEntities().size() > 0) {
+					if (LevelGeneration.getLevel()[cnt][cnt2].getEntities().size() > 0 || (LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && !enterHealing)) {
 						batch.draw(rm.getUncleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
 					} else {
 						batch.draw(rm.getCleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
