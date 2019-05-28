@@ -5,12 +5,15 @@ import com.apcs.game.items.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 
 public class HealingRoom extends Room {
 
-    private Texture myFloor;
+    private Texture myFloor, healthPool, armorRepair;
+    public static Rectangle arm, pool;
+    public static int health;
     private ArrayList<Door> doors;
     private ArrayList<Entity> entities;
     private ArrayList<Spike> spikes;
@@ -24,8 +27,17 @@ public class HealingRoom extends Room {
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
+        health = 10;
 
-        myFloor = new Texture("clark.png"); // sets texture
+        armorRepair = new Texture("objects/armorRepair.png");
+        arm = new Rectangle(200, 200, armorRepair.getWidth(), armorRepair.getHeight());
+
+        healthPool = new Texture("objects/pool.png");
+        pool = new Rectangle(300, 200, healthPool.getWidth(),healthPool.getHeight());
+
+        myFloor = new Texture("rooms/backgroundHealth.png"); // sets texture
+
+
     }
 
     public Texture getFloor() {

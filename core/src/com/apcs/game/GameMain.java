@@ -191,6 +191,7 @@ public class GameMain extends ApplicationAdapter {
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
 		player.checkForPickup();
+		player.checkStandingHealth();
 		player.getCombat().checkAttack();
 	}
 

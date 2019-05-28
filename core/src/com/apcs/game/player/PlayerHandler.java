@@ -6,6 +6,7 @@ import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.HealthPotion;
 import com.apcs.game.object.Spike;
+import com.apcs.game.rooms.HealingRoom;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -129,6 +130,13 @@ public class PlayerHandler {
                     break;
                 }
             }
+        }
+    }
+
+    public void checkStandingHealth(){
+        if(collider.overlaps(HealingRoom.pool) && PlayerCombat.getHealth()<8 && HealingRoom.health > 0){
+            PlayerCombat.addHealth(1);
+            HealingRoom.health--;
         }
     }
 
