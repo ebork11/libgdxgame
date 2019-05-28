@@ -136,7 +136,7 @@ public class PlayerHandler {
     public void checkStandingHealth(){
         if(collider.overlaps(HealingRoom.pool) && PlayerCombat.getHealth()<8 && HealingRoom.health > 0){
             PlayerCombat.addHealth(1);
-            HealingRoom.health--;
+            HealingRoom.health--; // removes total
         }else if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat()<PlayerInventory.getArmor().getMaxHealth()){
             PlayerInventory.getArmor().repair(1);
             HealingRoom.health--;
