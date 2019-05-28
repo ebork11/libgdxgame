@@ -24,9 +24,13 @@ public class Armor extends Item {
         return health;
     }
 
+    public int getMaxHealth(){ return maxHealth;}
+
     public void damage(int dam) {
         health -= dam;
     }
+
+    public void repair(int amount){ health += amount;}
 
     public void setClass(String newClass) {
         myClass = newClass;
