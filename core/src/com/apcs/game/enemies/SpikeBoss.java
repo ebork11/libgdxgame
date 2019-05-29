@@ -54,28 +54,24 @@ public class SpikeBoss extends Entity {
         sy = Math.abs(sy);
 
         if (x > 0 && y > 0) {
-            left = false;
             if (collider.x + getTexture().getWidth() < 960) {
                 collider.x += sx;
             } if (collider.y < 610) {
                 collider.y += sy;
             }
         } else if (x < 0 && y > 0) {
-            left = true;
             if (collider.x > 40) {
                 collider.x -= sx;
             } if (collider.y < 610) {
                 collider.y += sy;
             }
         }  else if (x < 0 && y < 0) {
-            left = true;
             if (collider.x > 40) {
                 collider.x -= sx;
             } if (collider.y > 40) {
                 collider.y -= sy;
             }
         }  else if (x > 0 && y < 0) {
-            left = false;
             if (collider.x + getTexture().getWidth() < 960) {
                 collider.x += sx;
             } if (collider.y > 40) {
@@ -84,7 +80,7 @@ public class SpikeBoss extends Entity {
         }
     }
 
-    public Rectangle getCollider() {return col;}
+    public Rectangle getCollider() {return collider;}
 
     public void dropItems(){
         ArrayList<Item> droppable = new ArrayList<Item>();
@@ -97,7 +93,7 @@ public class SpikeBoss extends Entity {
 
         Item temp = droppable.get((int)(Math.random() * droppable.size()));
 
-        temp.getCollider().setPosition(col.x, col.y);
+        temp.getCollider().setPosition(collider.x, collider.y);
 
         RoomManager.getCurrentRoom().getGroundItems().add(temp);
     }
