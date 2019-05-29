@@ -468,10 +468,13 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	public void drawEnemProjectiles() {
+		float diagSpeed;
 
 		ArrayList<Projectile> proj = rm.getCurrentRoom().getEnemProj();
 
 		for (int cnt = proj.size() - 1; cnt > 0; cnt--) {
+			diagSpeed = (float)Math.sqrt(Math.pow(proj.get(cnt).getSpeed(), 2) / 2);
+
 			switch (proj.get(cnt).getDirection()) {
 				case "up":
 					proj.get(cnt).getCollider().y += proj.get(cnt).getSpeed();
@@ -484,6 +487,22 @@ public class GameMain extends ApplicationAdapter {
 					break;
 				case"right":
 					proj.get(cnt).getCollider().x += proj.get(cnt).getSpeed();
+					break;
+				case "ne":
+					proj.get(cnt).getCollider().x += diagSpeed;
+					proj.get(cnt).getCollider().y += diagSpeed;
+					break;
+				case "nw":
+					proj.get(cnt).getCollider().x -= diagSpeed;
+					proj.get(cnt).getCollider().y += diagSpeed;
+					break;
+				case "se":
+					proj.get(cnt).getCollider().x += diagSpeed;
+					proj.get(cnt).getCollider().y -= diagSpeed;
+					break;
+				case "sw":
+					proj.get(cnt).getCollider().x -= diagSpeed;
+					proj.get(cnt).getCollider().y -= diagSpeed;
 					break;
 				default:
 					break;
