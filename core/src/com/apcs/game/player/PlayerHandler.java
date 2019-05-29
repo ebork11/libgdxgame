@@ -17,7 +17,7 @@ public class PlayerHandler {
     // main com.apcs.game.player stuff
     private static Texture myTexture;
     private static Rectangle collider;
-    private static long lastHit;
+    private static long lastHit, lastHeal;
     private static long cooldown;
 
     // inventory stuff
@@ -37,6 +37,8 @@ public class PlayerHandler {
         combat = new PlayerCombat();
         lastHit = System.currentTimeMillis();
         cooldown = 1500;
+
+        lastHeal = System.currentTimeMillis();
     }
 
     /*
@@ -136,12 +138,16 @@ public class PlayerHandler {
     public void checkStandingHealth(){
         if (RoomManager.getCurrentRoom() instanceof HealingRoom) {
             if(collider.overlaps(HealingRoom.pool)&& HealingRoom.health > 0){
-                if (PlayerCombat.getHealth()< 8) {
-                    PlayerCombat.addHealth(1);
-                    HealingRoom.health--; // removes total
-                } else if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat()<PlayerInventory.getArmor().getMaxHealth()) {
-                    PlayerInventory.getArmor().repair(1);
-                    HealingRoom.health--;
+                if(System.currentTimeMillis() - lastHeal > 500) {
+                    if (PlayerCombat.getHealth()< 8) {
+                        PlayerCombat.addHealth(1);
+                        HealingRoom.health--; // removes total
+                        lastHeal = System.currentTimeMillis();
+                    } else if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat()<PlayerInventory.getArmor().getMaxHealth()) {
+                        PlayerInventory.getArmor().repair(1);
+                        HealingRoom.health--;
+                        lastHeal = System.currentTimeMillis();
+                    }
                 }
             }
 

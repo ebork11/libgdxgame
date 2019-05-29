@@ -41,7 +41,7 @@ public class Basic extends Entity {
     public void dropItems() {
         int ifDrop = (int)(Math.random() * 10) + 1;
 
-        if (ifDrop <= 4) {
+        if (ifDrop <= 2) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             if (droppable.size() == 0) {

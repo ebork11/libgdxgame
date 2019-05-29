@@ -15,8 +15,9 @@ public class SpikeBoss extends Entity {
     private int health, strength;
     private long inColl;
     private long cooldown;
-    private Rectangle col;
+    private Rectangle collider;
     private boolean isHit;
+    private float speed;
     private int x, y;
 
     SpikeBoss(){
@@ -31,14 +32,56 @@ public class SpikeBoss extends Entity {
         inColl = System.currentTimeMillis();
         cooldown = 1250;
 
+        speed = 15f;
         x = 500;
         y = 500;
 
-        col = new Rectangle(x, y, text.getWidth(),text.getHeight());
+        collider = new Rectangle(x, y, text.getWidth(),text.getHeight());
     }
 
     public void move(){
 
+    }
+
+    public void walk(float x, float y){
+
+        double ang1 = Math.atan(y / x);
+        double ang2 = Math.atan(x / y);
+        float sx = (float)(speed * (Math.sin(ang2)));
+        float sy = (float)(speed * (Math.sin(ang1)));
+
+        sx = Math.abs(sx);
+        sy = Math.abs(sy);
+
+        if (x > 0 && y > 0) {
+            left = false;
+            if (collider.x + getTexture().getWidth() < 960) {
+                collider.x += sx;
+            } if (collider.y < 610) {
+                collider.y += sy;
+            }
+        } else if (x < 0 && y > 0) {
+            left = true;
+            if (collider.x > 40) {
+                collider.x -= sx;
+            } if (collider.y < 610) {
+                collider.y += sy;
+            }
+        }  else if (x < 0 && y < 0) {
+            left = true;
+            if (collider.x > 40) {
+                collider.x -= sx;
+            } if (collider.y > 40) {
+                collider.y -= sy;
+            }
+        }  else if (x > 0 && y < 0) {
+            left = false;
+            if (collider.x + getTexture().getWidth() < 960) {
+                collider.x += sx;
+            } if (collider.y > 40) {
+                collider.y -= sy;
+            }
+        }
     }
 
     public Rectangle getCollider() {return col;}
