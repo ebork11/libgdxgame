@@ -27,7 +27,7 @@ public class HealingRoom extends Room {
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
-        health = 8;
+        health = 16;
 
         pool = new Rectangle(297, 105, 430,490);
 

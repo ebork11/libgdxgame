@@ -181,7 +181,7 @@ public class PlayerCombat {
                         } else {
                             proj.add(new Projectile(PlayerHandler.getCollider().x + 10, PlayerHandler.getCollider().y + 35, temp.getDamage(), temp.getSpeed(),  "up", temp.getRange(), "arrow"));
                         }
-                    }
+                   }
                 } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                     coll.x = PlayerHandler.getCollider().x;
                     coll.y = PlayerHandler.getCollider().y - (d.getHeight() / 1.4f);
