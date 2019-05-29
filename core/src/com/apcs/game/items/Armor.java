@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Armor extends Item {
 
-    private String myClass;
+    protected String myClass;
     private Texture icon;
-    private int maxHealth, health;
+    protected int maxHealth, health;
 
     public Armor() {
         icon = new Texture("items/armor.png");
@@ -23,6 +23,10 @@ public class Armor extends Item {
     public int getStat() {
         return health;
     }
+
+    protected void setMaxHealth(int max){ maxHealth = max;}
+
+    protected void setHealth(int hp){ health = hp;}
 
     public int getMaxHealth(){ return maxHealth;}
 

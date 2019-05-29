@@ -80,6 +80,12 @@ public class PlayerInventory {
             } else if (it.getItemClass().equalsIgnoreCase("armor")) {
                 if (it instanceof Armor) {
                     PlayerAnimation.changeShirt("white");
+                }else if(it instanceof ArmorT2){
+                    PlayerAnimation.changeShirt("white");
+                }else if(it instanceof ArmorT3) {
+                    PlayerAnimation.changeShirt("white");
+                }else if(it instanceof ArmorT4) {
+                    PlayerAnimation.changeShirt("white");
                 }
                 if (armor == null) {
                     armor = (Armor)it;
