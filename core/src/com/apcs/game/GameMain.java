@@ -1,6 +1,7 @@
 package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.enemies.SpikeBoss;
 import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.Wand;
@@ -193,7 +194,9 @@ public class GameMain extends ApplicationAdapter {
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
 		player.checkForPickup();
-		player.checkStandingHealth();
+		if (HealingRoom.health != 0) {
+			player.checkStandingHealth();
+		}
 		player.getCombat().checkAttack();
 	}
 
@@ -369,6 +372,11 @@ public class GameMain extends ApplicationAdapter {
 
 				if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
 					entities.get(loop).attack();
+				} else {
+					if (entities.get(loop) instanceof SpikeBoss) {
+						SpikeBoss sb = (SpikeBoss)(entities.get(loop));
+						sb.needToAttack = false;
+					}
 				}
 			}
         }

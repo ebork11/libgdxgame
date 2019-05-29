@@ -135,7 +135,7 @@ public class PlayerHandler {
         }
     }
 
-    public void checkStandingHealth(){
+    public void checkStandingHealth() {
         if (RoomManager.getCurrentRoom() instanceof HealingRoom) {
             if(collider.overlaps(HealingRoom.pool)&& HealingRoom.health > 0){
                 if(System.currentTimeMillis() - lastHeal > 500) {

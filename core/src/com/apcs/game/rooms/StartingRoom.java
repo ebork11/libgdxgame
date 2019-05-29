@@ -1,6 +1,7 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.enemies.SpikeBoss;
 import com.apcs.game.enemies.Wizard;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.projectiles.Projectile;
@@ -25,6 +26,8 @@ public class StartingRoom extends Room {
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
+
+        entities.add(new SpikeBoss());
     }
 
     public Texture getFloor() {

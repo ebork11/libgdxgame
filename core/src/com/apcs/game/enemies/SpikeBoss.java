@@ -1,6 +1,8 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
+import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,25 +14,28 @@ public class SpikeBoss extends Entity {
     private Texture text;
 
     // combat stuff
-    private int health, strength;
-    private long inColl;
-    private long cooldown;
+    private int strength;
+    private long inColl, moveCooldown, lastMove, attackCooldown;
     private Rectangle collider;
     private boolean isHit;
-    private float speed;
+    public static boolean needToAttack;
+    private float speed, moveX, moveY;
     private int x, y;
 
-    SpikeBoss(){
+    public SpikeBoss(){
         super();
         // basics
         text = new Texture("clark.png");
 
         // combat stuff
         strength = 2;
-        health = 50;
+        setHealth(50);
         isHit = false;
+        needToAttack = false;
         inColl = System.currentTimeMillis();
-        cooldown = 1250;
+        moveCooldown = 10000;
+        attackCooldown = 1000;
+        lastMove = System.currentTimeMillis();
 
         speed = 15f;
         x = 500;
@@ -40,51 +45,32 @@ public class SpikeBoss extends Entity {
     }
 
     public void move(){
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 500) {
+            if (System.currentTimeMillis() - lastMove > moveCooldown) {
+                moveX = PlayerHandler.getCollider().x;
+                moveY = PlayerHandler.getCollider().y;
 
-    }
+                collider.x = moveX;
+                collider.y = moveY;
 
-    public void walk(float x, float y){
-
-        double ang1 = Math.atan(y / x);
-        double ang2 = Math.atan(x / y);
-        float sx = (float)(speed * (Math.sin(ang2)));
-        float sy = (float)(speed * (Math.sin(ang1)));
-
-        sx = Math.abs(sx);
-        sy = Math.abs(sy);
-
-        if (x > 0 && y > 0) {
-            left = false;
-            if (collider.x + getTexture().getWidth() < 960) {
-                collider.x += sx;
-            } if (collider.y < 610) {
-                collider.y += sy;
-            }
-        } else if (x < 0 && y > 0) {
-            left = true;
-            if (collider.x > 40) {
-                collider.x -= sx;
-            } if (collider.y < 610) {
-                collider.y += sy;
-            }
-        }  else if (x < 0 && y < 0) {
-            left = true;
-            if (collider.x > 40) {
-                collider.x -= sx;
-            } if (collider.y > 40) {
-                collider.y -= sy;
-            }
-        }  else if (x > 0 && y < 0) {
-            left = false;
-            if (collider.x + getTexture().getWidth() < 960) {
-                collider.x += sx;
-            } if (collider.y > 40) {
-                collider.y -= sy;
+                lastMove = System.currentTimeMillis();
+                inColl = System.currentTimeMillis();
+                needToAttack = true;
             }
         }
     }
 
-    public Rectangle getCollider() {return col;}
+    public void attack() {
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 500) {
+            if (needToAttack && System.currentTimeMillis() - inColl > attackCooldown) {
+                inColl = System.currentTimeMillis();
+                PlayerHandler.getCombat().takeDamage(strength);
+                needToAttack = false;
+            }
+        }
+    }
+
+    public Rectangle getCollider() {return collider;}
 
     public void dropItems(){
         ArrayList<Item> droppable = new ArrayList<Item>();
@@ -97,7 +83,7 @@ public class SpikeBoss extends Entity {
 
         Item temp = droppable.get((int)(Math.random() * droppable.size()));
 
-        temp.getCollider().setPosition(col.x, col.y);
+        temp.getCollider().setPosition(collider.x, collider.y);
 
         RoomManager.getCurrentRoom().getGroundItems().add(temp);
     }
