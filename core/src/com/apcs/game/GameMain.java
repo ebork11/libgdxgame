@@ -46,6 +46,7 @@ public class GameMain extends ApplicationAdapter {
 
 	//drawing weapon during combat
 	public static boolean attacking = false, hit = false;
+	private boolean fullscreen;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
@@ -70,6 +71,7 @@ public class GameMain extends ApplicationAdapter {
 		menu = true;
 		helpMenu = false;
 		pause = false;
+		fullscreen = false;
 		overItem = false;
 		invSelectTex = new Texture("items/outlineselection.png");
 
@@ -108,11 +110,27 @@ public class GameMain extends ApplicationAdapter {
 				int mouseY = Math.abs(720 - Gdx.input.getY());
 
 				batch.draw(mm.getQuitButton(), 500, 350);
+				if(fullscreen){
+					batch.draw(mm.getQuitButtonDown(), 850, 0);
+				}else{
+					batch.draw(mm.getQuitButton(), 850, 0);
+				}
 
 				if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 350 && mouseY < 350 + mm.getQuitButton().getHeight()) {
 					batch.draw(mm.getQuitButtonDown(), 500, 350);
 					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 						Gdx.app.exit();
+					}
+				}
+				if (Gdx.input.getX() > 850 && Gdx.input.getX() < 850 + mm.getQuitButton().getWidth() && mouseY > 0 && mouseY < 0 + mm.getQuitButton().getHeight()) {
+					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+						if(fullscreen){
+							Gdx.graphics.setWindowedMode(1280, 720);
+							fullscreen = false;
+						}else{
+							Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+							fullscreen = true;
+						}
 					}
 				}
 			}
@@ -130,6 +148,23 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(mm.getQuitButton(), 50, 50);
 			batch.draw(mm.getTitleAnim(), 50, 550);
 		} else {
+			int mouseY = Math.abs(720 - Gdx.input.getY());
+			if(fullscreen){
+				batch.draw(mm.getQuitButtonDown(), 850, 0);
+			}else{
+				batch.draw(mm.getQuitButton(), 850, 0);
+			}
+			if (Gdx.input.getX() > 850 && Gdx.input.getX() < 850 + mm.getQuitButton().getWidth() && mouseY > 0 && mouseY < 0 + mm.getQuitButton().getHeight()) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					if (fullscreen) {
+						Gdx.graphics.setWindowedMode(1280, 720);
+						fullscreen = false;
+					} else {
+						Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+						fullscreen = true;
+					}
+				}
+			}
 			batch.draw(mm.getBackButton(), 500, 50);
 		}
 
