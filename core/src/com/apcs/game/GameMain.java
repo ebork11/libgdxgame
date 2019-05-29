@@ -134,6 +134,8 @@ public class GameMain extends ApplicationAdapter {
 
 		int mouseY = Math.abs(720 - Gdx.input.getY());
 
+		//System.out.println(mouseY);
+
 		if (!helpMenu) {
 			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 398 && mouseY < 400 + mm.getPlayButton().getHeight()) {
 				batch.draw(mm.getPlayButtonDown(), 50, 400);

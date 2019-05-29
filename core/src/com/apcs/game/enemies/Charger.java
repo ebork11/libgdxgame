@@ -169,7 +169,7 @@ public class Charger extends Entity {
     public void dropItems() {
         int ifDrop = (int)(Math.random() * 10) + 1;
 
-        if (ifDrop <= 5) {
+        if (ifDrop <= 4) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             if (droppable.size() == 0) {

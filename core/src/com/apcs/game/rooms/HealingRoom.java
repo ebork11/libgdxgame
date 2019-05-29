@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class HealingRoom extends Room {
 
-    private Texture myFloor, healthPool;
+    private Texture myFloor;
     public static Rectangle pool;
     public static int health;
     private ArrayList<Door> doors;
@@ -27,12 +27,11 @@ public class HealingRoom extends Room {
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
-        health = 16;
+        health = 8;
 
-        healthPool = new Texture("objects/pool.png");
-        pool = new Rectangle(300, 200, healthPool.getWidth(),healthPool.getHeight());
+        pool = new Rectangle(297, 105, 430,490);
 
-        myFloor = new Texture("rooms/backgroundHealth.png"); // sets texture
+        myFloor = new Texture("rooms/healingroom.png"); // sets texture
     }
 
     public Texture getFloor() {

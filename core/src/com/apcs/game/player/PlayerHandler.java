@@ -134,12 +134,16 @@ public class PlayerHandler {
     }
 
     public void checkStandingHealth(){
-        if(collider.overlaps(HealingRoom.pool) && PlayerCombat.getHealth()<8 && HealingRoom.health > 0){
-            PlayerCombat.addHealth(1);
-            HealingRoom.health--; // removes total
-        }else if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat()<PlayerInventory.getArmor().getMaxHealth()){
-            PlayerInventory.getArmor().repair(1);
-            HealingRoom.health--;
+        if (RoomManager.getCurrentRoom() instanceof HealingRoom) {
+            if(collider.overlaps(HealingRoom.pool)&& HealingRoom.health > 0 && PlayerCombat.getHealth()< 8 ){
+                if (PlayerCombat.getHealth()< 8) {
+                    PlayerCombat.addHealth(1);
+                    HealingRoom.health--; // removes total
+                } else if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat()<PlayerInventory.getArmor().getMaxHealth()) {
+                    PlayerInventory.getArmor().repair(1);
+                    HealingRoom.health--;
+                }
+            }
         }
     }
 
