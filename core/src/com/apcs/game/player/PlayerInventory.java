@@ -78,6 +78,9 @@ public class PlayerInventory {
                     return true;
                 }
             } else if (it.getItemClass().equalsIgnoreCase("armor")) {
+                if (it instanceof Armor) {
+                    PlayerAnimation.changeShirt("white");
+                }
                 if (armor == null) {
                     armor = (Armor)it;
                     GameMain.getRm().getCurrentRoom().getGroundItems().remove(it);

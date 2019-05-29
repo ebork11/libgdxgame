@@ -4,7 +4,7 @@ import com.apcs.game.GameMain;
 import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerAnimation {
-    private Texture walk1, walk2, walk3, walk4, walk5, walk6, walk7, walk8;
+    private static Texture walk1, walk2, walk3, walk4, walk5, walk6, walk7, walk8;
     private Texture hit1, hit2, hit3, hit4, hit5, hit6, hit7, hit8;
 
     private long frame, start;
@@ -30,6 +30,33 @@ public class PlayerAnimation {
 
         frame = 50;
         start = System.currentTimeMillis();
+    }
+
+    public static void changeShirt(String color) {
+        switch(color) {
+            case "default":
+                walk1 = new Texture("player/default/defaultwalk1.png");
+                walk2 = new Texture("player/default/defaultwalk2.png");
+                walk3 = new Texture("player/default/defaultwalk3.png");
+                walk4 = new Texture("player/default/defaultwalk4.png");
+                walk5 = new Texture("player/default/defaultwalk5.png");
+                walk6 = new Texture("player/default/defaultwalk6.png");
+                walk7 = new Texture("player/default/defaultwalk7.png");
+                walk8 = new Texture("player/default/defaultwalk8.png");
+                break;
+            case "white":
+                walk1 = new Texture("player/armor1/armor1walk1.png");
+                walk2 = new Texture("player/armor1/armor1walk2.png");
+                walk3 = new Texture("player/armor1/armor1walk3.png");
+                walk4 = new Texture("player/armor1/armor1walk4.png");
+                walk5 = new Texture("player/armor1/armor1walk5.png");
+                walk6 = new Texture("player/armor1/armor1walk6.png");
+                walk7 = new Texture("player/armor1/armor1walk7.png");
+                walk8 = new Texture("player/armor1/armor1walk8.png");
+                break;
+            default:
+                break;
+        }
     }
 
     public Texture getFrameTex() {

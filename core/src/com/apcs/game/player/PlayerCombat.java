@@ -37,6 +37,8 @@ public class PlayerCombat {
 
         if (PlayerInventory.getArmor() != null && PlayerInventory.getArmor().getStat() <= 0) {
             PlayerInventory.getArmor().breakArmor();
+
+            PlayerAnimation.changeShirt("default");
         }
       
         if (health <= 0) {
