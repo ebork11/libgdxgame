@@ -135,7 +135,7 @@ public class PlayerHandler {
 
     public void checkStandingHealth(){
         if (RoomManager.getCurrentRoom() instanceof HealingRoom) {
-            if(collider.overlaps(HealingRoom.pool)&& HealingRoom.health > 0 && PlayerCombat.getHealth()< 8 ){
+            if(collider.overlaps(HealingRoom.pool)&& HealingRoom.health > 0){
                 if (PlayerCombat.getHealth()< 8) {
                     PlayerCombat.addHealth(1);
                     HealingRoom.health--; // removes total
@@ -143,6 +143,10 @@ public class PlayerHandler {
                     PlayerInventory.getArmor().repair(1);
                     HealingRoom.health--;
                 }
+            }
+
+            if (HealingRoom.health == 0) {
+                HealingRoom.setFloor(new Texture("rooms/healingroomunsat.png"));
             }
         }
     }

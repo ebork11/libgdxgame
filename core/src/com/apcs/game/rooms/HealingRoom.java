@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class HealingRoom extends Room {
 
-    private Texture myFloor;
+    private static Texture myFloor;
     public static Rectangle pool;
     public static int health;
     private ArrayList<Door> doors;
@@ -36,6 +36,10 @@ public class HealingRoom extends Room {
 
     public Texture getFloor() {
         return myFloor;
+    }
+
+    public static void setFloor(Texture tex) {
+        myFloor = tex;
     }
 
     public ArrayList<Door> getDoors() {

@@ -47,7 +47,6 @@ public class Basic extends Entity {
             if (droppable.size() == 0) {
                 droppable.add(new Armor());
                 droppable.add(new HealthPotion());
-                droppable.add(new HealthPotion());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));
