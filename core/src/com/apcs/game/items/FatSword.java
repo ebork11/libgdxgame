@@ -3,10 +3,10 @@ package com.apcs.game.items;
 import com.badlogic.gdx.graphics.Texture;
 
 public class FatSword extends Item {
-    private Texture texU, texD, texR, texL, icon;
-    private String myClass;
+    protected Texture texU, texD, texR, texL, icon;
+    protected String myClass;
 
-    private int damage;
+    protected int damage;
 
     public FatSword() {
         super();
