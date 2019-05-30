@@ -67,7 +67,7 @@ public class Wizard extends Entity {
 
     public void move() {
 
-        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 500) {
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 700) {
             if (System.currentTimeMillis() - moveTimer > 2000) {
                 moving = true;
                 moveTimer = System.currentTimeMillis();

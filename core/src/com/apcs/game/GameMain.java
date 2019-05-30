@@ -38,6 +38,7 @@ public class GameMain extends ApplicationAdapter {
 	private PlayerHandler player;
 	private static RoomManager rm;
 	private PlayerAnimation pa;
+	private ArrayList<Texture> blackFade;
 
 
 	boolean menu, pause, helpMenu;
@@ -46,7 +47,7 @@ public class GameMain extends ApplicationAdapter {
 
 	//drawing weapon during combat
 	public static boolean attacking = false, hit = false;
-	private boolean fullscreen;
+	private boolean fullscreen, roomTransition, endFade;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
@@ -61,12 +62,15 @@ public class GameMain extends ApplicationAdapter {
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
+		blackFade = new ArrayList<Texture>();
 
 		mm = new MenuManager();
 		player = new PlayerHandler();
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
+		endFade = false;
+		roomTransition = false;
 		enterHealing = false;
 		menu = true;
 		helpMenu = false;
@@ -219,6 +223,43 @@ public class GameMain extends ApplicationAdapter {
 		if (overItem) {
 			font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
 		}
+
+		if (roomTransition) {
+
+			if (!endFade) {
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+				blackFade.add(new Texture("rooms/black.png"));
+			} else {
+				if (blackFade.size() > 0)
+					blackFade.remove(0);
+			}
+			if (blackFade.size() >= 10) {
+				endFade = true;
+			}
+
+			for (int cnt = 0; cnt < blackFade.size(); cnt++) {
+				batch.draw(blackFade.get(cnt), 0, 0);
+			}
+
+			if (blackFade.size() == 0) {
+				roomTransition = false;
+				endFade = false;
+			}
+		}
+
 		drawInventory(); // drawing right side stuff
 		drawMap();
 	}
@@ -364,7 +405,7 @@ public class GameMain extends ApplicationAdapter {
 						default:
 							break;
 					}
-
+					roomTransition = true;
 					enteredNewRoom = System.currentTimeMillis();
 
 				}

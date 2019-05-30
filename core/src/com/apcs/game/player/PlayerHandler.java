@@ -85,34 +85,36 @@ public class PlayerHandler {
         /*
             Movement
          */
-        if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 720) { // if the w key is pressed
-            if (Gdx.input.isKeyPressed(Input.Keys.D) && collider.x + collider.getWidth() + (myTexture.getWidth() / 4) < 980) {
-                collider.x += diagSpeed;
-                collider.y += diagSpeed;
-                return;
-            } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x - (myTexture.getWidth() / 4) > 20) {
-                collider.x -= diagSpeed;
-                collider.y += diagSpeed;
-                return;
-            }
+        if (System.currentTimeMillis() - GameMain.enteredNewRoom > 200) {
+            if (Gdx.input.isKeyPressed(Input.Keys.W) && (collider.y + myTexture.getHeight()) < 720) { // if the w key is pressed
+                if (Gdx.input.isKeyPressed(Input.Keys.D) && collider.x + collider.getWidth() + (myTexture.getWidth() / 4) < 980) {
+                    collider.x += diagSpeed;
+                    collider.y += diagSpeed;
+                    return;
+                } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x - (myTexture.getWidth() / 4) > 20) {
+                    collider.x -= diagSpeed;
+                    collider.y += diagSpeed;
+                    return;
+                }
 
-            collider.y += speed; // move the collider up
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S) && collider.y > 40) { // if the s key is pressed
-            if (Gdx.input.isKeyPressed(Input.Keys.D) && collider.x + collider.getWidth() + (myTexture.getWidth() / 4) < 980) {
-                collider.x += diagSpeed;
-                collider.y -= diagSpeed;
-                return;
-            } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x - (myTexture.getWidth() / 4) > 20) {
-                collider.x -= diagSpeed;
-                collider.y -= diagSpeed;
-                return;
-            }
+                collider.y += speed; // move the collider up
+            } else if (Gdx.input.isKeyPressed(Input.Keys.S) && collider.y > 40) { // if the s key is pressed
+                if (Gdx.input.isKeyPressed(Input.Keys.D) && collider.x + collider.getWidth() + (myTexture.getWidth() / 4) < 980) {
+                    collider.x += diagSpeed;
+                    collider.y -= diagSpeed;
+                    return;
+                } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x - (myTexture.getWidth() / 4) > 20) {
+                    collider.x -= diagSpeed;
+                    collider.y -= diagSpeed;
+                    return;
+                }
 
-            collider.y -= speed; // move the collider down
-        } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x - (myTexture.getWidth() / 4) > 20) { // if the a key is pressed
-            collider.x -= speed; // move the collider left
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D) && collider.x + collider.getWidth() + (myTexture.getWidth() / 4) < 980) { // if the d key is pressed
-            collider.x += speed; // move the collider right
+                collider.y -= speed; // move the collider down
+            } else if (Gdx.input.isKeyPressed(Input.Keys.A) && collider.x - (myTexture.getWidth() / 4) > 20) { // if the a key is pressed
+                collider.x -= speed; // move the collider left
+            } else if (Gdx.input.isKeyPressed(Input.Keys.D) && collider.x + collider.getWidth() + (myTexture.getWidth() / 4) < 980) { // if the d key is pressed
+                collider.x += speed; // move the collider right
+            }
         }
     }
 
