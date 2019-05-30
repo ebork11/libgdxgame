@@ -121,11 +121,11 @@ public class SpikeBoss extends Entity {
     public void dropItems(){
         ArrayList<Item> droppable = new ArrayList<Item>();
 
-        droppable.add(new Armor());
-        droppable.add(new Dagger());
-        droppable.add(new Bow());
-        droppable.add(new FatSword());
-        droppable.add(new Wand());
+        droppable.add(new Staff());
+        //droppable.add(new Dagger());
+        //droppable.add(new Bow());
+        //droppable.add(new FatSword());
+        //droppable.add(new Wand());
 
         Item temp = droppable.get((int)(Math.random() * droppable.size()));
 
