@@ -2,6 +2,7 @@ package com.apcs.game.enemies;
 
 import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
+import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,12 +16,12 @@ public class SpikeBoss extends Entity {
 
     // combat stuff
     private int strength;
-    private long inColl, moveCooldown, lastMove, attackCooldown;
+    private long inColl, moveCooldown, lastMove, attackCooldown, shootTimer;
     private Rectangle collider;
     private boolean isHit;
     public static boolean needToAttack;
     private float speed, moveX, moveY;
-    private int x, y;
+    private int x, y, shot;
 
     public SpikeBoss(){
         super();
@@ -32,10 +33,12 @@ public class SpikeBoss extends Entity {
         setHealth(50);
         isHit = false;
         needToAttack = false;
+        shot = 1;
         inColl = System.currentTimeMillis();
         moveCooldown = 10000;
         attackCooldown = 1000;
         lastMove = System.currentTimeMillis();
+        shootTimer = System.currentTimeMillis();
 
         speed = 15f;
         x = 500;
@@ -57,6 +60,10 @@ public class SpikeBoss extends Entity {
                 inColl = System.currentTimeMillis();
                 needToAttack = true;
             }
+
+            if (!needToAttack) {
+                shootProjectiles();
+            }
         }
     }
 
@@ -70,16 +77,55 @@ public class SpikeBoss extends Entity {
         }
     }
 
+    public void shootProjectiles() {
+        if (System.currentTimeMillis() - shootTimer > 450) { // shoot
+            switch (shot) {
+                case 1:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "up", 400, "rock"));
+                    break;
+                case 2:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "ne", 500, "rock"));
+                    break;
+                case 3:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "right", 400, "rock"));
+                    break;
+                case 4:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "se", 500, "rock"));
+                    break;
+                case 5:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "down", 400, "rock"));
+                    break;
+                case 6:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "sw", 500, "rock"));
+                    break;
+                case 7:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "left", 400, "rock"));
+                    break;
+                case 8:
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "nw", 500, "rock"));
+                    break;
+                default:
+                    break;
+            }
+            shootTimer = System.currentTimeMillis();
+
+            if (shot < 8)
+                shot++;
+            else
+                shot = 1;
+        }
+    }
+
     public Rectangle getCollider() {return collider;}
 
     public void dropItems(){
         ArrayList<Item> droppable = new ArrayList<Item>();
 
-        droppable.add(new Armor());
-        droppable.add(new Dagger());
-        droppable.add(new Bow());
-        droppable.add(new FatSword());
-        droppable.add(new Wand());
+        droppable.add(new Staff());
+        //droppable.add(new Dagger());
+        //droppable.add(new Bow());
+        //droppable.add(new FatSword());
+        //droppable.add(new Wand());
 
         Item temp = droppable.get((int)(Math.random() * droppable.size()));
 
