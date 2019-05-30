@@ -5,6 +5,8 @@ import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 
 public class Charger extends Entity {
 
+    private Sound hurt;
     EnemyAnimation idleAnimation, chargeAnimationR, chargeAnimationL;
     Rectangle collider;
     private int moveCooldown, chargeTime, currentTex;
@@ -24,6 +27,9 @@ public class Charger extends Entity {
 
     public Charger(){
         super();
+
+        hurt = Gdx.audio.newSound(Gdx.files.internal("sounds/chargerhit.mp3"));
+        setHurt(hurt);
 
         isHit = false;
 

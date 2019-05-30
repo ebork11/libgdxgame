@@ -7,6 +7,8 @@ import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.Item;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -18,7 +20,7 @@ public abstract class Entity {
     private Texture text;
 
     //movement
-
+    private Sound hurt;
 
     // combat stuff
     private int health, strength;
@@ -30,11 +32,17 @@ public abstract class Entity {
         // basics
         text = new Texture("clark.png");
 
+        hurt = Gdx.audio.newSound(Gdx.files.internal("sounds/smack.mp3"));
+
         // combat stuff
         strength = 1;
         health = 10;
         inColl = System.currentTimeMillis();
         cooldown = 1250;
+    }
+
+    public void setHurt(Sound temp) {
+        hurt = temp;
     }
 
     public abstract Rectangle getCollider();
@@ -60,6 +68,7 @@ public abstract class Entity {
     }
 
     public void hit(int damage)  {
+        hurt.play(1.0f);
         nowHit();
         health -= damage;
         if(health <= 0){

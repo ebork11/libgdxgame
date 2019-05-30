@@ -7,6 +7,8 @@ import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 
 public class Wizard extends Entity {
 
+    private Sound hurt, spell;
     private EnemyAnimation animation;
     private Rectangle collider;
     private float speed, moveX, moveY, targetX, targetY;
@@ -24,7 +27,9 @@ public class Wizard extends Entity {
     public Wizard() {
         super();
 
-
+        hurt = Gdx.audio.newSound(Gdx.files.internal("sounds/wizardhit.mp3"));
+        spell = Gdx.audio.newSound(Gdx.files.internal("sounds/shootspell.mp3"));
+        setHurt(hurt);
         speed = 4f;
         setHealth(8);
         isHit = false;
@@ -125,6 +130,7 @@ public class Wizard extends Entity {
                 if (System.currentTimeMillis() - shootCooldown > 700) {
                     RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + getTexture().getWidth() / 2, collider.y + getTexture().getHeight() / 2, 1, 10, fireDir, 500, "spell"));
                     shootCooldown = System.currentTimeMillis();
+                    spell.play(1.0f);
                 }
             }
         }

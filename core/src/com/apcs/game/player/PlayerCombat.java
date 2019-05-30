@@ -6,6 +6,7 @@ import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -13,12 +14,14 @@ import java.util.ArrayList;
 
 public class PlayerCombat {
     private static int health;
-
+    private static Sound hurt, heal;
     private static Texture heart, halfHeart, armorHeart, armorHalfHeart;
 
     public PlayerCombat() {
         health = 8;
 
+        hurt = Gdx.audio.newSound(Gdx.files.internal("sounds/ouch.mp3"));
+        heal = Gdx.audio.newSound(Gdx.files.internal("sounds/heal.mp3"));
         heart = new Texture("gui/fullheart.png");
         halfHeart = new Texture("gui/halfheart.png");
 
@@ -40,6 +43,7 @@ public class PlayerCombat {
 
             PlayerAnimation.changeShirt("default");
         }
+        hurt.play(1.0f);
       
         if (health <= 0) {
             Gdx.app.exit();
@@ -208,6 +212,7 @@ public class PlayerCombat {
     }
 
     public static void addHealth(int num) {
+        heal.play(1.0f);
         health += num;
     }
 
