@@ -17,13 +17,26 @@ public class EnemyAnimation {
     }
 
     public Texture getTexture() {
-        if (System.currentTimeMillis() - start > frame * 8) {
+        if (System.currentTimeMillis() - start > frame * anim.size()) {
             start = System.currentTimeMillis();
         }
 
         for (int cnt = 1; cnt <= anim.size(); cnt++) {
             if (System.currentTimeMillis() - start < frame * cnt) {
                 return anim.get(cnt - 1);
+            }
+        }
+        return anim.get(0);
+    }
+
+    public Texture getTextureReverse() {
+        if (System.currentTimeMillis() - start > frame * anim.size()) {
+            start = System.currentTimeMillis();
+        }
+
+        for (int cnt = 1; cnt <= anim.size(); cnt++) {
+            if (System.currentTimeMillis() - start < frame * cnt) {
+                return anim.get(anim.size() - cnt);
             }
         }
         return anim.get(0);
