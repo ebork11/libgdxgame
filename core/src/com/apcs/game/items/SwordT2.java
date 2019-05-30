@@ -3,8 +3,8 @@ package com.apcs.game.items;
 import com.badlogic.gdx.graphics.Texture;
 
 public class SwordT2 extends FatSword {
-    
-    SwordT2(){
+
+    public SwordT2(){
         super();
 
         myClass = "";
