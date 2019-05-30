@@ -26,7 +26,7 @@ public class Wizard extends Entity {
 
 
         speed = 4f;
-
+        setHealth(8);
         isHit = false;
         fireDir = "";
         moving = false;
