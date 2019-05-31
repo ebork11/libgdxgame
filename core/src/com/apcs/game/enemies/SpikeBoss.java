@@ -37,8 +37,8 @@ public class SpikeBoss extends Entity {
         needToAttack = false;
         shot = 1;
         inColl = System.currentTimeMillis();
-        moveCooldown = 10000;
-        attackCooldown = 150;
+        moveCooldown = 5000;
+        attackCooldown = 400;
         lastMove = System.currentTimeMillis();
         shootTimer = System.currentTimeMillis();
 
@@ -60,7 +60,7 @@ public class SpikeBoss extends Entity {
         hit.add(new Texture("enemies/spikeboss/boss4.png"));
         hit.add(new Texture("enemies/spikeboss/boss5.png"));
 
-        animation = new EnemyAnimation(anim, hit);
+        animation = new EnemyAnimation(anim, hit, 175);
 
         collider = new Rectangle(x, y, text.getWidth(),text.getHeight());
     }
@@ -165,7 +165,7 @@ public class SpikeBoss extends Entity {
     }
 
     public Texture getTexture() {
-        if (System.currentTimeMillis() - lastMove > moveCooldown - 100) {
+        if (System.currentTimeMillis() - lastMove > moveCooldown - 150) {
             return animation.getTexture();
         } else if (needToAttack) {
             return animation.getTextureReverse();
