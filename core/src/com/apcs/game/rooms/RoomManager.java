@@ -11,13 +11,14 @@ public class RoomManager {
     private LevelGeneration lg;
     private static Room currentRoom;
 
-    private Texture uncleared, cleared, playerloc;
+    private Texture uncleared, cleared, playerloc, healthroom;
 
     public RoomManager() {
         lg = new LevelGeneration();
 
         uncleared = new Texture("rooms/unclearedroom.png");
         cleared = new Texture("rooms/clearedroom.png");
+        healthroom = new Texture("rooms/healingRoomBox.png");
         playerloc = new Texture("rooms/playerloc.png");
     }
 
@@ -31,6 +32,8 @@ public class RoomManager {
     public static Room getCurrentRoom() {
         return currentRoom;
     }
+
+    public Texture getHealthroom(){return healthroom;}
 
     public Texture getCleared() {
         return cleared;

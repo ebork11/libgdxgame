@@ -291,6 +291,8 @@ public class GameMain extends ApplicationAdapter {
 				if (LevelGeneration.getLevel()[cnt][cnt2] != null) {
 					if (LevelGeneration.getLevel()[cnt][cnt2].getEntities().size() > 0 || (LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && !enterHealing)) {
 						batch.draw(rm.getUncleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+					} else if(enterHealing && LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom){
+						batch.draw(rm.getHealthroom(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
 					} else {
 						batch.draw(rm.getCleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
 					}
