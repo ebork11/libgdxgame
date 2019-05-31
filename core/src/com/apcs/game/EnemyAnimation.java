@@ -16,6 +16,14 @@ public class EnemyAnimation {
         hit = hitTextures;
     }
 
+    public EnemyAnimation(ArrayList<Texture> animTextures, ArrayList<Texture> hitTextures, long fr) {
+        frame = fr;
+        start = System.currentTimeMillis();
+
+        anim = animTextures;
+        hit = hitTextures;
+    }
+
     public Texture getTexture() {
         if (System.currentTimeMillis() - start > frame * anim.size()) {
             start = System.currentTimeMillis();

@@ -12,7 +12,7 @@ public class Staff extends Wand {
 
         damage = 2;
 
-        shots = 1;
+        shots = 2;
 
         speed = 9;
 
