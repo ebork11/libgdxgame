@@ -1,5 +1,6 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.items.*;
 import com.apcs.game.items.projectiles.Projectile;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class SpikeBoss extends Entity {
 
     private Texture text;
+    private EnemyAnimation animation;
 
     // combat stuff
     private int strength;
@@ -26,7 +28,7 @@ public class SpikeBoss extends Entity {
     public SpikeBoss(){
         super();
         // basics
-        text = new Texture("clark.png");
+        text = new Texture("enemies/spikeboss/boss1.png");
 
         // combat stuff
         strength = 2;
@@ -36,13 +38,29 @@ public class SpikeBoss extends Entity {
         shot = 1;
         inColl = System.currentTimeMillis();
         moveCooldown = 10000;
-        attackCooldown = 1000;
+        attackCooldown = 150;
         lastMove = System.currentTimeMillis();
         shootTimer = System.currentTimeMillis();
 
         speed = 15f;
         x = 500;
         y = 500;
+
+        ArrayList<Texture> anim = new ArrayList<Texture>();
+        anim.add(new Texture("enemies/spikeboss/boss1.png"));
+        anim.add(new Texture("enemies/spikeboss/boss2.png"));
+        anim.add(new Texture("enemies/spikeboss/boss3.png"));
+        anim.add(new Texture("enemies/spikeboss/boss4.png"));
+        anim.add(new Texture("enemies/spikeboss/boss5.png"));
+
+        ArrayList<Texture> hit = new ArrayList<Texture>();
+        hit.add(new Texture("enemies/spikeboss/boss1.png"));
+        hit.add(new Texture("enemies/spikeboss/boss2.png"));
+        hit.add(new Texture("enemies/spikeboss/boss3.png"));
+        hit.add(new Texture("enemies/spikeboss/boss4.png"));
+        hit.add(new Texture("enemies/spikeboss/boss5.png"));
+
+        animation = new EnemyAnimation(anim, hit);
 
         collider = new Rectangle(x, y, text.getWidth(),text.getHeight());
     }
@@ -78,31 +96,31 @@ public class SpikeBoss extends Entity {
     }
 
     public void shootProjectiles() {
-        if (System.currentTimeMillis() - shootTimer > 450) { // shoot
+        if (System.currentTimeMillis() - shootTimer > 400) { // shoot
             switch (shot) {
                 case 1:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "up", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "up", 400, "rock"));
                     break;
                 case 2:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "ne", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "ne", 500, "rock"));
                     break;
                 case 3:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "right", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "right", 400, "rock"));
                     break;
                 case 4:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "se", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "se", 500, "rock"));
                     break;
                 case 5:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "down", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "down", 400, "rock"));
                     break;
                 case 6:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "sw", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "sw", 500, "rock"));
                     break;
                 case 7:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "left", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "left", 400, "rock"));
                     break;
                 case 8:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 5, "nw", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "nw", 500, "rock"));
                     break;
                 default:
                     break;
@@ -144,7 +162,18 @@ public class SpikeBoss extends Entity {
     }
 
     public Texture getHitTex(){
-        return text;
+        return animation.getHitTex();
+    }
+
+    public Texture getTexture() {
+        if (System.currentTimeMillis() - lastMove > moveCooldown - 100) {
+            return animation.getTexture();
+        } else if (needToAttack) {
+            return animation.getTextureReverse();
+        } else {
+            return text;
+        }
+
     }
 
 }

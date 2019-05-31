@@ -1,12 +1,15 @@
 package com.apcs.game.items.projectiles;
 
 import com.apcs.game.enemies.Entity;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 
 public class Projectile {
+    private Sound spell, arrow;
     Rectangle coll;
     Texture tex;
     float myX, myY, speed, initX, initY;
@@ -15,50 +18,68 @@ public class Projectile {
     ArrayList<Entity> enem = new ArrayList<Entity>();
 
     public Projectile(float x, float y, int damage, float sped, String direction, int rng, String type) {
+        spell = Gdx.audio.newSound(Gdx.files.internal("sounds/shootspell.mp3"));
+        arrow = Gdx.audio.newSound(Gdx.files.internal("sounds/shootbow.mp3"));
         switch(direction) {
             case "up":
-                if (type.equals("spell"))
+                if (type.equals("spell")) {
+                    spell.play(1.0f);
                     tex = new Texture("items/projectile/whitespell/pojectileu.png");
-                else if (type.equals("rock"))
-                    tex = new Texture("items/projectile/arrow/arrowr.png");
-                else
+                } else if (type.equals("rock"))
+                    tex = new Texture("items/projectile/rock/rocku.png");
+                else {
+                    arrow.play(1.0f);
                     tex = new Texture("items/projectile/arrow/arrowu.png");
+                }
+
                 break;
             case "down":
-                if (type.equals("spell"))
+                if (type.equals("spell")) {
+                    spell.play(1.0f);
                     tex = new Texture("items/projectile/whitespell/projectiled.png");
-                else if (type.equals("rock"))
-                    tex = new Texture("items/projectile/arrow/arrowr.png");
-                else
+                } else if (type.equals("rock"))
+                    tex = new Texture("items/projectile/rock/rockd.png");
+                else {
+                    arrow.play(1.0f);
                     tex = new Texture("items/projectile/arrow/arrowd.png");
+                }
+
                 break;
             case "left":
-                if (type.equals("spell"))
+                if (type.equals("spell")) {
+                    spell.play(1.0f);
                     tex = new Texture("items/projectile/whitespell/projectilel.png");
-                else if (type.equals("rock"))
-                    tex = new Texture("items/projectile/arrow/arrowr.png");
-                else
+                } else if (type.equals("rock"))
+                    tex = new Texture("items/projectile/rock/rockl.png");
+                else {
+                    arrow.play(1.0f);
                     tex = new Texture("items/projectile/arrow/arrowl.png");
+                }
+
                 break;
             case "right":
-                if (type.equals("spell"))
+                if (type.equals("spell")) {
+                    spell.play(1.0f);
                     tex = new Texture("items/projectile/whitespell/projectiler.png");
-                else if (type.equals("rock"))
+                } else if (type.equals("rock"))
+                    tex = new Texture("items/projectile/rock/rockr.png");
+                else {
+                    arrow.play(1.0f);
                     tex = new Texture("items/projectile/arrow/arrowr.png");
-                else
-                    tex = new Texture("items/projectile/arrow/arrowr.png");
+                }
+
                 break;
             case "ne":
-                tex = new Texture("items/projectile/whitespell/projectiler.png");
+                tex = new Texture("items/projectile/rock/rockne.png");
                 break;
             case "nw":
-                tex = new Texture("items/projectile/whitespell/projectiler.png");
+                tex = new Texture("items/projectile/rock/rocknw.png");
                 break;
             case "se":
-                tex = new Texture("items/projectile/whitespell/projectiler.png");
+                tex = new Texture("items/projectile/rock/rockse.png");
                 break;
             case "sw":
-                tex = new Texture("items/projectile/whitespell/projectiler.png");
+                tex = new Texture("items/projectile/rock/rocksw.png");
                 break;
             default:
                 break;
