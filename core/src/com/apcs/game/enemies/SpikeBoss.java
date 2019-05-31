@@ -31,7 +31,7 @@ public class SpikeBoss extends Entity {
         text = new Texture("enemies/spikeboss/boss1.png");
 
         // combat stuff
-        strength = 2;
+        strength = 1;
         setHealth(50);
         isHit = false;
         needToAttack = false;

@@ -27,7 +27,7 @@ public class StartingRoom extends Room {
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
 
-        //entities.add(new SpikeBoss());
+        entities.add(new SpikeBoss());
     }
 
     public Texture getFloor() {
