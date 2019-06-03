@@ -6,6 +6,7 @@ import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.Wand;
 import com.apcs.game.items.projectiles.Projectile;
+import com.apcs.game.menu.Button;
 import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
@@ -40,6 +41,10 @@ public class GameMain extends ApplicationAdapter {
 	private static RoomManager rm;
 	private PlayerAnimation pa;
 	private ArrayList<Texture> blackFade;
+	private ArrayList<Button> mainButtons;
+	private ArrayList<Button> helpButtons;
+	private ArrayList<Button> pauseButtons;
+	private int whichButton;
 
 
 	boolean menu, pause, helpMenu;
@@ -60,6 +65,21 @@ public class GameMain extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
+		mainButtons = new ArrayList<Button>();
+		mainButtons.add(new Button("start"));//startgame
+		mainButtons.add(new Button("help"));//help
+		mainButtons.add(new Button("quit"));//quit
+
+		helpButtons = new ArrayList<Button>();
+		helpButtons.add(new Button("quit"));//fullscrean
+		helpButtons.add(new Button("quit"));//mute
+		helpButtons.add(new Button("quit"));//back
+
+		pauseButtons = new ArrayList<Button>();
+		pauseButtons.add(new Button("quit"));//fullscrean
+		pauseButtons.add(new Button("quit"));//mute
+		pauseButtons.add(new Button("quit"));//quit
 
 		batch = new SpriteBatch();
 
@@ -120,23 +140,31 @@ public class GameMain extends ApplicationAdapter {
 			renderGameLevel();
 
 			if (pause) {
-				int mouseY = Math.abs(720 - Gdx.input.getY());
 
-				batch.draw(mm.getQuitButton(), 500, 350);
-				if(fullscreen){
-					batch.draw(mm.getQuitButtonDown(), 850, 0);
-				}else{
-					batch.draw(mm.getQuitButton(), 850, 0);
+				whichButton = 0;
+				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+					if(whichButton == pauseButtons.size()-1){
+						whichButton = 0;
+					}else{
+						whichButton++;
+					}
 				}
 
-				if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 350 && mouseY < 350 + mm.getQuitButton().getHeight()) {
+				batch.draw(pauseButtons.get(0).getTextOff(), 500, 350);
+				if(fullscreen){
+					batch.draw(pauseButtons.get(1).getTextOn(), 850, 0);
+				}else{
+					batch.draw(pauseButtons.get(1).getTextOff(), 850, 0);
+				}
+
+				if (whichButton == 2) {
 					batch.draw(mm.getQuitButtonDown(), 500, 350);
-					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					if (whichButton == 2 && Gdx.input.isButtonPressed(Input.Keys.SPACE)) {
 						Gdx.app.exit();
 					}
 				}
-				if (Gdx.input.getX() > 850 && Gdx.input.getX() < 850 + mm.getQuitButton().getWidth() && mouseY > 0 && mouseY < 0 + mm.getQuitButton().getHeight()) {
-					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+				if (whichButton == 0) {
+					if (Gdx.input.isButtonPressed(Input.Keys.SPACE)) {
 						if(fullscreen){
 							Gdx.graphics.setWindowedMode(1280, 720);
 							fullscreen = false;
@@ -156,12 +184,11 @@ public class GameMain extends ApplicationAdapter {
 
 		batch.draw(mm.getBackground(), 0, 0);
 		if (!helpMenu) {
-			batch.draw(mm.getPlayButton(), 50, 400);
-			batch.draw(mm.getHelpButton(), 50, 225);
-			batch.draw(mm.getQuitButton(), 50, 50);
+			batch.draw(mainButtons.get(0).getTextOff(), 50, 400);
+			batch.draw(mainButtons.get(1).getTextOff(), 50, 225);
+			batch.draw(mainButtons.get(2).getTextOff(), 50, 50);
 			batch.draw(mm.getTitleAnim(), 50, 550);
 		} else {
-			int mouseY = Math.abs(720 - Gdx.input.getY());
 			if(fullscreen){
 				batch.draw(mm.getQuitButtonDown(), 850, 0);
 			}else{
