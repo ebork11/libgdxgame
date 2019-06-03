@@ -1,5 +1,6 @@
 package com.apcs.game.enemies;
 
+import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.items.Armor;
 import com.apcs.game.items.FatSword;
@@ -17,13 +18,14 @@ public class Basic extends Entity {
     private Rectangle collider;
     private float speed;
     private boolean isHit;
-    private Texture hitTex;
+   // private Texture hitTex;
+    private EnemyAnimation animation;
 
     public Basic() {
         super();
 
         isHit = false;
-        hitTex = new Texture("clarkhit.png");
+        //hitTex = new Texture("clarkhit.png");
 
         //movement
         speed = 4f;
@@ -32,6 +34,24 @@ public class Basic extends Entity {
         int y = (int)(Math.random() * 300) + 200;
 
         collider = new Rectangle(x, y, 100, 100);
+
+        ArrayList<Texture> anim = new ArrayList<Texture>();
+        anim.add(new Texture("enemies/mummy/mummy1.png"));
+        anim.add(new Texture("enemies/mummy/mummy2.png"));
+        anim.add(new Texture("enemies/mummy/mummy3.png"));
+        anim.add(new Texture("enemies/mummy/mummy4.png"));
+        anim.add(new Texture("enemies/mummy/mummy5.png"));
+        anim.add(new Texture("enemies/mummy/mummy6.png"));
+
+        ArrayList<Texture> hit = new ArrayList<Texture>();
+        hit.add(new Texture("enemies/mummy/mummy1.png"));
+        hit.add(new Texture("enemies/mummy/mummy2.png"));
+        hit.add(new Texture("enemies/mummy/mummy3.png"));
+        hit.add(new Texture("enemies/mummy/mummy4.png"));
+        hit.add(new Texture("enemies/mummy/mummy5.png"));
+        hit.add(new Texture("enemies/mummy/mummy6.png"));
+
+        animation = new EnemyAnimation(anim, hit);
     }
 
     public Rectangle getCollider() {
@@ -94,6 +114,10 @@ public class Basic extends Entity {
     }
 
     public Texture getHitTex() {
-        return hitTex;
+        return animation.getHitTex();
+    }
+
+    public Texture getTexture() {
+        return animation.getTexture();
     }
 }
