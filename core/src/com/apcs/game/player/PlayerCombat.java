@@ -212,6 +212,7 @@ public class PlayerCombat {
     }
 
     public static void addHealth(int num) {
+        GameMain.heal = true;
         heal.play(1.0f);
         health += num;
     }

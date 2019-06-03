@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class PlayerAnimation {
     private static Texture walk1, walk2, walk3, walk4, walk5, walk6, walk7, walk8;
+    private Texture heals1, heals2, heals3, heals4, heals5, heals6, heals7, heals8;
     private Texture hit1, hit2, hit3, hit4, hit5, hit6, hit7, hit8;
 
     private long frame, start;
@@ -18,6 +19,15 @@ public class PlayerAnimation {
         walk6 = new Texture("player/default/defaultwalk6.png");
         walk7 = new Texture("player/default/defaultwalk7.png");
         walk8 = new Texture("player/default/defaultwalk8.png");
+
+        heals1 = new Texture("player/healing/healing1.png");
+        heals2 = new Texture("player/healing/healing2.png");
+        heals3 = new Texture("player/healing/healing3.png");
+        heals4 = new Texture("player/healing/healing4.png");
+        heals5 = new Texture("player/healing/healing5.png");
+        heals6 = new Texture("player/healing/healing6.png");
+        heals7 = new Texture("player/healing/healing7.png");
+        heals8 = new Texture("player/healing/healing8.png");
 
         hit1 = new Texture("player/hit/defaultwalk1Hit.png");
         hit2 = new Texture("player/hit/defaultwalk2Hit.png");
@@ -103,6 +113,31 @@ public class PlayerAnimation {
         } else {
             start = System.currentTimeMillis();
             return hit1;
+        }
+    }
+
+    public Texture healAnim()
+    {
+        GameMain.heal = false;
+        if (System.currentTimeMillis() - start < frame) {
+            return heals1;
+        } else if (System.currentTimeMillis() - start < frame * 2) {
+            return heals2;
+        } else if (System.currentTimeMillis() - start < frame * 3) {
+            return heals3;
+        } else if (System.currentTimeMillis() - start < frame * 4) {
+            return heals4;
+        } else if (System.currentTimeMillis() - start < frame * 5) {
+            return heals5;
+        } else if (System.currentTimeMillis() - start < frame * 6) {
+            return heals6;
+        } else if (System.currentTimeMillis() - start < frame * 7) {
+            return heals7;
+        } else if (System.currentTimeMillis() - start < frame * 8) {
+            return heals8;
+        } else {
+            start = System.currentTimeMillis();
+            return heals1;
         }
     }
 }
