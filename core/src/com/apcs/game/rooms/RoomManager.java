@@ -11,12 +11,13 @@ public class RoomManager {
     private LevelGeneration lg;
     private static Room currentRoom;
 
-    private Texture uncleared, cleared, playerloc, healthroom;
+    private Texture uncleared, cleared, playerloc, healthroom, uncleared2;
 
     public RoomManager() {
         lg = new LevelGeneration();
 
         uncleared = new Texture("rooms/unclearedroom.png");
+        uncleared2 = new Texture("rooms/unclearedlevel2.png");
         cleared = new Texture("rooms/clearedroom.png");
         healthroom = new Texture("rooms/healingRoomBox.png");
         playerloc = new Texture("rooms/playerloc.png");
@@ -24,7 +25,11 @@ public class RoomManager {
 
     public static void setCurrentRoom(Room room) {
         if (room instanceof HealingRoom) {
-            GameMain.enterHealing = true;
+            if (room.getRoomLevel() == 1) {
+                GameMain.enterHealing = true;
+            } else {
+                GameMain.enterHealingTwo = true;
+            }
         }
         currentRoom = room;
     }
@@ -41,6 +46,10 @@ public class RoomManager {
 
     public Texture getUncleared() {
         return uncleared;
+    }
+
+    public Texture getUncleared2() {
+        return uncleared2;
     }
 
     public Texture getPlayer() {

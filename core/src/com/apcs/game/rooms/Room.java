@@ -30,6 +30,8 @@ public abstract class Room {
 
     public abstract ArrayList<Projectile> getEnemProj();
 
+    public abstract int getRoomLevel();
+
     public void disposer() {
         myFloor.dispose();
     }

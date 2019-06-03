@@ -8,11 +8,11 @@ import com.apcs.game.items.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 
-public class DefaultRoom extends Room {
+public class Level2Room extends DefaultRoom {
+
     private Texture myFloor;
     private ArrayList<Door> doors;
     private ArrayList<Entity> entities;
@@ -20,7 +20,7 @@ public class DefaultRoom extends Room {
     private ArrayList<Item> groundItems;
     private ArrayList<Projectile> proj, enemProj;
 
-    public DefaultRoom() {
+    public Level2Room() {
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
         spikes = new ArrayList<Spike>();
@@ -72,32 +72,8 @@ public class DefaultRoom extends Room {
         }
     }
 
-    public Texture getFloor() {
-        return myFloor;
-    }
-
-    public ArrayList<Entity> getEntities() {
-        return entities;
-    }
-
-    public ArrayList<Door> getDoors() {
-        return doors;
-    }
-
-    public ArrayList<Spike> getHazards() {
-        return spikes;
-    }
-
-    public ArrayList<Projectile> getProjectile() { return proj; }
-
-    public ArrayList<Projectile> getEnemProj() { return enemProj; }
-
-    public ArrayList<Item> getGroundItems() {
-        return groundItems;
-    }
-
     @Override
     public int getRoomLevel() {
-        return 1;
+        return 2;
     }
 }

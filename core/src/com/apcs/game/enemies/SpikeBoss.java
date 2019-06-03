@@ -32,7 +32,7 @@ public class SpikeBoss extends Entity {
 
         // combat stuff
         strength = 1;
-        setHealth(50);
+        setHealth(100);
         isHit = false;
         needToAttack = false;
         shot = 1;
@@ -173,6 +173,13 @@ public class SpikeBoss extends Entity {
             return text;
         }
 
+    }
+
+
+    public void hit(int damage)  {
+        super.hit(damage);
+
+        GameMain.beatFirstBoss = true;
     }
 
 }

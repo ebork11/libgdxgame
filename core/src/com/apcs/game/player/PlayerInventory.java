@@ -42,6 +42,10 @@ public class PlayerInventory {
 
         for (int cnt = 0; cnt < inventorySlots; cnt++) { // checks all inventory slots
             if (inventory[cnt] == null) { // if the inventory slot is empty
+                if (toAdd instanceof Key) {
+                    GameMain.hasKey = true;
+                }
+
                 inventory[cnt] = toAdd; // sets the inventory slot to the item
                 return true; // item was successfully added to the inventory
             }
@@ -122,6 +126,5 @@ public class PlayerInventory {
     public Texture getEquipTex() {
         return equipTex;
     }
-
 
 }

@@ -11,10 +11,7 @@ import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerInventory;
-import com.apcs.game.rooms.HealingRoom;
-import com.apcs.game.rooms.LevelGeneration;
-import com.apcs.game.rooms.Room;
-import com.apcs.game.rooms.RoomManager;
+import com.apcs.game.rooms.*;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -43,7 +40,7 @@ public class GameMain extends ApplicationAdapter {
 
 
 	boolean menu, pause, helpMenu;
-	public static boolean overItem, enterHealing;
+	public static boolean overItem, enterHealing, enterHealingTwo, beatFirstBoss, beatSecondBoss, hasKey;
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
@@ -76,6 +73,7 @@ public class GameMain extends ApplicationAdapter {
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
+		hasKey = false;
 		endFade = false;
 		roomTransition = false;
 		enterHealing = false;
@@ -225,10 +223,14 @@ public class GameMain extends ApplicationAdapter {
 		if (attacking) {
 			drawWeapon();
 		}
-		drawEnemProjectiles();
-		if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("ranged_weapon")) {
-			drawProjectiles();
+
+		if (!pause) {
+			drawEnemProjectiles();
+			if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("ranged_weapon")) {
+				drawProjectiles();
+			}
 		}
+
 		if (overItem) {
 			font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
 		}
@@ -289,16 +291,29 @@ public class GameMain extends ApplicationAdapter {
 		for (int cnt = 0; cnt < LevelGeneration.getLevel()[0].length; cnt++) {
 			for (int cnt2 = 0; cnt2 < LevelGeneration.getLevel().length; cnt2++) {
 				if (LevelGeneration.getLevel()[cnt][cnt2] != null) {
-					if (LevelGeneration.getLevel()[cnt][cnt2].getEntities().size() > 0 || (LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && !enterHealing)) {
-						batch.draw(rm.getUncleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
-					} else if(enterHealing && LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom){
-						batch.draw(rm.getHealthroom(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+					if (LevelGeneration.getLevel()[cnt][cnt2].getEntities().size() > 0) {
+						if (LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 1) {
+							batch.draw(rm.getUncleared(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+						} else if (LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 2) {
+							batch.draw(rm.getUncleared2(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+						}
+
+					} else if(enterHealing && LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 1){
+						batch.draw(rm.getHealthroom(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+					} else if(enterHealingTwo && LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 2){
+						batch.draw(rm.getHealthroom(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
 					} else {
-						batch.draw(rm.getCleared(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+						if ((LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && !enterHealing)) {
+							batch.draw(rm.getUncleared(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+						} else if ((LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && !enterHealingTwo)) {
+							batch.draw(rm.getUncleared2(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+						} else {
+							batch.draw(rm.getCleared(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+						}
 					}
 
 					if (LevelGeneration.getLevel()[cnt][cnt2] == RoomManager.getCurrentRoom()) {
-						batch.draw(rm.getPlayer(), 1050 + (cnt2 * 25), 650 - (cnt * 25));
+						batch.draw(rm.getPlayer(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
 					}
 				} else {
 					// nothing
@@ -363,7 +378,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.draw(room.getFloor(), 0, 0); // draw the room floor
 
 		for (int cnt = 0; cnt < room.getDoors().size(); cnt++) {
-			if (room.getEntities().size() > 0) {
+			if (room.getEntities().size() > 0 || (room.getDoors().get(cnt).getNextRoom().getRoomLevel() == 2 && !beatFirstBoss) || (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom && !hasKey)) {
 				switch (room.getDoors().get(cnt).getLocation()) {
 					case "top":
 						batch.draw(room.getDoors().get(cnt).getClosedTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 10);

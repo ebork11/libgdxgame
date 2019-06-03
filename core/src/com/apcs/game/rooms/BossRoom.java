@@ -1,52 +1,46 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.enemies.SpikeBoss;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 
-public class HealingRoom extends Room {
+public class BossRoom extends Room {
 
-    private static Texture myFloor;
-    public static Rectangle pool;
-    public static int health;
+    private Texture myFloor;
     private ArrayList<Door> doors;
-    private ArrayList<Entity> entities;
-    private ArrayList<Spike> spikes;
+    private static ArrayList<Entity> entities;
+    private static ArrayList<Spike> hazards;
     private ArrayList<Item> groundItems;
     private ArrayList<Projectile> proj, enemProj;
     private int level = 1;
 
-    public HealingRoom() {
+    public BossRoom() {
+        myFloor = new Texture("rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
-        spikes = new ArrayList<Spike>();
+        hazards = new ArrayList<Spike>();
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
-        health = 10;
 
-        pool = new Rectangle(297, 105, 430,490);
-
-        myFloor = new Texture("rooms/healingroom.png"); // sets texture
+        entities.add(new SpikeBoss());
     }
 
-    public HealingRoom(int temp) {
+    public BossRoom(int temp) {
+        myFloor = new Texture("rooms/background1.png"); // sets texture
         doors = new ArrayList<Door>();
         entities = new ArrayList<Entity>();
-        spikes = new ArrayList<Spike>();
+        hazards = new ArrayList<Spike>();
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
-        health = 10;
 
-        pool = new Rectangle(297, 105, 430,490);
-
-        myFloor = new Texture("rooms/healingroom.png"); // sets texture
+        entities.add(new SpikeBoss());
 
         level = temp;
     }
@@ -55,32 +49,24 @@ public class HealingRoom extends Room {
         return myFloor;
     }
 
-    public static void setFloor(Texture tex) {
-        myFloor = tex;
+    public ArrayList<Entity> getEntities() {
+        return entities;
     }
 
     public ArrayList<Door> getDoors() {
         return doors;
     }
 
-    public ArrayList<Entity> getEntities() {
-        return entities;
+    public ArrayList<Spike> getHazards() {
+        return hazards;
     }
 
-    public ArrayList<Spike> getHazards() {
-        return spikes;
-    }
+    public ArrayList<Projectile> getProjectile() { return proj; }
+
+    public ArrayList<Projectile> getEnemProj() { return enemProj; }
 
     public ArrayList<Item> getGroundItems() {
         return groundItems;
-    }
-
-    public ArrayList<Projectile> getProjectile() {
-        return proj;
-    }
-
-    public ArrayList<Projectile> getEnemProj() {
-        return enemProj;
     }
 
     @Override
