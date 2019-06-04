@@ -11,7 +11,7 @@ public class Key extends Item {
     public Key() {
         myClass = "";
 
-        texU = new Texture("items/healthpotion/healthpot.png");
+        texU = new Texture("items/key.png");
 
         setTextureU(texU);
         setIcon(texU);
