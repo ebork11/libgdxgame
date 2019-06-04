@@ -99,28 +99,28 @@ public class SpikeBoss extends Entity {
         if (System.currentTimeMillis() - shootTimer > 400) { // shoot
             switch (shot) {
                 case 1:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "up", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 10, "up", 400, "rock"));
                     break;
                 case 2:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "ne", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 8, "ne", 500, "rock"));
                     break;
                 case 3:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "right", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 10, "right", 400, "rock"));
                     break;
                 case 4:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "se", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 8, "se", 500, "rock"));
                     break;
                 case 5:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "down", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 10, "down", 400, "rock"));
                     break;
                 case 6:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "sw", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 8, "sw", 500, "rock"));
                     break;
                 case 7:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 10, "left", 400, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 10, "left", 400, "rock"));
                     break;
                 case 8:
-                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x, collider.y, 2, 8, "nw", 500, "rock"));
+                    RoomManager.getCurrentRoom().getEnemProj().add(new Projectile(collider.x + (text.getWidth() / 2), collider.y + (text.getHeight() / 2), 2, 8, "nw", 500, "rock"));
                     break;
                 default:
                     break;
