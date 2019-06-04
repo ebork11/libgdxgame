@@ -6,6 +6,7 @@ import com.apcs.game.items.FatSword;
 import com.apcs.game.items.Item;
 import com.apcs.game.items.Wand;
 import com.apcs.game.items.projectiles.Projectile;
+import com.apcs.game.menu.Button;
 import com.apcs.game.menu.MenuManager;
 import com.apcs.game.object.Spike;
 import com.apcs.game.player.PlayerAnimation;
@@ -37,6 +38,10 @@ public class GameMain extends ApplicationAdapter {
 	private static RoomManager rm;
 	private PlayerAnimation pa;
 	private ArrayList<Texture> blackFade;
+	private ArrayList<Button> mainButtons;
+	private ArrayList<Button> helpButtons;
+	private ArrayList<Button> pauseButtons;
+	private int whichButton;
 
 
 	boolean menu, pause, helpMenu;
@@ -57,6 +62,21 @@ public class GameMain extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
+		mainButtons = new ArrayList<Button>();
+		mainButtons.add(new Button("start"));//startgame
+		mainButtons.add(new Button("help"));//help
+		mainButtons.add(new Button("quit"));//quit
+
+		helpButtons = new ArrayList<Button>();
+		helpButtons.add(new Button("quit"));//fullscrean
+		helpButtons.add(new Button("quit"));//mute
+		helpButtons.add(new Button("quit"));//back
+
+		pauseButtons = new ArrayList<Button>();
+		pauseButtons.add(new Button("quit"));//fullscrean
+		pauseButtons.add(new Button("quit"));//mute
+		pauseButtons.add(new Button("quit"));//quit
 
 		batch = new SpriteBatch();
 
@@ -88,6 +108,8 @@ public class GameMain extends ApplicationAdapter {
 		cooldown = 1500;
 
 		enteredNewRoom = System.currentTimeMillis();
+
+		whichButton = 0;
 	}
 
 	@Override
@@ -103,6 +125,7 @@ public class GameMain extends ApplicationAdapter {
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			pause = !pause;
+			whichButton = 0;
 		}
 
 		if (!pause) {
@@ -118,23 +141,39 @@ public class GameMain extends ApplicationAdapter {
 			renderGameLevel();
 
 			if (pause) {
-				int mouseY = Math.abs(720 - Gdx.input.getY());
 
-				batch.draw(mm.getQuitButton(), 500, 350);
-				if(fullscreen){
-					batch.draw(mm.getQuitButtonDown(), 850, 0);
-				}else{
-					batch.draw(mm.getQuitButton(), 850, 0);
+				if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+					if(whichButton == pauseButtons.size()-1){
+						whichButton = 0;
+					}else{
+						whichButton++;
+					}
+				}else if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+					if(whichButton == 0){
+						whichButton = pauseButtons.size()-1;
+					}else{
+						whichButton--;
+					}
 				}
 
-				if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 350 && mouseY < 350 + mm.getQuitButton().getHeight()) {
-					batch.draw(mm.getQuitButtonDown(), 500, 350);
-					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+				batch.draw(pauseButtons.get(2).getTextOff(), 500, 150);
+				if(fullscreen){
+					batch.draw(pauseButtons.get(0).getTextOn(), 500, 350);
+				}else{
+					batch.draw(pauseButtons.get(0).getTextOff(), 500, 350);
+				}
+
+				if (whichButton == 2) {
+					batch.draw(pauseButtons.get(2).getTextOn(), 500, 150);
+					if (whichButton == 2 && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 						Gdx.app.exit();
 					}
 				}
-				if (Gdx.input.getX() > 850 && Gdx.input.getX() < 850 + mm.getQuitButton().getWidth() && mouseY > 0 && mouseY < 0 + mm.getQuitButton().getHeight()) {
-					if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+
+				batch.draw(pauseButtons.get(1).getTextOff(), 500, 250);
+
+				if (whichButton == 0) {
+					if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 						if(fullscreen){
 							Gdx.graphics.setWindowedMode(1280, 720);
 							fullscreen = false;
@@ -154,19 +193,33 @@ public class GameMain extends ApplicationAdapter {
 
 		batch.draw(mm.getBackground(), 0, 0);
 		if (!helpMenu) {
-			batch.draw(mm.getPlayButton(), 50, 400);
-			batch.draw(mm.getHelpButton(), 50, 225);
-			batch.draw(mm.getQuitButton(), 50, 50);
+			batch.draw(mainButtons.get(0).getTextOff(), 50, 400);
+			batch.draw(mainButtons.get(1).getTextOff(), 50, 225);
+			batch.draw(mainButtons.get(2).getTextOff(), 50, 50);
 			batch.draw(mm.getTitleAnim(), 50, 550);
 		} else {
-			int mouseY = Math.abs(720 - Gdx.input.getY());
-			if(fullscreen){
-				batch.draw(mm.getQuitButtonDown(), 850, 0);
-			}else{
-				batch.draw(mm.getQuitButton(), 850, 0);
+
+			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+				if(whichButton == helpButtons.size()-1){
+					whichButton = 0;
+				}else{
+					whichButton++;
+				}
+			}else if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+				if(whichButton == 0){
+					whichButton = helpButtons.size()-1;
+				}else{
+					whichButton--;
+				}
 			}
-			if (Gdx.input.getX() > 850 && Gdx.input.getX() < 850 + mm.getQuitButton().getWidth() && mouseY > 0 && mouseY < 0 + mm.getQuitButton().getHeight()) {
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+
+			if(fullscreen){
+				batch.draw(helpButtons.get(0).getTextOn(), 500, 350);
+			}else{
+				batch.draw(mm.getQuitButton(), 500, 350);
+			}
+			if (whichButton == 0) {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					if (fullscreen) {
 						Gdx.graphics.setWindowedMode(1280, 720);
 						fullscreen = false;
@@ -176,33 +229,61 @@ public class GameMain extends ApplicationAdapter {
 					}
 				}
 			}
-			batch.draw(mm.getBackButton(), 500, 50);
+
+			batch.draw(helpButtons.get(1).getTextOn(), 500, 250);
+
+			if(whichButton == 2) {
+				batch.draw(helpButtons.get(2).getTextOn(), 500, 50);
+			}else{
+				batch.draw(helpButtons.get(2).getTextOff(), 500, 50);
+			}
 		}
 
-		int mouseY = Math.abs(720 - Gdx.input.getY());
-
-		//System.out.println(mouseY);
-
 		if (!helpMenu) {
-			if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getPlayButton().getWidth() && mouseY > 398 && mouseY < 400 + mm.getPlayButton().getHeight()) {
-				batch.draw(mm.getPlayButtonDown(), 50, 400);
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-					menu = false;
+
+			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+				if(whichButton == mainButtons.size()-1){
+					whichButton = 0;
+				}else{
+					whichButton++;
 				}
-			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getHelpButton().getWidth() && mouseY > 224 && mouseY < 226 + mm.getHelpButton().getHeight()) {
-				batch.draw(mm.getHelpButtonDown(), 50, 225);
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-					helpMenu = true;
-				}
-			} else if (Gdx.input.getX() > 50 && Gdx.input.getX() < 50 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
-				batch.draw(mm.getQuitButtonDown(), 50, 50);
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-					Gdx.app.exit();
+			}else if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+				if(whichButton == 0){
+					whichButton = mainButtons.size()-1;
+				}else{
+					whichButton--;
 				}
 			}
+
+			if (whichButton == 0) {
+				batch.draw(mainButtons.get(0).getTextOn(), 50, 400);
+				if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+					menu = false;
+				}
+			}else {
+				batch.draw(mainButtons.get(0).getTextOff(), 50, 400);
+			}
+
+			if(whichButton == 1) {
+				batch.draw(mainButtons.get(1).getTextOn(), 50, 225);
+				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+					helpMenu = true;
+					whichButton = 0;
+				}
+			}else{
+				batch.draw(mainButtons.get(1).getTextOff(), 50, 225);
+			}
+			if (whichButton == 2) {
+				batch.draw(mainButtons.get(2).getTextOn(), 50, 50);
+				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+					Gdx.app.exit();
+				}
+			}else {
+				batch.draw(mainButtons.get(2).getTextOff(), 50, 50);
+			}
 		} else {
-			if (Gdx.input.getX() > 500 && Gdx.input.getX() < 500 + mm.getQuitButton().getWidth() && mouseY > 50 && mouseY < 50 + mm.getQuitButton().getHeight()) {
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+			if (whichButton == 2) {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					helpMenu = false;
 				}
 			}
