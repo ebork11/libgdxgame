@@ -11,11 +11,11 @@ public abstract class Item {
 
 
     public Item() {
-        myTextureU = new Texture("items/item.png"); // default image for items
-        myTextureD = new Texture("items/item.png"); // default image for items
-        myTextureR = new Texture("items/item.png"); // default image for items
-        myTextureL = new Texture("items/item.png"); // default image for items
-        icon = new Texture("items/item.png"); // default image for items
+        myTextureU = new Texture("items/outlineselection.png"); // default image for items
+        myTextureD = new Texture("items/outlineselection.png"); // default image for items
+        myTextureR = new Texture("items/outlineselection.png"); // default image for items
+        myTextureL = new Texture("items/outlineselection.png"); // default image for items
+        icon = new Texture("items/outlineselection.png"); // default image for items
         collider = new Rectangle(200, 200, myTextureU.getWidth(), myTextureU.getHeight()); // sets collider to the size of the image
 
     }
