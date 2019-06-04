@@ -33,8 +33,6 @@ public class Basic extends Entity {
         int x = (int)(Math.random() * 550) + 300;
         int y = (int)(Math.random() * 300) + 200;
 
-        collider = new Rectangle(x, y, 100, 100);
-
         ArrayList<Texture> anim = new ArrayList<Texture>();
         anim.add(new Texture("enemies/mummy/mummy1.png"));
         anim.add(new Texture("enemies/mummy/mummy2.png"));
@@ -50,6 +48,8 @@ public class Basic extends Entity {
         hit.add(new Texture("enemies/mummy/mummy4.png"));
         hit.add(new Texture("enemies/mummy/mummy5.png"));
         hit.add(new Texture("enemies/mummy/mummy6.png"));
+
+        collider = new Rectangle(x, y, anim.get(0).getWidth(), anim.get(0).getHeight());
 
         animation = new EnemyAnimation(anim, hit);
     }
