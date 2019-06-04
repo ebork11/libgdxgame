@@ -1,5 +1,6 @@
 package com.apcs.game.rooms;
 
+import com.apcs.game.enemies.Archer;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.enemies.SpikeBoss;
 import com.apcs.game.enemies.Wizard;

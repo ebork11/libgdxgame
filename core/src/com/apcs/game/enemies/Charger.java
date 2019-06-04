@@ -46,7 +46,7 @@ public class Charger extends Entity {
 
         setHealth(8);
         setCharacterFirst("enemies/charger/charger1.png");
-        speed = 15f;
+        speed = 14f;
         setStrength(2);
         moveCooldown = 2000;
         chargeTimes.add(2000);

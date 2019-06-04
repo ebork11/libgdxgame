@@ -30,7 +30,7 @@ public class Wizard extends Entity {
         hurt = Gdx.audio.newSound(Gdx.files.internal("sounds/wizardhit.mp3"));
         spell = Gdx.audio.newSound(Gdx.files.internal("sounds/shootspell.mp3"));
         setHurt(hurt);
-        speed = 4f;
+        speed = 3f;
         setHealth(8);
         isHit = false;
         fireDir = "";

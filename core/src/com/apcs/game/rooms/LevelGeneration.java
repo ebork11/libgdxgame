@@ -12,7 +12,7 @@ public class LevelGeneration {
         boolean healingRoom = false, keyroom = false;
         int numRooms = 0;
 
-        StartingRoom start = new StartingRoom();
+        Room start = new StartingRoom();
         RoomManager.setCurrentRoom(start);
 
         level1[5][5] = start;
@@ -45,7 +45,7 @@ public class LevelGeneration {
         healingRoom = false;
         numRooms = 0;
 
-        while (numRooms < 12) {
+        while (numRooms < 16) {
             row = (int)(Math.random() * level1.length);
             col = (int)(Math.random() * level1.length);
 
