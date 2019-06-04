@@ -44,7 +44,7 @@ public class GameMain extends ApplicationAdapter {
 	private int whichButton;
 
 
-	boolean menu, pause, helpMenu;
+	boolean menu, pause, helpMenu, mute;
 	public static boolean overItem, enterHealing, enterHealingTwo, beatFirstBoss, beatSecondBoss, hasKey;
 	private Texture invSelectTex; // inventory outline texture
 
@@ -69,18 +69,26 @@ public class GameMain extends ApplicationAdapter {
 		mainButtons.add(new Button("quit"));//quit
 
 		helpButtons = new ArrayList<Button>();
-		helpButtons.add(new Button("quit"));//fullscrean
-		helpButtons.add(new Button("quit"));//mute
+		helpButtons.add(new Button("fullscreen"));//fullscreen
+		helpButtons.add(new Button("mute"));//mute
 		helpButtons.add(new Button("quit"));//back
 
 		pauseButtons = new ArrayList<Button>();
-		pauseButtons.add(new Button("quit"));//fullscrean
-		pauseButtons.add(new Button("quit"));//mute
+		pauseButtons.add(new Button("fullscreen"));//fullscreen
+		pauseButtons.add(new Button("mute"));//mute
 		pauseButtons.add(new Button("quit"));//quit
 
 		batch = new SpriteBatch();
 
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
+		if(Math.random()>.5){
+			music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
+		}else{
+			music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Holland 1945.mp3"));
+		}
+
+
+		mute = false;
+
 		music.setVolume(0.4f);
 		music.setLooping(true);
 
@@ -170,7 +178,22 @@ public class GameMain extends ApplicationAdapter {
 					}
 				}
 
-				batch.draw(pauseButtons.get(1).getTextOff(), 500, 250);
+				if(mute){
+					batch.draw(pauseButtons.get(1).getTextOn(), 500, 250);
+				}else{
+					batch.draw(pauseButtons.get(1).getTextOff(), 500, 250);
+				}
+				if (whichButton == 1){
+					if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+						if(mute){
+							music.setVolume(0.4f);
+							mute = !mute;
+						}else{
+							music.setVolume(0.0f);
+							mute = !mute;
+						}
+					}
+				}
 
 				if (whichButton == 0) {
 					if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -216,7 +239,7 @@ public class GameMain extends ApplicationAdapter {
 			if(fullscreen){
 				batch.draw(helpButtons.get(0).getTextOn(), 500, 350);
 			}else{
-				batch.draw(mm.getQuitButton(), 500, 350);
+				batch.draw(helpButtons.get(0).getTextOff(), 500, 350);
 			}
 			if (whichButton == 0) {
 				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -230,7 +253,23 @@ public class GameMain extends ApplicationAdapter {
 				}
 			}
 
-			batch.draw(helpButtons.get(1).getTextOn(), 500, 250);
+			if(mute){
+				batch.draw(helpButtons.get(1).getTextOn(), 500, 250);
+			}else{
+				batch.draw(helpButtons.get(1).getTextOff(), 500, 250);
+			}
+			if(whichButton == 1) {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+					if (mute) {
+						music.setVolume(0.4f);
+						mute = !mute;
+					} else {
+						music.setVolume(0.0f);
+						mute = !mute;
+					}
+				}
+			}
+
 
 			if(whichButton == 2) {
 				batch.draw(helpButtons.get(2).getTextOn(), 500, 50);
@@ -285,6 +324,7 @@ public class GameMain extends ApplicationAdapter {
 			if (whichButton == 2) {
 				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					helpMenu = false;
+					whichButton = 0;
 				}
 			}
 		}
