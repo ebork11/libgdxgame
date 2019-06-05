@@ -1,6 +1,7 @@
 package com.apcs.game.items;
 
 import com.apcs.game.GameMain;
+import com.apcs.game.items.weapons.Item;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Key extends Item {

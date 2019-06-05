@@ -1,7 +1,7 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
-import com.apcs.game.items.Item;
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;

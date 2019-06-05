@@ -1,4 +1,4 @@
-package com.apcs.game.items;
+package com.apcs.game.items.weapons;
 
 import com.badlogic.gdx.graphics.Texture;
 

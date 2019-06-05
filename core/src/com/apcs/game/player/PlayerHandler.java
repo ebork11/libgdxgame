@@ -1,11 +1,7 @@
 package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
-import com.apcs.game.enemies.Entity;
-import com.apcs.game.items.Armor;
-import com.apcs.game.items.FatSword;
 import com.apcs.game.items.HealthPotion;
-import com.apcs.game.object.Spike;
 import com.apcs.game.rooms.HealingRoom;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;

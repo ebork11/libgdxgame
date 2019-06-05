@@ -1,8 +1,11 @@
-package com.apcs.game.enemies;
+package com.apcs.game.enemies.level1;
 
 import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
-import com.apcs.game.items.*;
+import com.apcs.game.enemies.Entity;
+import com.apcs.game.items.weapons.Dagger;
+import com.apcs.game.items.weapons.FatSword;
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;

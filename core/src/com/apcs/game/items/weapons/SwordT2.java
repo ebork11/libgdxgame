@@ -1,5 +1,6 @@
-package com.apcs.game.items;
+package com.apcs.game.items.weapons;
 
+import com.apcs.game.items.weapons.FatSword;
 import com.badlogic.gdx.graphics.Texture;
 
 public class SwordT2 extends FatSword {

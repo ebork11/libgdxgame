@@ -1,4 +1,4 @@
-package com.apcs.game.items;
+package com.apcs.game.items.weapons;
 
 import com.apcs.game.GameMain;
 import com.apcs.game.player.PlayerHandler;

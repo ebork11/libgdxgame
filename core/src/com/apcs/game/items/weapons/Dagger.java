@@ -1,25 +1,27 @@
-package com.apcs.game.items;
+package com.apcs.game.items.weapons;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class FatSword extends Item {
+public class Dagger extends FatSword {
+
     protected Texture texU, texD, texR, texL, icon;
     protected String myClass;
 
     protected int damage;
 
-    public FatSword() {
+    public Dagger() {
         super();
 
         myClass = "";
 
-        damage = 2;
+        damage = 3;
 
-        texU = new Texture("items/fat sword/fattyu.png");
-        texD = new Texture("items/fat sword/fattyd.png");
-        texR = new Texture("items/fat sword/fattyr.png");
-        texL = new Texture("items/fat sword/fattyl.png");
-        icon = new Texture("items/fat sword/fattyicon.png");
+        texU = new Texture("items/dagger/daggeru.png");
+        texD = new Texture("items/dagger/daggerd.png");
+        texR = new Texture("items/dagger/daggerr.png");
+        texL = new Texture("items/dagger/daggerl.png");
+
+        icon = new Texture("items/dagger/daggericon.png");
 
         setTextureU(texU);
         setTextureD(texD);
@@ -44,3 +46,4 @@ public class FatSword extends Item {
         return damage;
     }
 }
+

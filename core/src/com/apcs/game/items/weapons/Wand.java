@@ -1,9 +1,7 @@
-package com.apcs.game.items;
+package com.apcs.game.items.weapons;
 
-import com.apcs.game.items.projectiles.Projectile;
+import com.apcs.game.items.weapons.FatSword;
 import com.badlogic.gdx.graphics.Texture;
-
-import java.util.ArrayList;
 
 public class Wand extends FatSword {
 

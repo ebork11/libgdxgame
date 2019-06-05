@@ -1,14 +1,13 @@
 package com.apcs.game.rooms;
 
-import com.apcs.game.enemies.Basic;
-import com.apcs.game.enemies.Charger;
+import com.apcs.game.enemies.level1.Basic;
+import com.apcs.game.enemies.level1.Charger;
 import com.apcs.game.enemies.Entity;
-import com.apcs.game.enemies.Wizard;
-import com.apcs.game.items.Item;
+import com.apcs.game.enemies.level1.Wizard;
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 

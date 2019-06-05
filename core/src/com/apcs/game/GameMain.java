@@ -1,10 +1,9 @@
 package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
-import com.apcs.game.enemies.SpikeBoss;
-import com.apcs.game.items.FatSword;
-import com.apcs.game.items.Item;
-import com.apcs.game.items.Wand;
+import com.apcs.game.enemies.level1.SpikeBoss;
+import com.apcs.game.items.weapons.FatSword;
+import com.apcs.game.items.weapons.Wand;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.menu.Button;
 import com.apcs.game.menu.MenuManager;
@@ -603,7 +602,7 @@ public class GameMain extends ApplicationAdapter {
         	}
 
 			if (!pause) {
-				entities.get(loop).move();
+
 
 				if (entities.get(loop).getCollider().overlaps(player.getCollider())) {
 					entities.get(loop).attack();
@@ -613,6 +612,8 @@ public class GameMain extends ApplicationAdapter {
 						sb.needToAttack = false;
 					}
 				}
+
+				entities.get(loop).move();
 			}
         }
     }

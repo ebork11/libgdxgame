@@ -1,4 +1,4 @@
-package com.apcs.game.items;
+package com.apcs.game.items.armor;
 
 import com.badlogic.gdx.graphics.Texture;
 

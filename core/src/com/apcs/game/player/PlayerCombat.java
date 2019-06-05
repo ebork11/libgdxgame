@@ -1,7 +1,7 @@
 package com.apcs.game.player;
 
 import com.apcs.game.GameMain;
-import com.apcs.game.items.Wand;
+import com.apcs.game.items.weapons.Wand;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;
