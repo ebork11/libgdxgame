@@ -36,20 +36,24 @@ public class Basic extends Entity {
         int y = (int)(Math.random() * 300) + 200;
 
         ArrayList<Texture> anim = new ArrayList<Texture>();
-        anim.add(new Texture("enemies/mummy/mummy1.png"));
-        anim.add(new Texture("enemies/mummy/mummy2.png"));
-        anim.add(new Texture("enemies/mummy/mummy3.png"));
-        anim.add(new Texture("enemies/mummy/mummy4.png"));
-        anim.add(new Texture("enemies/mummy/mummy5.png"));
-        anim.add(new Texture("enemies/mummy/mummy6.png"));
+        anim.add(new Texture("enemies/basic/basic1.png"));
+        anim.add(new Texture("enemies/basic/basic2.png"));
+        anim.add(new Texture("enemies/basic/basic3.png"));
+        anim.add(new Texture("enemies/basic/basic4.png"));
+        anim.add(new Texture("enemies/basic/basic5.png"));
+        anim.add(new Texture("enemies/basic/basic6.png"));
+        anim.add(new Texture("enemies/basic/basic7.png"));
+        anim.add(new Texture("enemies/basic/basic8.png"));
 
         ArrayList<Texture> hit = new ArrayList<Texture>();
-        hit.add(new Texture("enemies/mummy/mummy1.png"));
-        hit.add(new Texture("enemies/mummy/mummy2.png"));
-        hit.add(new Texture("enemies/mummy/mummy3.png"));
-        hit.add(new Texture("enemies/mummy/mummy4.png"));
-        hit.add(new Texture("enemies/mummy/mummy5.png"));
-        hit.add(new Texture("enemies/mummy/mummy6.png"));
+        hit.add(new Texture("enemies/basic/basic1hit.png"));
+        hit.add(new Texture("enemies/basic/basic2hit.png"));
+        hit.add(new Texture("enemies/basic/basic3hit.png"));
+        hit.add(new Texture("enemies/basic/basic4hit.png"));
+        hit.add(new Texture("enemies/basic/basic5hit.png"));
+        hit.add(new Texture("enemies/basic/basic6hit.png"));
+        hit.add(new Texture("enemies/basic/basic7hit.png"));
+        hit.add(new Texture("enemies/basic/basic8hit.png"));
 
         collider = new Rectangle(x, y, anim.get(0).getWidth(), anim.get(0).getHeight());
 
@@ -67,14 +71,12 @@ public class Basic extends Entity {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             ifDrop = (int)(Math.random() * 100) +1;
-            if (droppable.size() == 0 && ifDrop <= 85) {
+            if (droppable.size() == 0 && ifDrop <= 95) {
                 droppable.add(new Armor());
                 droppable.add(new HealthPotion());
-                droppable.add(new Armor());
-                droppable.add(new HealthPotion());
-                droppable.add(new ArmorT2());
             }else if (droppable.size() == 0){
                 droppable.add(new SpearT2());
+                droppable.add(new ArmorT2());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

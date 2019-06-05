@@ -5,6 +5,7 @@ import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.armor.Armor;
+import com.apcs.game.items.armor.ArmorT2;
 import com.apcs.game.items.weapons.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
@@ -182,12 +183,13 @@ public class Charger extends Entity {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             ifDrop = (int)(Math.random() * 100) +1;
-            if (droppable.size() == 0 && ifDrop <= 85) {
+            if (droppable.size() == 0 && ifDrop <= 95) {
                 droppable.add(new Dagger());
                 droppable.add(new FatSword());
             }else if (droppable.size() == 0){
                 droppable.add(new SwordT2());
                 droppable.add(new DaggerT2());
+                droppable.add(new ArmorT2());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

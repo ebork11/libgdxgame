@@ -146,11 +146,11 @@ public class Wizard extends Entity {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             ifDrop = (int)(Math.random() * 100) +1;
-            if (droppable.size() == 0 && ifDrop <= 85) {
+            if (droppable.size() == 0 && ifDrop <= 95) {
                 droppable.add(new Wand());
                 droppable.add(new Bow());
-                droppable.add(new ArmorT2());
             }else if (droppable.size() == 0){
+                droppable.add(new ArmorT2());
                 droppable.add(new Staff());
             }
 
