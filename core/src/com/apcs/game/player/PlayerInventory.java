@@ -88,13 +88,11 @@ public class PlayerInventory {
                     return true;
                 }
             } else if (it.getItemClass().equalsIgnoreCase("armor")) {
-                if (it instanceof Armor) {
-                    PlayerAnimation.changeShirt("white");
-                }else if(it instanceof ArmorT2){
-                    PlayerAnimation.changeShirt("white");
-                }else if(it instanceof ArmorT3) {
-                    PlayerAnimation.changeShirt("white");
-                }else if(it instanceof ArmorT4) {
+                if (it instanceof ArmorT3) {
+                    PlayerAnimation.changeShirt("pink");
+                } else if(it instanceof ArmorT2){
+                    PlayerAnimation.changeShirt("blue");
+                } else if(it instanceof Armor) {
                     PlayerAnimation.changeShirt("white");
                 }
                 if (armor == null) {
