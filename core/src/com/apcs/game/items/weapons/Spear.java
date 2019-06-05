@@ -14,7 +14,7 @@ public class Spear extends FatSword {
 
         myClass = "";
 
-        damage = 1;
+        damage = 100;
 
         texU = new Texture("items/spear/spearu.png");
         texD = new Texture("items/spear/speard.png");

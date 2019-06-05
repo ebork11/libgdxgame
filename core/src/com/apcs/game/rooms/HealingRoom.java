@@ -13,7 +13,7 @@ public class HealingRoom extends Room {
 
     private static Texture myFloor;
     public static Rectangle pool;
-    public static int health;
+    private static int health;
     private ArrayList<Door> doors;
     private ArrayList<Entity> entities;
     private ArrayList<Spike> spikes;
@@ -28,7 +28,7 @@ public class HealingRoom extends Room {
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
-        health = 10;
+        health = 12;
 
         pool = new Rectangle(297, 105, 430,490);
 
@@ -42,7 +42,7 @@ public class HealingRoom extends Room {
         groundItems = new ArrayList<Item>();
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
-        health = 10;
+        health = 12;
 
         pool = new Rectangle(297, 105, 430,490);
 
@@ -67,14 +67,13 @@ public class HealingRoom extends Room {
         return entities;
     }
 
-    public static void resetPool() {
-        health = 10;
-        myFloor = new Texture("rooms/healingroom.png");
-    }
-
     public ArrayList<Spike> getHazards() {
         return spikes;
     }
+
+    public static int getHealth(){return health;}
+
+    public static void setHealth() {health = health--;}
 
     public ArrayList<Item> getGroundItems() {
         return groundItems;

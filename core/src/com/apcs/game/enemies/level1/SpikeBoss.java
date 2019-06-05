@@ -163,8 +163,6 @@ public class SpikeBoss extends Entity {
 
         RoomManager.getCurrentRoom().getGroundItems().add(temp2);
 
-        HealingRoom.resetPool();
-
     }
 
 
