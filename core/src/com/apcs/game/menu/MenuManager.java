@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class MenuManager {
     Texture background, play, playDown, help, helpDown, quit, quitDown, back;
-    ArrayList<Texture> title;
+    ArrayList<Texture> title, arrows;
     private long frame, start;
 
     public MenuManager() {
@@ -27,6 +27,10 @@ public class MenuManager {
         title.add(new Texture("gui/menu/title/title13.png"));
         title.add(new Texture("gui/menu/title/title14.png"));
 
+        arrows = new ArrayList<Texture>();
+        arrows.add(new Texture("gui/menu/arrow1.png"));
+        arrows.add(new Texture("gui/menu/arrow2.png"));
+
         frame = 50;
         start = System.currentTimeMillis();
 
@@ -44,34 +48,6 @@ public class MenuManager {
         return background;
     }
 
-    public Texture getPlayButton() {
-        return play;
-    }
-
-    public Texture getPlayButtonDown() {
-        return playDown;
-    }
-
-    public Texture getHelpButton() {
-        return help;
-    }
-
-    public Texture getHelpButtonDown() {
-        return helpDown;
-    }
-
-    public Texture getQuitButton() {
-        return quit;
-    }
-
-    public Texture getQuitButtonDown() {
-        return quitDown;
-    }
-
-    public Texture getBackButton() {
-        return back;
-    }
-
     public Texture getTitleAnim() {
         if (System.currentTimeMillis() - start > frame * 45) {
             start = System.currentTimeMillis();
@@ -83,5 +59,18 @@ public class MenuManager {
             }
         }
         return title.get(0);
+    }
+
+    public Texture getArrowAnim() {
+        if (System.currentTimeMillis() - start > frame * 10) {
+            start = System.currentTimeMillis();
+        }
+
+        for (int cnt = 1; cnt <= arrows.size(); cnt++) {
+            if (System.currentTimeMillis() - start < frame * cnt) {
+                return arrows.get(cnt - 1);
+            }
+        }
+        return arrows.get(0);
     }
 }

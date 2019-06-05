@@ -157,7 +157,7 @@ public class SpikeBoss extends Entity {
 
         temp.getCollider().setPosition(collider.x, collider.y);
 
-        temp2.getCollider().setPosition(collider.x, collider.y);
+        temp2.getCollider().setPosition(100, 100);
 
         RoomManager.getCurrentRoom().getGroundItems().add(temp);
 
