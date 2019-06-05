@@ -79,8 +79,11 @@ public class GameMain extends ApplicationAdapter {
 
 		batch = new SpriteBatch();
 
-		if(Math.random()>.5){
+		double chance = Math.random();
+		if(chance <.33){
 			music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
+		}else if (chance <.66){
+			music = Gdx.audio.newMusic(Gdx.files.internal("sounds/narkotik kal.mp3"));
 		}else{
 			music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Holland 1945.mp3"));
 		}
