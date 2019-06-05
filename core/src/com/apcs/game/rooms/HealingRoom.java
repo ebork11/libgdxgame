@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class HealingRoom extends Room {
 
-    private static Texture myFloor;
-    public static Rectangle pool;
-    private static int health;
+    private Texture myFloor;
+    private Rectangle pool;
+    private int health;
     private ArrayList<Door> doors;
     private ArrayList<Entity> entities;
     private ArrayList<Spike> spikes;
@@ -55,7 +55,7 @@ public class HealingRoom extends Room {
         return myFloor;
     }
 
-    public static void setFloor(Texture tex) {
+    public void setFloor(Texture tex) {
         myFloor = tex;
     }
 
@@ -71,9 +71,13 @@ public class HealingRoom extends Room {
         return spikes;
     }
 
-    public static int getHealth(){return health;}
+    public int getHealth(){return health;}
 
-    public static void setHealth() {health = health--;}
+    public Rectangle getPool() {
+        return pool;
+    }
+
+    public void setHealth() { health--; }
 
     public ArrayList<Item> getGroundItems() {
         return groundItems;
