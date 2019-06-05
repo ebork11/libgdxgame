@@ -28,7 +28,7 @@ public class StartingRoom extends Room {
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
 
-        // entities.add();
+        // entities.add(new Teleporter());
         // groundItems.add(new ArmorT2());
     }
 
