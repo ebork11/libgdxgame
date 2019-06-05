@@ -5,7 +5,6 @@ import com.apcs.game.items.*;
 import com.apcs.game.items.armor.Armor;
 import com.apcs.game.items.armor.ArmorT2;
 import com.apcs.game.items.armor.ArmorT3;
-import com.apcs.game.items.armor.ArmorT4;
 import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.weapons.Spear;
 import com.badlogic.gdx.graphics.Texture;

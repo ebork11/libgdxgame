@@ -10,7 +10,7 @@ public class ArmorT2 extends Armor {
         super();
         setMaxHealth(4);
         setHealth(4);
-        icon = new Texture("items/armor.png");//change later when textures created
+        icon = new Texture("items/armor2.png");//change later when textures created
         setIcon(icon);
 
         myClass = "";

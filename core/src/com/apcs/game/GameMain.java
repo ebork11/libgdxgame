@@ -416,8 +416,11 @@ public class GameMain extends ApplicationAdapter {
 	public void playerManage() {
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
 		player.checkForPickup();
-		if (HealingRoom.getHealth() != 0) {
-			player.checkStandingHealth();
+		if (RoomManager.getCurrentRoom() instanceof HealingRoom) {
+			HealingRoom room = (HealingRoom)(RoomManager.getCurrentRoom());
+			if (room.getHealth() > 0) {
+				player.checkStandingHealth();
+			}
 		}
 		player.getCombat().checkAttack();
 	}
