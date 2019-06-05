@@ -6,6 +6,7 @@ import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.armor.Armor;
 import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.weapons.Item;
+import com.apcs.game.items.weapons.SpearT2;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -59,14 +60,17 @@ public class Basic extends Entity {
     }
 
     public void dropItems() {
-        int ifDrop = (int)(Math.random() * 10) + 1;
+        int ifDrop = (int)(Math.random() * 100)+1;
 
-        if (ifDrop <= 3) {
+        if (ifDrop <= 25) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
-            if (droppable.size() == 0) {
+            ifDrop = (int)(Math.random() * 100) +1;
+            if (droppable.size() == 0 && ifDrop <= 85) {
                 droppable.add(new Armor());
                 droppable.add(new HealthPotion());
+            }else if (droppable.size() == 0){
+                droppable.add(new SpearT2());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

@@ -3,9 +3,9 @@ package com.apcs.game.enemies.level1;
 import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
-import com.apcs.game.items.weapons.Dagger;
-import com.apcs.game.items.weapons.FatSword;
-import com.apcs.game.items.weapons.Item;
+import com.apcs.game.items.HealthPotion;
+import com.apcs.game.items.armor.Armor;
+import com.apcs.game.items.weapons.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.Gdx;
@@ -176,14 +176,18 @@ public class Charger extends Entity {
     }
 
     public void dropItems() {
-        int ifDrop = (int)(Math.random() * 10) + 1;
+        int ifDrop = (int)(Math.random() * 100)+1;
 
-        if (ifDrop <= 4) {
+        if (ifDrop <= 40) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
-            if (droppable.size() == 0) {
+            ifDrop = (int)(Math.random() * 100) +1;
+            if (droppable.size() == 0 && ifDrop <= 85) {
                 droppable.add(new Dagger());
                 droppable.add(new FatSword());
+            }else if (droppable.size() == 0){
+                droppable.add(new SwordT2());
+                droppable.add(new DaggerT2());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

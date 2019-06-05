@@ -67,6 +67,11 @@ public class HealingRoom extends Room {
         return entities;
     }
 
+    public static void resetPool() {
+        health = 10;
+        myFloor = new Texture("rooms/healingroom.png");
+    }
+
     public ArrayList<Spike> getHazards() {
         return spikes;
     }

@@ -88,7 +88,7 @@ public class GameMain extends ApplicationAdapter {
 			music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Holland 1945.mp3"));
 		}
 
-		arrow = new Texture("gui/menu/arrow.png");
+		arrow = new Texture("gui/menu/arrow1.png");
 
 		mute = false;
 
@@ -175,7 +175,7 @@ public class GameMain extends ApplicationAdapter {
 				}
 
 				if (whichButton == 2) {
-					batch.draw(arrow, 450, 150);
+					batch.draw(arrow, 440, 150);
 					batch.draw(pauseButtons.get(2).getTextOn(), 500, 150);
 					if (whichButton == 2 && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 						Gdx.app.exit();
@@ -188,7 +188,7 @@ public class GameMain extends ApplicationAdapter {
 					batch.draw(pauseButtons.get(1).getTextOff(), 500, 250);
 				}
 				if (whichButton == 1){
-					batch.draw(arrow, 450, 250);
+					batch.draw(arrow, 440, 250);
 					if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 						if(mute){
 							music.setVolume(0.4f);
@@ -201,7 +201,7 @@ public class GameMain extends ApplicationAdapter {
 				}
 
 				if (whichButton == 0) {
-					batch.draw(arrow, 450, 350);
+					batch.draw(arrow, 440, 350);
 					if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 						if(fullscreen){
 							Gdx.graphics.setWindowedMode(1280, 720);
@@ -248,7 +248,7 @@ public class GameMain extends ApplicationAdapter {
 				batch.draw(helpButtons.get(0).getTextOff(), 500, 350);
 			}
 			if (whichButton == 0) {
-				batch.draw(arrow, 450, 350);
+				batch.draw(arrow, 440, 350);
 				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					if (fullscreen) {
 						Gdx.graphics.setWindowedMode(1280, 720);
@@ -266,7 +266,7 @@ public class GameMain extends ApplicationAdapter {
 				batch.draw(helpButtons.get(1).getTextOff(), 500, 250);
 			}
 			if(whichButton == 1) {
-				batch.draw(arrow, 450, 250);
+				batch.draw(arrow, 440, 250);
 				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					if (mute) {
 						music.setVolume(0.4f);
@@ -280,7 +280,7 @@ public class GameMain extends ApplicationAdapter {
 
 
 			if(whichButton == 2) {
-				batch.draw(arrow, 450, 50);
+				batch.draw(arrow, 440, 50);
 				batch.draw(helpButtons.get(2).getTextOn(), 500, 50);
 			}else{
 				batch.draw(helpButtons.get(2).getTextOff(), 500, 50);
@@ -304,7 +304,7 @@ public class GameMain extends ApplicationAdapter {
 			}
 
 			if (whichButton == 0) {
-				batch.draw(arrow, 0, 400);
+				batch.draw(arrow, -10, 400);
 				batch.draw(mainButtons.get(0).getTextOn(), 50, 400);
 				if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 					menu = false;
@@ -314,7 +314,7 @@ public class GameMain extends ApplicationAdapter {
 			}
 
 			if(whichButton == 1) {
-				batch.draw(arrow, 0, 225);
+				batch.draw(arrow, -10, 225);
 				batch.draw(mainButtons.get(1).getTextOn(), 50, 225);
 				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					helpMenu = true;
@@ -324,7 +324,7 @@ public class GameMain extends ApplicationAdapter {
 				batch.draw(mainButtons.get(1).getTextOff(), 50, 225);
 			}
 			if (whichButton == 2) {
-				batch.draw(arrow, 0, 50);
+				batch.draw(arrow, -10, 50);
 				batch.draw(mainButtons.get(2).getTextOn(), 50, 50);
 				if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 					Gdx.app.exit();
