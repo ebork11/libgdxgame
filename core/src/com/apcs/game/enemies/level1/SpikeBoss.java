@@ -3,12 +3,15 @@ package com.apcs.game.enemies.level1;
 import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
+import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.weapons.SpearT2;
 import com.apcs.game.items.weapons.Staff;
 import com.apcs.game.items.weapons.SwordT2;
 import com.apcs.game.player.PlayerHandler;
+import com.apcs.game.player.PlayerInventory;
+import com.apcs.game.rooms.HealingRoom;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -150,9 +153,18 @@ public class SpikeBoss extends Entity {
 
         Item temp = droppable.get((int)(Math.random() * droppable.size()));
 
+        Item temp2 = new HealthPotion();
+
         temp.getCollider().setPosition(collider.x, collider.y);
 
+        temp2.getCollider().setPosition(collider.x, collider.y);
+
         RoomManager.getCurrentRoom().getGroundItems().add(temp);
+
+        RoomManager.getCurrentRoom().getGroundItems().add(temp2);
+
+        HealingRoom.resetPool();
+
     }
 
 
