@@ -1,7 +1,7 @@
 package com.apcs.game.items;
 
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.player.PlayerCombat;
-import com.apcs.game.player.PlayerHandler;
 import com.badlogic.gdx.graphics.Texture;
 
 public class HealthPotion extends Item {

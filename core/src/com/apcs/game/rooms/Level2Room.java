@@ -1,7 +1,9 @@
 package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.*;
-import com.apcs.game.items.Item;
+import com.apcs.game.enemies.level2.Archer;
+import com.apcs.game.enemies.level2.Teleporter;
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,12 +29,20 @@ public class Level2Room extends Room {
 
         myFloor = new Texture("rooms/background1.png"); // sets texture
 
-        entities.add(new Archer());
-        entities.add(new Archer());
-        entities.add(new Archer());
-        entities.add(new Archer());
-        entities.add(new Archer());
-        entities.add(new Archer());
+        int choice = (int)(Math.random() * 2);
+
+        switch(choice) {
+            case 0:
+                entities.add(new Archer());
+                break;
+            case 1:
+                entities.add(new Teleporter());
+                break;
+            default:
+                entities.add(new Archer());
+                entities.add(new Teleporter());
+                break;
+        }
 
 
     }

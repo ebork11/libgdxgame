@@ -1,6 +1,7 @@
-package com.apcs.game.enemies;
+package com.apcs.game.enemies.level2;
 
 import com.apcs.game.GameMain;
+import com.apcs.game.enemies.level1.Wizard;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;

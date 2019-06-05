@@ -1,5 +1,6 @@
-package com.apcs.game.items;
+package com.apcs.game.items.armor;
 
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.player.PlayerInventory;
 import com.badlogic.gdx.graphics.Texture;
 

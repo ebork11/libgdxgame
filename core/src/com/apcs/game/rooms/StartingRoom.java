@@ -1,10 +1,8 @@
 package com.apcs.game.rooms;
 
-import com.apcs.game.enemies.Archer;
 import com.apcs.game.enemies.Entity;
-import com.apcs.game.enemies.SpikeBoss;
-import com.apcs.game.enemies.Wizard;
-import com.apcs.game.items.Item;
+import com.apcs.game.enemies.level2.Teleporter;
+import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.object.Spike;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,6 +26,7 @@ public class StartingRoom extends Room {
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
 
+        // entities.add(new Teleporter());
     }
 
     public Texture getFloor() {
