@@ -64,6 +64,16 @@ public class PlayerAnimation {
                 walk7 = new Texture("player/armor1/armor1walk7.png");
                 walk8 = new Texture("player/armor1/armor1walk8.png");
                 break;
+            case "blue":
+                walk1 = new Texture("player/armor2/1armorwalk.png");
+                walk2 = new Texture("player/armor2/2armorwalk.png");
+                walk3 = new Texture("player/armor2/3armorwalk.png");
+                walk4 = new Texture("player/armor2/4armorwalk.png");
+                walk5 = new Texture("player/armor2/5armorwalk.png");
+                walk6 = new Texture("player/armor2/6armorwalk.png");
+                walk7 = new Texture("player/armor2/7armorwalk.png");
+                walk8 = new Texture("player/armor2/8armorwalk.png");
+                break;
             default:
                 break;
         }

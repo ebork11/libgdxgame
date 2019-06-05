@@ -6,7 +6,7 @@ public class ArmorT2 extends Armor {
 
     private Texture icon;
 
-    ArmorT2(){
+    public ArmorT2(){
         super();
         setMaxHealth(4);
         setHealth(4);
