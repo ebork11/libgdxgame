@@ -9,7 +9,7 @@ public class LevelGeneration {
     }
 
     public void loadLevel1() {
-        boolean healingRoom = false, keyroom = false;
+        boolean healingRoom = false, keyroom = false, bossroom = false;
         int numRooms = 0;
 
         Room start = new StartingRoom();
@@ -32,8 +32,9 @@ public class LevelGeneration {
                         level1[row][col] = new KeyRoom();
                         keyroom = true;
                         System.out.println(row + " " + col);
-                    } else if (healingRoom && numRooms == 11 ){
+                    } else if (healingRoom && numRooms == 11 && !bossroom){
                         level1[row][col] = new BossRoom();
+                        bossroom = true;
                     } else {
                         level1[row][col] = new DefaultRoom(); // adds room if there is a room on one of four sides next to it
                     }
