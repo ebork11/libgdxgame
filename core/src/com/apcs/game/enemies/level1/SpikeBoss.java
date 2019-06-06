@@ -193,6 +193,8 @@ public class SpikeBoss extends Entity {
         super.hit(damage);
 
         GameMain.beatFirstBoss = true;
+
+        PlayerInventory.removeKey();
     }
 
 }

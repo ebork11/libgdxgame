@@ -15,7 +15,7 @@ public class PlayerInventory {
     private Texture equipTex;
 
     private int inventorySlots;
-    private Item[] inventory;
+    private static Item[] inventory;
 
     private static Item weapon;
     private static Armor armor;
@@ -129,6 +129,14 @@ public class PlayerInventory {
 
     public Texture getEquipTex() {
         return equipTex;
+    }
+
+    public static void removeKey() {
+        for (int cnt = 0; cnt < inventory.length; cnt++) {
+            if (inventory[cnt] != null && inventory[cnt] instanceof Key) {
+                inventory[cnt] = null;
+            }
+        }
     }
 
 }
