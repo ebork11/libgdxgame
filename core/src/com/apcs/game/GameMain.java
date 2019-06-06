@@ -15,6 +15,7 @@ import com.apcs.game.player.PlayerInventory;
 import com.apcs.game.rooms.*;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
@@ -433,9 +434,12 @@ public class GameMain extends ApplicationAdapter {
 			music.stop();
 			if (fullscreen) {
 				Gdx.graphics.setWindowedMode(1280, 720);
-				fullscreen = !fullscreen;
 			}
 			create();
+
+			if (fullscreen) {
+				Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+			}
 		}
 
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
