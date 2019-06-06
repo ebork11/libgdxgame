@@ -41,9 +41,11 @@ public class DefaultRoom extends Room {
                 entities.add(new Basic());
                 entities.add(new Wizard());
                 entities.add(new Wizard());
+                entities.add(new Basic());
                 break;
             case 2:
                 myFloor = new Texture("rooms/background2.png"); // sets texture
+                entities.add(new Charger());
                 entities.add(new Charger());
                 entities.add(new Charger());
                 entities.add(new Charger());
@@ -59,12 +61,14 @@ public class DefaultRoom extends Room {
                 entities.add(new Charger());
                 entities.add(new Basic());
                 entities.add(new Wizard());
+                entities.add(new Wizard());
                 break;
             default:
                 myFloor = new Texture("rooms/background1.png"); // sets texture
                 entities.add(new Charger());
                 entities.add(new Basic());
                 entities.add(new Wizard());
+                entities.add(new Charger());
                 spikes.add(new Spike(450, 360));
                 spikes.add(new Spike(780, 40));
                 break;

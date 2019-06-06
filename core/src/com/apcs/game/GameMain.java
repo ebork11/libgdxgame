@@ -65,6 +65,9 @@ public class GameMain extends ApplicationAdapter {
 	@Override
 	public void create () {
 
+		beatFirstBoss = false;
+
+
 		mainButtons = new ArrayList<Button>();
 		mainButtons.add(new Button("start"));//startgame
 		mainButtons.add(new Button("help"));//help
