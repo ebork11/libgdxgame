@@ -43,7 +43,7 @@ public class PlayerCombat {
 
             PlayerAnimation.changeShirt("default");
         }
-        hurt.play(1.0f);
+        hurt.play(0.4f);
     }
 
     public void checkAttack() {

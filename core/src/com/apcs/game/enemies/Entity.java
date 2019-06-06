@@ -62,7 +62,7 @@ public abstract class Entity {
     }
 
     public void hit(int damage)  {
-        hurt.play(1.0f);
+        hurt.play(0.4f);
         nowHit();
         health -= damage;
         if(health <= 0){
