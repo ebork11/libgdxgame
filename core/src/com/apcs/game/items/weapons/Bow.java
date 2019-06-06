@@ -10,7 +10,7 @@ public class Bow extends Wand {
 
         setSubclass("bow");
 
-        damage = 2;
+        damage = 3;
 
         shots = 1;
 

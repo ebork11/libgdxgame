@@ -152,6 +152,7 @@ public class Wizard extends Entity {
                 droppable.add(new Bow());
             }else if (droppable.size() == 0){
                 droppable.add(new Staff());
+                droppable.add(new Crossbow());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));
