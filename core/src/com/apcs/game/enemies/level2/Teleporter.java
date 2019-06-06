@@ -34,9 +34,23 @@ public class Teleporter extends Charger {
 
         ArrayList<Texture> anim = new ArrayList<Texture>();
         anim.add(new Texture("enemies/teleporter/teleporter1.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter2.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter3.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter2.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter5.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter6.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter6.png"));
 
         ArrayList<Texture> hit = new ArrayList<Texture>();
-        hit.add(new Texture("enemies/teleporter/teleporter1hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit1.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit2.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit3.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit2.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit5.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit6.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit7.png"));
+        hit.add(new Texture("enemies/teleporter/teleporterhit6.png"));
 
         collider = new Rectangle(x, y, anim.get(0).getWidth(), anim.get(0).getHeight());
 

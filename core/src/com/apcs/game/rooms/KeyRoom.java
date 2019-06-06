@@ -40,7 +40,29 @@ public class KeyRoom extends Room {
         entities.add(new Wizard());
         entities.add(new Wizard());
 
-        groundItems.add(new Key(2));
+        groundItems.add(new Key());
+    }
+
+    public KeyRoom(int temp) {
+        doors = new ArrayList<Door>();
+        entities = new ArrayList<Entity>();
+        spikes = new ArrayList<Spike>();
+        groundItems = new ArrayList<Item>();
+        proj = new ArrayList<Projectile>();
+        enemProj = new ArrayList<Projectile>();
+
+        myFloor = new Texture("rooms/background1.png"); // sets texture
+        spikes.add(new Spike(140, 40));
+        spikes.add(new Spike(450, 320));
+        spikes.add(new Spike(500, 360));
+        spikes.add(new Spike(450, 360));
+        spikes.add(new Spike(500, 320));
+        entities.add(new Basic());
+        entities.add(new Basic());
+        entities.add(new Wizard());
+        entities.add(new Wizard());
+
+        groundItems.add(new Key(temp));
     }
 
     public Texture getFloor() {

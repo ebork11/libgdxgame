@@ -33,7 +33,6 @@ public class LevelGeneration {
                         keyroom = true;
                     } else if (healingRoom && numRooms == 11 && !bossroom){
                         level1[row][col] = new BossRoom();
-                        System.out.println(row + " " + col);
                         bossroom = true;
                     } else {
                         level1[row][col] = new DefaultRoom(); // adds room if there is a room on one of four sides next to it
@@ -57,11 +56,10 @@ public class LevelGeneration {
                         level1[row][col] = new HealingRoom(2);
                         healingRoom = true;
                     } else if ((Math.random() * 2) > 1 && !keyroom) {
-                        level1[row][col] = new KeyRoom();
+                        level1[row][col] = new KeyRoom(2);
                         keyroom = true;
                     } else if (healingRoom && numRooms == 11 ){
                         level1[row][col] = new BossRoom(2);
-                        System.out.println(row + " " + col);
                     } else {
                         level1[row][col] = new Level2Room(); // adds room if there is a room on one of four sides next to it
                     }
@@ -71,6 +69,7 @@ public class LevelGeneration {
         }
 
 
+        /*
         for (int cnt = 0; cnt < level1[0].length; cnt++) {
             for (int cnt2 = 0; cnt2 < level1.length; cnt2++) {
                 if (level1[cnt][cnt2] != null) {
@@ -81,6 +80,7 @@ public class LevelGeneration {
             }
             System.out.println();
         }
+        */
 
         addDoors(level1);
     }
