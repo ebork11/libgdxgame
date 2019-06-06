@@ -76,7 +76,7 @@ public class Basic extends Entity {
                 droppable.add(new Armor());
                 droppable.add(new ArmorT2());
                 droppable.add(new HealthPotion());
-            }else if (droppable.size() == 0){
+            } else if (droppable.size() == 0){
                 droppable.add(new ArmorT3());
             }
 

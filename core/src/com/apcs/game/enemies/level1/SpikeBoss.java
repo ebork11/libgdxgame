@@ -147,7 +147,6 @@ public class SpikeBoss extends Entity {
         ArrayList<Item> droppable = new ArrayList<Item>();
 
         droppable.add(new Staff());
-        //droppable.add(new Bow());
         droppable.add(new SwordT2());
         droppable.add(new SpearT2());
 

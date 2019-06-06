@@ -2,6 +2,7 @@ package com.apcs.game;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.enemies.level1.SpikeBoss;
+import com.apcs.game.enemies.level2.TeleporterDecoy;
 import com.apcs.game.items.weapons.FatSword;
 import com.apcs.game.items.weapons.Wand;
 import com.apcs.game.items.projectiles.Projectile;
@@ -349,69 +350,74 @@ public class GameMain extends ApplicationAdapter {
 	}
 
 	public void renderGameLevel() {
-		drawRoom();
-		drawItems();
-		drawSpikes();
-		drawEntities();
-		batch.draw(pa.getFrameTex(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
-		if (hit){
-			batch.draw(pa.hitAnim(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y);
-		} if (heal) {
-			batch.draw(pa.healAnim(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y);
-		}
-		if (attacking) {
-			drawWeapon();
-		}
-
-		if (!pause) {
-			drawEnemProjectiles();
-			if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("ranged_weapon")) {
-				drawProjectiles();
+		try {
+			drawRoom();
+			drawItems();
+			drawSpikes();
+			drawEntities();
+			batch.draw(pa.getFrameTex(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y); // draws the com.apcs.game.player at the colliders location
+			if (hit){
+				batch.draw(pa.hitAnim(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y);
+			} if (heal) {
+				batch.draw(pa.healAnim(), player.getCollider().x - (pa.getFrameTex().getWidth() / 4), player.getCollider().y);
 			}
-		}
-
-		if (overItem) {
-			font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
-		}
-
-		if (roomTransition) {
-
-			if (!endFade) {
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-				blackFade.add(new Texture("rooms/black.png"));
-			} else {
-				if (blackFade.size() > 0)
-					blackFade.remove(0);
-			}
-			if (blackFade.size() >= 10) {
-				endFade = true;
+			if (attacking) {
+				drawWeapon();
 			}
 
-			for (int cnt = 0; cnt < blackFade.size(); cnt++) {
-				batch.draw(blackFade.get(cnt), 0, 0);
+			if (!pause) {
+				drawEnemProjectiles();
+				if (PlayerHandler.getInventory().getWeapon().getItemClass().equals("ranged_weapon")) {
+					drawProjectiles();
+				}
 			}
 
-			if (blackFade.size() == 0) {
-				roomTransition = false;
-				endFade = false;
+			if (overItem) {
+				font.draw(batch, "[E] to pick up", player.getCollider().x - 20, player.getCollider().y);
 			}
+
+			if (roomTransition) {
+
+				if (!endFade) {
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+					blackFade.add(new Texture("rooms/black.png"));
+				} else {
+					if (blackFade.size() > 0)
+						blackFade.remove(0);
+				}
+				if (blackFade.size() >= 10) {
+					endFade = true;
+				}
+
+				for (int cnt = 0; cnt < blackFade.size(); cnt++) {
+					batch.draw(blackFade.get(cnt), 0, 0);
+				}
+
+				if (blackFade.size() == 0) {
+					roomTransition = false;
+					endFade = false;
+				}
+			}
+
+			drawInventory(); // drawing right side stuff
+			drawMap();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		drawInventory(); // drawing right side stuff
-		drawMap();
 	}
 
 	/*
@@ -420,6 +426,10 @@ public class GameMain extends ApplicationAdapter {
 	public void playerManage() {
 		if (player.getCombat().getHealth() <= 0) {
 			music.stop();
+			if (fullscreen) {
+				Gdx.graphics.setWindowedMode(1280, 720);
+				fullscreen = !fullscreen;
+			}
 			create();
 		}
 
@@ -666,9 +676,13 @@ public class GameMain extends ApplicationAdapter {
 			for(int loop = 0; loop < entities.size(); loop++) {
 				if (proj.get(cnt).checkCanHit(entities.get(loop))) {
 					if(proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider()) && wep.getSubclass().equals("wand")) {
-						entities.get(loop).hit(proj.get(cnt).getDamage());
-						proj.remove(cnt);
-						removed = true;
+						if (entities.get(loop) instanceof TeleporterDecoy) {
+
+						} else {
+							entities.get(loop).hit(proj.get(cnt).getDamage());
+							proj.remove(cnt);
+							removed = true;
+						}
 						break;
 					} else if (proj.get(cnt).getCollider().overlaps(entities.get(loop).getCollider()) && wep.getSubclass().equals("bow")) {
 						proj.get(cnt).getEnemList().add(entities.get(loop));

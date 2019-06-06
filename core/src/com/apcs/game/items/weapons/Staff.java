@@ -18,11 +18,11 @@ public class Staff extends Wand {
 
         range = 300;
 
-        texU = new Texture("items/wand/staff/staffu.png");
-        texD = new Texture("items/wand/staff/staffd.png");
-        texR = new Texture("items/wand/staff/staffr.png");
-        texL = new Texture("items/wand/staff/staffl.png");
-        icon = new Texture("items/wand/staff/stafficon.png");
+        texU = new Texture("items/wand/Staff/staffu.png");
+        texD = new Texture("items/wand/Staff/staffd.png");
+        texR = new Texture("items/wand/Staff/staffr.png");
+        texL = new Texture("items/wand/Staff/staffl.png");
+        icon = new Texture("items/wand/Staff/stafficon.png");
 
         setTextureU(texU);
         setTextureD(texD);
