@@ -94,7 +94,7 @@ public class GameMain extends ApplicationAdapter {
 
 		mute = false;
 
-		music.setVolume(0.4f);
+		music.setVolume(0.2f);
 		music.setLooping(true);
 
 		font = new BitmapFont();
@@ -193,7 +193,7 @@ public class GameMain extends ApplicationAdapter {
 					batch.draw(mm.getArrowAnim(), 440, 250);
 					if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 						if(mute){
-							music.setVolume(0.4f);
+							music.setVolume(0.2f);
 							mute = !mute;
 						}else{
 							music.setVolume(0.0f);
@@ -229,6 +229,7 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(mainButtons.get(1).getTextOff(), 50, 225);
 			batch.draw(mainButtons.get(2).getTextOff(), 50, 50);
 			batch.draw(mm.getTitleAnim(), 50, 550);
+			batch.draw(mm.getMenuKeys(), 200, 20);
 		} else {
 
 			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
@@ -417,6 +418,11 @@ public class GameMain extends ApplicationAdapter {
 		Handles all player things i.e. movement
 	 */
 	public void playerManage() {
+		if (player.getCombat().getHealth() <= 0) {
+			music.stop();
+			create();
+		}
+
 		player.movementHandler(); // checks the keyboard for input and moves the com.apcs.game.player accordingly
 		player.checkForPickup();
 		if (RoomManager.getCurrentRoom() instanceof HealingRoom) {
@@ -756,6 +762,8 @@ public class GameMain extends ApplicationAdapter {
 	public static RoomManager getRm() {
 		return rm;
 	}
+
+
 
 	@Override
 	public void dispose () {

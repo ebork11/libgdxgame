@@ -1,15 +1,22 @@
 package com.apcs.game.enemies.level2;
 
+import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.enemies.level1.Charger;
+import com.apcs.game.items.armor.ArmorT3;
+import com.apcs.game.items.weapons.*;
 import com.apcs.game.player.PlayerCombat;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+
+import java.util.ArrayList;
 
 public class Teleporter extends Charger {
     Rectangle collider;
+    EnemyAnimation animation;
     private float moveX, moveY;
     private long moveCooldown, lastMove, teleportTimer;
     private boolean needToAttack;
@@ -17,11 +24,70 @@ public class Teleporter extends Charger {
     public Teleporter() {
 
         needToAttack = false;
-        moveCooldown = 3500;
-        teleportTimer = 500;
+        moveCooldown = 1920;
+        teleportTimer = 1680;
         lastMove = System.currentTimeMillis();
+        setHealth(25);
 
-        collider = getCollider();
+        int x = (int)(Math.random() * 550) + 300;
+        int y = (int)(Math.random() * 300) + 200;
+
+        ArrayList<Texture> anim = new ArrayList<Texture>();
+        anim.add(new Texture("enemies/teleporter/teleporter1.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter2.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter3.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter4.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter5.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter6.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter7.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter6.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter5.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter4.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter3.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter2.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter1.png"));
+        anim.add(new Texture("enemies/teleporter/teleporter8.png"));
+
+
+        ArrayList<Texture> hit = new ArrayList<Texture>();
+        hit.add(new Texture("enemies/teleporter/teleporter1hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter2hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter3hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter4hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter5hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter6hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter7hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter6hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter5hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter4hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter3hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter2hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter1hit.png"));
+        hit.add(new Texture("enemies/teleporter/teleporter8.png"));
+
+        collider = new Rectangle(x, y, anim.get(0).getWidth(), anim.get(0).getHeight());
+
+        animation = new EnemyAnimation(anim, hit, 80);
     }
 
     @Override
@@ -51,6 +117,42 @@ public class Teleporter extends Charger {
     @Override
     public void attack() {
         // do nothing
+    }
+    @Override
+    public void dropItems() {
+        int ifDrop = (int)(Math.random() * 100)+1;
+
+        if (ifDrop <= 40) {
+            ArrayList<Item> droppable = new ArrayList<Item>();
+
+
+            if (droppable.size() == 0) {
+                droppable.add(new ArmorT3());
+                droppable.add(new SpearT2());
+                droppable.add(new Staff());
+            }
+
+            Item temp = droppable.get((int)(Math.random() * droppable.size()));
+
+            temp.getCollider().setPosition(collider.x, collider.y);
+
+            RoomManager.getCurrentRoom().getGroundItems().add(temp);
+        }
+    }
+
+    @Override
+    public Rectangle getCollider() {
+        return collider;
+    }
+
+    @Override
+    public Texture getTexture() {
+        return animation.getTexture();
+    }
+
+    @Override
+    public Texture getHitTex() {
+        return animation.getHitTex();
     }
 
 

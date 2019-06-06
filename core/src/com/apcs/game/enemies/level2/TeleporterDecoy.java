@@ -15,18 +15,25 @@ public class TeleporterDecoy extends Charger {
         getCollider().y = y;
         creation = System.currentTimeMillis();
 
+        setHealth(1000);
+
         tex = new Texture("enemies/teleporter/teleportermark.png");
     }
 
     @Override
     public void move() {
-        if (System.currentTimeMillis() - creation > 500) {
+        if (System.currentTimeMillis() - creation > 1680) {
             RoomManager.getCurrentRoom().getEntities().remove(this);
         }
     }
 
     @Override
     public Texture getTexture() {
+        return tex;
+    }
+
+    @Override
+    public Texture getHitTex() {
         return tex;
     }
 

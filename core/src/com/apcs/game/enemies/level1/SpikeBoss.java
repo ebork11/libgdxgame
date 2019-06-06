@@ -61,10 +61,10 @@ public class SpikeBoss extends Entity {
         anim.add(new Texture("enemies/spikeboss/boss5.png"));
 
         ArrayList<Texture> hit = new ArrayList<Texture>();
-        hit.add(new Texture("enemies/spikeboss/boss1.png"));
-        hit.add(new Texture("enemies/spikeboss/boss2.png"));
-        hit.add(new Texture("enemies/spikeboss/boss3.png"));
-        hit.add(new Texture("enemies/spikeboss/boss4.png"));
+        hit.add(new Texture("enemies/spikeboss/boss1hit.png"));
+        hit.add(new Texture("enemies/spikeboss/boss2hit.png"));
+        hit.add(new Texture("enemies/spikeboss/boss3hit.png"));
+        hit.add(new Texture("enemies/spikeboss/boss4hit.png"));
         hit.add(new Texture("enemies/spikeboss/boss5.png"));
 
         animation = new EnemyAnimation(anim, hit, 175);

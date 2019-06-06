@@ -150,8 +150,6 @@ public class PlayerHandler {
                         lastHeal = System.currentTimeMillis();
                     }
                 }
-
-                System.out.println(room.getHealth());
             }
 
             if (room.getHealth() == 0) {

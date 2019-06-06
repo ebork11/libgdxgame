@@ -44,10 +44,6 @@ public class PlayerCombat {
             PlayerAnimation.changeShirt("default");
         }
         hurt.play(1.0f);
-      
-        if (health <= 0) {
-            Gdx.app.exit();
-        }
     }
 
     public void checkAttack() {
