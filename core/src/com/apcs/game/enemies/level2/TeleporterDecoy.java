@@ -22,7 +22,7 @@ public class TeleporterDecoy extends Charger {
 
     @Override
     public void move() {
-        if (System.currentTimeMillis() - creation > 1680) {
+        if (System.currentTimeMillis() - creation > 500) {
             RoomManager.getCurrentRoom().getEntities().remove(this);
         }
     }

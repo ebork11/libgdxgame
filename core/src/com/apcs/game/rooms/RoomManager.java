@@ -11,7 +11,7 @@ public class RoomManager {
     private LevelGeneration lg;
     private static Room currentRoom;
 
-    private Texture uncleared, cleared, playerloc, healthroom, uncleared2;
+    private Texture uncleared, cleared, playerloc, healthroom, uncleared2, boss;
 
     public RoomManager() {
         lg = new LevelGeneration();
@@ -21,6 +21,7 @@ public class RoomManager {
         cleared = new Texture("rooms/clearedroom.png");
         healthroom = new Texture("rooms/healingRoomBox.png");
         playerloc = new Texture("rooms/playerloc.png");
+        boss = new Texture("rooms/bossroom.png");
     }
 
     public static void setCurrentRoom(Room room) {
@@ -55,5 +56,7 @@ public class RoomManager {
     public Texture getPlayer() {
         return playerloc;
     }
+
+    public Texture getBossRoom() { return boss; }
 
 }

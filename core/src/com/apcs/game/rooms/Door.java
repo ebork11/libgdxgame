@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Door {
     private Texture closedDoor;
-    private Texture openDoor;
+    private Texture openDoor, boss;
     private Room nextRoom;
     Rectangle collider;
     private String loca;
@@ -22,24 +22,28 @@ public class Door {
                 yLoc = 670;
                 closedDoor = new Texture("rooms/doors/closeddoorT.png");
                 openDoor = new Texture("rooms/doors/opendoorT.png");
+                boss = new Texture("rooms/doors/closeddoorTboss.png");
                 break;
             case "bottom":
                 xLoc = 460;
                 yLoc = 10;
                 closedDoor = new Texture("rooms/doors/closeddoorB.png");
                 openDoor = new Texture("rooms/doors/opendoorB.png");
+                boss = new Texture("rooms/doors/closeddoorBboss.png");
                 break;
             case "left":
                 xLoc = 5;
                 yLoc = 360;
                 closedDoor = new Texture("rooms/doors/closeddoorL.png");
                 openDoor = new Texture("rooms/doors/opendoorL.png");
+                boss = new Texture("rooms/doors/closeddoorLboss.png");
                 break;
             case "right":
                 xLoc = 955;
                 yLoc = 360;
                 closedDoor = new Texture("rooms/doors/closeddoorR.png");
                 openDoor = new Texture("rooms/doors/opendoorR.png");
+                boss = new Texture("rooms/doors/closeddoorRboss.png");
                 break;
             default:
                 break;
@@ -74,5 +78,9 @@ public class Door {
 
     public Rectangle getCollider() {
         return collider;
+    }
+
+    public Texture getBossDoor() {
+        return boss;
     }
 }
