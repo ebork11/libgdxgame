@@ -22,7 +22,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.apcs.game.player.PlayerHandler;
+import com.badlogic.gdx.math.Rectangle;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameMain extends ApplicationAdapter {
@@ -221,6 +223,7 @@ public class GameMain extends ApplicationAdapter {
 	public void renderMenu() {
 
 		batch.draw(mm.getBackground(), 0, 0);
+		batch.draw(mm.playerAnim(), 725, 20, 600, 700);
 		if (!helpMenu) {
 			batch.draw(mainButtons.get(0).getTextOff(), 50, 400);
 			batch.draw(mainButtons.get(1).getTextOff(), 50, 225);

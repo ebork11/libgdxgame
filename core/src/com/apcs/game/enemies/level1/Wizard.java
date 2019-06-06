@@ -6,6 +6,7 @@ import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.armor.Armor;
 import com.apcs.game.items.armor.ArmorT2;
+import com.apcs.game.items.armor.ArmorT3;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.items.weapons.*;
 import com.apcs.game.player.PlayerHandler;
@@ -146,11 +147,10 @@ public class Wizard extends Entity {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
             ifDrop = (int)(Math.random() * 100) +1;
-            if (droppable.size() == 0 && ifDrop <= 95) {
+            if (droppable.size() == 0 && ifDrop <= 90) {
                 droppable.add(new Wand());
                 droppable.add(new Bow());
             }else if (droppable.size() == 0){
-                droppable.add(new ArmorT2());
                 droppable.add(new Staff());
             }
 

@@ -39,7 +39,7 @@ public class SpikeBoss extends Entity {
 
         // combat stuff
         strength = 1;
-        setHealth(100);
+        setHealth(75);
         isHit = false;
         needToAttack = false;
         shot = 1;

@@ -7,8 +7,8 @@ public class ArmorT3 extends ArmorT2 {
 
     public ArmorT3(){
         super();
-        setMaxHealth(6);
-        setHealth(6);
+        setMaxHealth(8);
+        setHealth(8);
         icon = new Texture("items/armor3.png");//change later when textures created
         setIcon(icon);
 
