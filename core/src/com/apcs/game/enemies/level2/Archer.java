@@ -1,11 +1,16 @@
 package com.apcs.game.enemies.level2;
 
+import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.level1.Wizard;
 import com.apcs.game.items.projectiles.Projectile;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import org.w3c.dom.css.Rect;
+
+import java.util.ArrayList;
 
 public class Archer extends Wizard {
 
@@ -14,9 +19,12 @@ public class Archer extends Wizard {
     private boolean moving, firstTime;
     private float speed, moveX, moveY;
     String fireDir;
+    EnemyAnimation animation;
 
     public Archer() {
         super();
+
+
 
         moveTimer = 1000;
         shootCooldown = 1000;
@@ -24,7 +32,32 @@ public class Archer extends Wizard {
         speed = 5f;
         setHealth(20);
 
-        collider = getCollider();
+        int x = (int)(Math.random() * 550) + 300;
+        int y = (int)(Math.random() * 300) + 200;
+
+        ArrayList<Texture> anim = new ArrayList<Texture>();
+        anim.add(new Texture("enemies/archer/archer1.png"));
+        anim.add(new Texture("enemies/archer/archer2.png"));
+        anim.add(new Texture("enemies/archer/archer3.png"));
+        anim.add(new Texture("enemies/archer/archer4.png"));
+        anim.add(new Texture("enemies/archer/archer5.png"));
+        anim.add(new Texture("enemies/archer/archer6.png"));
+        anim.add(new Texture("enemies/archer/archer7.png"));
+        anim.add(new Texture("enemies/archer/archer8.png"));
+
+        ArrayList<Texture> hit = new ArrayList<Texture>();
+        hit.add(new Texture("enemies/archer/archerhit1.png"));
+        hit.add(new Texture("enemies/archer/archerhit2.png"));
+        hit.add(new Texture("enemies/archer/archerhit3.png"));
+        hit.add(new Texture("enemies/archer/archerhit4.png"));
+        hit.add(new Texture("enemies/archer/archerhit5.png"));
+        hit.add(new Texture("enemies/archer/archerhit6.png"));
+        hit.add(new Texture("enemies/archer/archerhit7.png"));
+        hit.add(new Texture("enemies/archer/archerhit8.png"));
+
+        collider = new Rectangle(x, y, anim.get(0).getWidth(), anim.get(0).getHeight());
+
+        animation = new EnemyAnimation(anim, hit, 80);
     }
 
     @Override
@@ -91,5 +124,20 @@ public class Archer extends Wizard {
                 }
             }
         }
+    }
+
+    @Override
+    public Rectangle getCollider() {
+        return collider;
+    }
+
+    @Override
+    public Texture getTexture() {
+        return animation.getTexture();
+    }
+
+    @Override
+    public Texture getHitTex() {
+        return animation.getHitTex();
     }
 }
