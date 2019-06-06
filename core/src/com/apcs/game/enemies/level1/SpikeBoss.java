@@ -28,12 +28,11 @@ public class SpikeBoss extends Entity {
     private long inColl, moveCooldown, lastMove, attackCooldown, shootTimer;
     private Rectangle collider;
     private boolean isHit;
-    public static boolean needToAttack;
+    private boolean needToAttack;
     private float speed, moveX, moveY;
     private int x, y, shot;
 
     public SpikeBoss(){
-        super();
         // basics
         text = new Texture("enemies/spikeboss/boss1.png");
 
@@ -195,6 +194,10 @@ public class SpikeBoss extends Entity {
         GameMain.beatFirstBoss = true;
 
         PlayerInventory.removeKey();
+    }
+
+    public void changeAttack() {
+        needToAttack = !needToAttack;
     }
 
 }

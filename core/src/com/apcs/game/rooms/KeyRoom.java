@@ -40,7 +40,7 @@ public class KeyRoom extends Room {
         entities.add(new Wizard());
         entities.add(new Wizard());
 
-        groundItems.add(new Key());
+        groundItems.add(new Key(2));
     }
 
     public Texture getFloor() {

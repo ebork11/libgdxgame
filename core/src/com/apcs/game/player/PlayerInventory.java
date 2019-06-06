@@ -49,7 +49,11 @@ public class PlayerInventory {
         for (int cnt = 0; cnt < inventorySlots; cnt++) { // checks all inventory slots
             if (inventory[cnt] == null) { // if the inventory slot is empty
                 if (toAdd instanceof Key) {
-                    GameMain.hasKey = true;
+                    if (GameMain.beatFirstBoss) {
+                        GameMain.hasKey2 = true;
+                    } else {
+                        GameMain.hasKey = true;
+                    }
                 }
 
                 inventory[cnt] = toAdd; // sets the inventory slot to the item
@@ -135,6 +139,7 @@ public class PlayerInventory {
         for (int cnt = 0; cnt < inventory.length; cnt++) {
             if (inventory[cnt] != null && inventory[cnt] instanceof Key) {
                 inventory[cnt] = null;
+                GameMain.hasKey = true;
             }
         }
     }

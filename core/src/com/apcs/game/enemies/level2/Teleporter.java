@@ -24,7 +24,7 @@ public class Teleporter extends Charger {
     public Teleporter() {
 
         needToAttack = false;
-        moveCooldown = 1500;
+        moveCooldown = 1750;
         teleportTimer = 500;
         lastMove = System.currentTimeMillis();
         setHealth(25);

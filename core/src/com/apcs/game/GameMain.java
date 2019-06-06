@@ -48,7 +48,7 @@ public class GameMain extends ApplicationAdapter {
 
 
 	boolean menu, pause, helpMenu, mute;
-	public static boolean overItem, enterHealing, enterHealingTwo, beatFirstBoss, beatSecondBoss, hasKey;
+	public static boolean overItem, enterHealing, enterHealingTwo, beatFirstBoss, beatSecondBoss, hasKey, hasKey2;
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
@@ -111,6 +111,7 @@ public class GameMain extends ApplicationAdapter {
 		rm = new RoomManager();
 		pa = new PlayerAnimation();
 
+		hasKey2 = false;
 		hasKey = false;
 		endFade = false;
 		roomTransition = false;
@@ -459,7 +460,7 @@ public class GameMain extends ApplicationAdapter {
 							batch.draw(rm.getUncleared2(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
 						}
 
-						if (LevelGeneration.getLevel()[cnt][cnt2] instanceof BossRoom && hasKey) {
+						if (LevelGeneration.getLevel()[cnt][cnt2] instanceof BossRoom) {
 							batch.draw(rm.getBossRoom(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
 						}
 
@@ -658,7 +659,7 @@ public class GameMain extends ApplicationAdapter {
 				} else {
 					if (entities.get(loop) instanceof SpikeBoss) {
 						SpikeBoss sb = (SpikeBoss)(entities.get(loop));
-						sb.needToAttack = false;
+						sb.changeAttack();
 					}
 				}
 

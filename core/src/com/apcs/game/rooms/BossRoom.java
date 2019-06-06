@@ -13,8 +13,8 @@ public class BossRoom extends Room {
 
     private Texture myFloor;
     private ArrayList<Door> doors;
-    private static ArrayList<Entity> entities;
-    private static ArrayList<Spike> hazards;
+    private ArrayList<Entity> entities;
+    private ArrayList<Spike> hazards;
     private ArrayList<Item> groundItems;
     private ArrayList<Projectile> proj, enemProj;
     private int level = 1;
