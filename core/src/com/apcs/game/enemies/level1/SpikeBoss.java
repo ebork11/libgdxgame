@@ -5,7 +5,10 @@ import com.apcs.game.GameMain;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.projectiles.Projectile;
-import com.apcs.game.items.weapons.*;
+import com.apcs.game.items.weapons.Item;
+import com.apcs.game.items.weapons.SpearT2;
+import com.apcs.game.items.weapons.Staff;
+import com.apcs.game.items.weapons.SwordT2;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.player.PlayerInventory;
 import com.apcs.game.rooms.HealingRoom;
@@ -144,7 +147,6 @@ public class SpikeBoss extends Entity {
         ArrayList<Item> droppable = new ArrayList<Item>();
 
         droppable.add(new Staff());
-        droppable.add(new Crossbow());
         droppable.add(new SwordT2());
         droppable.add(new SpearT2());
 

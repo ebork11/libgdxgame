@@ -150,7 +150,7 @@ public class Wizard extends Entity {
             if (droppable.size() == 0 && ifDrop <= 90) {
                 droppable.add(new Wand());
                 droppable.add(new Bow());
-            }else if (droppable.size() == 0){
+            } else if (droppable.size() == 0){
                 droppable.add(new Staff());
                 droppable.add(new Crossbow());
             }
