@@ -3,11 +3,15 @@ package com.apcs.game.enemies.level2;
 import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.level1.SpikeBoss;
+import com.apcs.game.items.HealthPotion;
 import com.apcs.game.items.projectiles.Projectile;
+import com.apcs.game.items.weapons.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+
+import java.util.ArrayList;
 
 public class SpikeBossT2 extends SpikeBoss {
 
@@ -61,5 +65,9 @@ public class SpikeBossT2 extends SpikeBoss {
             else
                 shot = 1;
         }
+    }
+
+    public void dropItems(){
+        GameMain.gameWon = true;
     }
 }

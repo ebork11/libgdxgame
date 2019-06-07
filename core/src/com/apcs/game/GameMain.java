@@ -53,7 +53,7 @@ public class GameMain extends ApplicationAdapter {
 	private Texture invSelectTex; // inventory outline texture
 
 	//drawing weapon during combat
-	public static boolean attacking = false, hit = false, heal = false;
+	public static boolean attacking = false, hit = false, heal = false, gameWon = false;
 	private boolean fullscreen = false, roomTransition, endFade;
 	public static Texture wepTex;
 	public static float wepX;
@@ -219,6 +219,9 @@ public class GameMain extends ApplicationAdapter {
 						}
 					}
 				}
+			}
+			if(gameWon){
+				font.draw(batch, "You Win Game is Done", player.getCollider().x - 60, (player.getCollider().y)+100);
 			}
 		}
 
