@@ -20,6 +20,7 @@ public class KeyRoom extends Room {
     private ArrayList<Spike> spikes;
     private ArrayList<Item> groundItems;
     private ArrayList<Projectile> proj, enemProj;
+    private int level;
 
     public KeyRoom() {
         doors = new ArrayList<Door>();
@@ -41,6 +42,8 @@ public class KeyRoom extends Room {
         entities.add(new Wizard());
 
         groundItems.add(new Key());
+
+        level = 1;
     }
 
     public KeyRoom(int temp) {
@@ -63,6 +66,8 @@ public class KeyRoom extends Room {
         entities.add(new Wizard());
 
         groundItems.add(new Key(temp));
+
+        level = 2;
     }
 
     public Texture getFloor() {
@@ -91,6 +96,6 @@ public class KeyRoom extends Room {
 
     @Override
     public int getRoomLevel() {
-        return 1;
+        return level;
     }
 }

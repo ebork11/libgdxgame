@@ -549,7 +549,7 @@ public class GameMain extends ApplicationAdapter {
 		batch.draw(room.getFloor(), 0, 0); // draw the room floor
 
 		for (int cnt = 0; cnt < room.getDoors().size(); cnt++) {
-			if (room.getEntities().size() > 0 || (room.getDoors().get(cnt).getNextRoom().getRoomLevel() == 2 && !beatFirstBoss) || (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom && !hasKey)) {
+			if (room.getEntities().size() > 0 || (room.getDoors().get(cnt).getNextRoom().getRoomLevel() == 2 && !beatFirstBoss) || (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom && room.getDoors().get(cnt).getNextRoom().getRoomLevel() == 1 && !hasKey)|| (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom && room.getDoors().get(cnt).getNextRoom().getRoomLevel() == 2 && !hasKey2)) {
 				switch (room.getDoors().get(cnt).getLocation()) {
 					case "top":
 						if (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom) {
@@ -585,16 +585,40 @@ public class GameMain extends ApplicationAdapter {
 			} else {
 				switch (room.getDoors().get(cnt).getLocation()) {
 					case "top":
-						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 10);
+						if (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom) {
+							batch.draw(room.getDoors().get(cnt).getBossDoorOpen(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 10);
+
+						} else {
+							batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() + 10);
+
+						}
 						break;
 					case "bottom":
-						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 10);
+						if (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom) {
+							batch.draw(room.getDoors().get(cnt).getBossDoorOpen(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 10);
+
+						} else {
+							batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc(), room.getDoors().get(cnt).getyLoc() - 10);
+
+						}
 						break;
 					case "left":
-						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 5, room.getDoors().get(cnt).getyLoc());
+						if (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom) {
+							batch.draw(room.getDoors().get(cnt).getBossDoorOpen(), room.getDoors().get(cnt).getxLoc() - 5, room.getDoors().get(cnt).getyLoc());
+
+						} else {
+							batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() - 5, room.getDoors().get(cnt).getyLoc());
+
+						}
 						break;
 					case "right":
-						batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 5, room.getDoors().get(cnt).getyLoc());
+						if (room.getDoors().get(cnt).getNextRoom() instanceof BossRoom) {
+							batch.draw(room.getDoors().get(cnt).getBossDoorOpen(), room.getDoors().get(cnt).getxLoc() + 5, room.getDoors().get(cnt).getyLoc());
+
+						} else {
+							batch.draw(room.getDoors().get(cnt).getOpenTex(), room.getDoors().get(cnt).getxLoc() + 5, room.getDoors().get(cnt).getyLoc());
+
+						}
 						break;
 					default:
 						break;

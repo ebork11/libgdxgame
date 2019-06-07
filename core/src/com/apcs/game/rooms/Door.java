@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Door {
     private Texture closedDoor;
-    private Texture openDoor, boss;
+    private Texture openDoor, boss, bossopen;
     private Room nextRoom;
     Rectangle collider;
     private String loca;
@@ -23,6 +23,7 @@ public class Door {
                 closedDoor = new Texture("rooms/doors/closeddoorT.png");
                 openDoor = new Texture("rooms/doors/opendoorT.png");
                 boss = new Texture("rooms/doors/closeddoorTboss.png");
+                bossopen = new Texture("rooms/doors/opendoorTboss.png");
                 break;
             case "bottom":
                 xLoc = 460;
@@ -30,6 +31,7 @@ public class Door {
                 closedDoor = new Texture("rooms/doors/closeddoorB.png");
                 openDoor = new Texture("rooms/doors/opendoorB.png");
                 boss = new Texture("rooms/doors/closeddoorBboss.png");
+                bossopen = new Texture("rooms/doors/opendoorBboss.png");
                 break;
             case "left":
                 xLoc = 5;
@@ -37,6 +39,7 @@ public class Door {
                 closedDoor = new Texture("rooms/doors/closeddoorL.png");
                 openDoor = new Texture("rooms/doors/opendoorL.png");
                 boss = new Texture("rooms/doors/closeddoorLboss.png");
+                bossopen = new Texture("rooms/doors/opendoorLboss.png");
                 break;
             case "right":
                 xLoc = 955;
@@ -44,6 +47,7 @@ public class Door {
                 closedDoor = new Texture("rooms/doors/closeddoorR.png");
                 openDoor = new Texture("rooms/doors/opendoorR.png");
                 boss = new Texture("rooms/doors/closeddoorRboss.png");
+                bossopen = new Texture("rooms/doors/opendoorRboss.png");
                 break;
             default:
                 break;
@@ -82,5 +86,9 @@ public class Door {
 
     public Texture getBossDoor() {
         return boss;
+    }
+
+    public Texture getBossDoorOpen() {
+        return bossopen;
     }
 }
