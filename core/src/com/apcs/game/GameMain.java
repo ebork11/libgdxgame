@@ -237,6 +237,7 @@ public class GameMain extends ApplicationAdapter {
 			batch.draw(mainButtons.get(2).getTextOff(), 50, 50);
 			batch.draw(mm.getTitleAnim(), 50, 550);
 			batch.draw(mm.getMenuKeys(), 200, 20);
+			batch.draw(mm.getCredit(), 550, 550);
 		} else {
 
 			if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){

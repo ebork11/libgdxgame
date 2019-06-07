@@ -1,5 +1,6 @@
 package com.apcs.game.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.apcs.game.GameMain;
@@ -14,6 +15,8 @@ public class DesktopLauncher {
 
 		config.resizable = false;
 
-		config.title = "Game"; // setting the name of the window in the top
+		config.addIcon("gui/icon.png", Files.FileType.Internal);
+
+		config.title = "UNBOUND"; // setting the name of the window in the top
 	}
 }

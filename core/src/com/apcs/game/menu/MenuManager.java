@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MenuManager {
-    Texture background, play, playDown, help, helpDown, quit, quitDown, back, walk1, walk2, walk3, walk4, walk5, walk6, walk7, walk8, tut;
+    Texture background, play, playDown, help, helpDown, quit, quitDown, back, walk1, walk2, walk3, walk4, walk5, walk6, walk7, walk8, tut, credit;
     ArrayList<Texture> title, arrows;
     private long frame, start, start2, start3;
 
@@ -53,6 +53,7 @@ public class MenuManager {
         quitDown = new Texture("gui/menu/quiton.png");
         back = new Texture("gui/backbutton.png");
         tut = new Texture("gui/menukeys.png");
+        credit = new Texture("gui/menu/credit.png");
     }
 
     public Texture getBackground() {
@@ -110,5 +111,9 @@ public class MenuManager {
 
     public Texture getMenuKeys() {
         return tut;
+    }
+
+    public Texture getCredit() {
+        return credit;
     }
 }
