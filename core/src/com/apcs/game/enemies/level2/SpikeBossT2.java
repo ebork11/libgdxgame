@@ -25,7 +25,7 @@ public class SpikeBossT2 extends SpikeBoss {
     public SpikeBossT2() {
         super();
 
-        setHealth(175);
+        setHealth(150);
         text = new Texture("enemies/spikeboss/boss1.png");
         shot = 1;
         shootTimer = System.currentTimeMillis();

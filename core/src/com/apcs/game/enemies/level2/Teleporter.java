@@ -89,14 +89,15 @@ public class Teleporter extends Charger {
     public void dropItems() {
         int ifDrop = (int)(Math.random() * 100)+1;
 
-        if (ifDrop <= 40) {
+        if (ifDrop <= 25) {
             ArrayList<Item> droppable = new ArrayList<Item>();
 
 
             if (droppable.size() == 0) {
                 droppable.add(new ArmorT3());
                 droppable.add(new SpearT2());
-                droppable.add(new Staff());
+                droppable.add(new SwordT2());
+                droppable.add(new DaggerT2());
             }
 
             Item temp = droppable.get((int)(Math.random() * droppable.size()));

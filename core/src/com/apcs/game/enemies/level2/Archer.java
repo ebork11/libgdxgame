@@ -3,7 +3,9 @@ package com.apcs.game.enemies.level2;
 import com.apcs.game.EnemyAnimation;
 import com.apcs.game.GameMain;
 import com.apcs.game.enemies.level1.Wizard;
+import com.apcs.game.items.armor.ArmorT3;
 import com.apcs.game.items.projectiles.Projectile;
+import com.apcs.game.items.weapons.*;
 import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -122,6 +124,24 @@ public class Archer extends Wizard {
                     shootCooldown = System.currentTimeMillis();
                 }
             }
+        }
+    }
+
+    public void dropItems() {
+        int ifDrop = (int)(Math.random() * 100)+1;
+
+        if (ifDrop <= 25) {
+            ArrayList<Item> droppable = new ArrayList<Item>();
+            if (droppable.size() == 0) {
+                droppable.add(new Staff());
+                droppable.add(new Crossbow());
+            }
+
+            Item temp = droppable.get((int)(Math.random() * droppable.size()));
+
+            temp.getCollider().setPosition(collider.x, collider.y);
+
+            RoomManager.getCurrentRoom().getGroundItems().add(temp);
         }
     }
 
