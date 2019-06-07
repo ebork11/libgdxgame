@@ -99,7 +99,6 @@ public class GameMain extends ApplicationAdapter {
 		//arrow = new Texture("gui/menu/arrow1.png");
 
 		mute = false;
-
 		music.setVolume(0.2f);
 		music.setLooping(true);
 
