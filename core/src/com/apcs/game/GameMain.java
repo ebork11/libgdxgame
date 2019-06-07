@@ -466,7 +466,10 @@ public class GameMain extends ApplicationAdapter {
 						}
 
 						if (LevelGeneration.getLevel()[cnt][cnt2] instanceof BossRoom) {
-							batch.draw(rm.getBossRoom(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+							if (LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 1 && hasKey)
+								batch.draw(rm.getBossRoom(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
+							else if (LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 2 && hasKey2)
+								batch.draw(rm.getBossRoom(), 1020 + (cnt2 * 25), 650 - (cnt * 25));
 						}
 
 					} else if(enterHealing && LevelGeneration.getLevel()[cnt][cnt2] instanceof HealingRoom && LevelGeneration.getLevel()[cnt][cnt2].getRoomLevel() == 1){
