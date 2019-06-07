@@ -8,7 +8,6 @@ import com.apcs.game.player.PlayerHandler;
 import com.apcs.game.rooms.RoomManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import org.w3c.dom.css.Rect;
 
 import java.util.ArrayList;
 
