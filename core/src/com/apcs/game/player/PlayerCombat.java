@@ -18,7 +18,7 @@ public class PlayerCombat {
     private static Texture heart, halfHeart, armorHeart, armorHalfHeart;
 
     public PlayerCombat() {
-        health = 800;
+        health = 8;
 
         hurt = Gdx.audio.newSound(Gdx.files.internal("sounds/ouch.mp3"));
         heal = Gdx.audio.newSound(Gdx.files.internal("sounds/heal.mp3"));
