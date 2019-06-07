@@ -23,48 +23,48 @@ public class Projectile {
         switch(direction) {
             case "up":
                 if (type.equals("spell")) {
-                    spell.play(1.0f);
+                    spell.play(0.4f);
                     tex = new Texture("items/projectile/whitespell/pojectileu.png");
                 } else if (type.equals("rock"))
                     tex = new Texture("items/projectile/rock/rocku.png");
                 else {
-                    arrow.play(1.0f);
+                    arrow.play(0.4f);
                     tex = new Texture("items/projectile/arrow/arrowu.png");
                 }
 
                 break;
             case "down":
                 if (type.equals("spell")) {
-                    spell.play(1.0f);
+                    spell.play(0.4f);
                     tex = new Texture("items/projectile/whitespell/projectiled.png");
                 } else if (type.equals("rock"))
                     tex = new Texture("items/projectile/rock/rockd.png");
                 else {
-                    arrow.play(1.0f);
+                    arrow.play(0.4f);
                     tex = new Texture("items/projectile/arrow/arrowd.png");
                 }
 
                 break;
             case "left":
                 if (type.equals("spell")) {
-                    spell.play(1.0f);
+                    spell.play(0.4f);
                     tex = new Texture("items/projectile/whitespell/projectilel.png");
                 } else if (type.equals("rock"))
                     tex = new Texture("items/projectile/rock/rockl.png");
                 else {
-                    arrow.play(1.0f);
+                    arrow.play(0.4f);
                     tex = new Texture("items/projectile/arrow/arrowl.png");
                 }
 
                 break;
             case "right":
                 if (type.equals("spell")) {
-                    spell.play(1.0f);
+                    spell.play(0.4f);
                     tex = new Texture("items/projectile/whitespell/projectiler.png");
                 } else if (type.equals("rock"))
                     tex = new Texture("items/projectile/rock/rockr.png");
                 else {
-                    arrow.play(1.0f);
+                    arrow.play(0.4f);
                     tex = new Texture("items/projectile/arrow/arrowr.png");
                 }
 
