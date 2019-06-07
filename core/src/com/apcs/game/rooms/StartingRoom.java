@@ -3,6 +3,7 @@ package com.apcs.game.rooms;
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.enemies.level1.SpikeBoss;
 import com.apcs.game.enemies.level2.Archer;
+import com.apcs.game.enemies.level2.SpikeBossT2;
 import com.apcs.game.enemies.level2.Teleporter;
 import com.apcs.game.items.armor.ArmorT2;
 import com.apcs.game.items.weapons.Item;
@@ -29,8 +30,8 @@ public class StartingRoom extends Room {
         proj = new ArrayList<Projectile>();
         enemProj = new ArrayList<Projectile>();
 
-        entities.add(new Teleporter());
-        entities.add(new Archer());
+        // entities.add(new SpikeBossT2());
+        // entities.add(new Archer());
         // groundItems.add(new ArmorT2());
     }
 
