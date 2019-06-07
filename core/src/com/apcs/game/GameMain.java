@@ -54,7 +54,7 @@ public class GameMain extends ApplicationAdapter {
 
 	//drawing weapon during combat
 	public static boolean attacking = false, hit = false, heal = false;
-	private boolean fullscreen, roomTransition, endFade;
+	private boolean fullscreen = false, roomTransition, endFade;
 	public static Texture wepTex;
 	public static float wepX;
 	public static float wepY;
@@ -120,7 +120,6 @@ public class GameMain extends ApplicationAdapter {
 		menu = true;
 		helpMenu = false;
 		pause = false;
-		fullscreen = false;
 		overItem = false;
 		invSelectTex = new Texture("items/outlineselection.png");
 
