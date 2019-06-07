@@ -2,6 +2,7 @@ package com.apcs.game.rooms;
 
 import com.apcs.game.enemies.Entity;
 import com.apcs.game.enemies.level1.SpikeBoss;
+import com.apcs.game.enemies.level1.Wizard;
 import com.apcs.game.enemies.level2.SpikeBossT2;
 import com.apcs.game.items.weapons.Item;
 import com.apcs.game.items.projectiles.Projectile;
@@ -42,6 +43,8 @@ public class BossRoom extends Room {
         enemProj = new ArrayList<Projectile>();
 
         entities.add(new SpikeBossT2());
+        entities.add(new Wizard());
+        entities.add(new Wizard());
 
         level = temp;
     }
